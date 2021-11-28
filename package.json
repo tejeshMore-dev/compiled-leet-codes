@@ -1,0 +1,19 @@
+{
+  "name": "compiled-leet-codes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Tejesh More",
+  "license": "ISC",
+  "dependencies": {
+    "fuzzy": "^0.1.3",
+    "inquirer": "^8.2.0",
+    "inquirer-autocomplete-prompt": "^1.4.0"
+  }
+}
