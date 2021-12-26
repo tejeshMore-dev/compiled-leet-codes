@@ -13,11 +13,8 @@ function execute () {
     tree.insert(3);
     tree.insert(24);
     tree.insert(26);
-
-    tree.print('PRE_ORDER');
+    
     tree.print('POST_ORDER');
-    tree.print('IN_ORDER_ASC');
-    tree.print('IN_ORDER_DSC');
 }
 
 module.exports.execute = execute ;
