@@ -4,7 +4,7 @@
  * @return {number}
  */
 var minSubArrayLen = function(target, nums) {
-    let result = 0;
+    let result = Number.MAX_VALUE;
     
     let p1 = 0;
     let p2 = 0;
@@ -13,7 +13,7 @@ var minSubArrayLen = function(target, nums) {
     while ( p1 !== nums.length && p2 !== nums.length ) {
         if( sum + nums[p2] >= target ) {
             sum -= nums[p1];
-            result = result === 0 ? p2 - p1 + 1 : Math.min( result, p2 - p1 + 1 );
+            result = Math.min( result, p2 - p1 + 1 );
             p1++;
         } else {
             sum += nums[p2];
@@ -22,5 +22,5 @@ var minSubArrayLen = function(target, nums) {
         
     }
     
-    return result;
+    return result === Number.MAX_VALUE ? 0 : result;
 };
