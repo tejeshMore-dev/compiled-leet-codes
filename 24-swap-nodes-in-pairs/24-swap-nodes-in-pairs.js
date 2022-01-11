@@ -14,12 +14,11 @@ var swapPairs = function(head) {
     
     while( node && node.next ) {
         let temp = node.val;
-        let nextNode = node.next;
         
-        node.val = nextNode.val;
-        nextNode.val = temp;
+        node.val = node.next.val;
+        node.next.val = temp;
         
-        node = nextNode.next;
+        node = node.next.next;
     }
     
     return head
