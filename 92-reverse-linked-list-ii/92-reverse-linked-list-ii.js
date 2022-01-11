@@ -35,10 +35,8 @@ var reverseBetween = function(head, left, right) {
     
     if( !prevN ) head = prev;
     else prevN.next = prev;
-        
     
     if( node ) curN.next = node;
 
-    
     return head;
 };
