@@ -9,9 +9,6 @@ var findPeakElement = function(nums) {
     
     while ( lp < hp ) {
         let mid = Math.floor( lp + (hp-lp)/2 );
-        console.log(mid);
-        // if( (mid === 0 || nums[mid-1] < nums[mid] ) && ( mid === nums.length-1 || nums[mid+1] < nums[mid] ) )
-        //     return result = mid
         
         if( nums[mid+1] > nums[mid] )
             lp = mid + 1;
