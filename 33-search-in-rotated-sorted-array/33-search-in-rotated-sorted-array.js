@@ -8,7 +8,6 @@ var search = function(nums, target) {
     
     while ( lp < rp ) {
         let mid = Math.floor( lp + (rp-lp)/2 );
-        console.log(mid)
         if( nums[mid] === target ) return lp = mid;
         
         if( target > nums[mid] ) {
