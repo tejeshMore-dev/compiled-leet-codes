@@ -13,7 +13,6 @@ var romanToInt = function(s) {
         'M': 1000
     }, result = 0, lastVal = 1001;
     
-    
 //     for(let i=0; i < s.length ; i++ ) {
 //         let char = s[i], val = map[char];
         
@@ -27,7 +26,6 @@ var romanToInt = function(s) {
 //     }
         
     for(let i=0; i < s.length ; i++ ) {
-        
         if( map[s[i]] <  map[s[i+1]] ) {
             result -= map[s[i]];
         } else {
