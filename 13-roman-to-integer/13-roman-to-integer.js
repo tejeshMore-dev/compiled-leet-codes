@@ -14,18 +14,25 @@ var romanToInt = function(s) {
     }, result = 0, lastVal = 1001;
     
     
-    for(let i=0; i < s.length ; i++ ) {
-        let char = s[i], val = map[char];
+//     for(let i=0; i < s.length ; i++ ) {
+//         let char = s[i], val = map[char];
         
-        if( val <= lastVal ) {
-            result += val;
-            lastVal = val;
+//         if( val <= lastVal ) {
+//             result += val;
+//             lastVal = val;
+//         } else {
+//             result = result + val + (-2 * lastVal);
+//             lastVal = val;
+//         }
+//     }
+        
+    for(let i=0; i < s.length ; i++ ) {
+        
+        if( map[s[i]] <  map[s[i+1]] ) {
+            result -= map[s[i]];
         } else {
-            result = result + val + (-2 * lastVal);
-            lastVal = val;
+            result += map[s[i]];
         }
     }
-        
-    
     return result;
 };
