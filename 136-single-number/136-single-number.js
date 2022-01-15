@@ -19,7 +19,6 @@ var singleNumber = function(nums) {
     }
     
     map.forEach(( value, key, map ) => {
-        console.log(value, key);
        if( value === 1 )
            return result = key
     });
