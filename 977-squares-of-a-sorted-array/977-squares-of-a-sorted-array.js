@@ -7,11 +7,10 @@ var sortedSquares = function(nums) {
     let result = new Array(nums.length);
     
     while( lp <= hp ) {
-        if( Math.abs(nums[lp]) > Math.abs(nums[hp]) ) {
+        if( Math.abs(nums[lp]) > Math.abs(nums[hp]) )
             result[pointer--] = Math.pow(nums[lp++], 2);
-        } else {
+        else 
             result[pointer--] = Math.pow(nums[hp--], 2);
-        }
     }
     
     return result;
