@@ -8,13 +8,9 @@ var sortedSquares = function(nums) {
     
     while( lp <= hp ) {
         if( Math.abs(nums[lp]) > Math.abs(nums[hp]) ) {
-            result[pointer] = Math.pow(nums[lp], 2);
-            lp++;
-            pointer--;
+            result[pointer--] = Math.pow(nums[lp++], 2);
         } else {
-            result[pointer] = Math.pow(nums[hp], 2);
-            hp--;
-            pointer--;
+            result[pointer--] = Math.pow(nums[hp--], 2);
         }
     }
     
