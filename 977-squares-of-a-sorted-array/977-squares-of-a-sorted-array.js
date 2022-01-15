@@ -3,8 +3,8 @@
  * @return {number[]}
  */
 var sortedSquares = function(nums) {
-    let lp = 0, hp = nums.length-1, pointer = nums.length-1;
-    let result = new Array(nums.length);
+    let lp = 0, hp = nums.length-1, pointer = hp;
+    let result = new Array(pointer+1);
     
     while( lp <= hp ) {
         if( Math.abs(nums[lp]) > Math.abs(nums[hp]) )
