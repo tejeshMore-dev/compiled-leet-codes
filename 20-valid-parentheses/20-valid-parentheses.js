@@ -14,9 +14,8 @@ var isValid = function(s) {
     for( let char of s ) {
         if( !map[char] )
             stack.push(char);
-        else {
-             if( !stack[0] || map[char] !== stack.pop() ) return false
-        }        
+        else  
+            if( !stack[0] || map[char] !== stack.pop() ) return false
      
     };
     
