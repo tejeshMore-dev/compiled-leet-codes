@@ -27,10 +27,8 @@ var findKthPositive = function(arr, k) {
     }
     if( k ) {
         pointer = arr[arr.length-1];
-        while( k ) {
-            pointer++
-            k--;
-        }
+            pointer +=k
+
     }
     
     return pointer;
