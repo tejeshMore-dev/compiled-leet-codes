@@ -1,6 +1,15 @@
+class Node{
+    constructor(val, min, nextN) {
+        this.val = val;
+        this.min = min;
+        this.next = nextN;
+    }
+
+}
 
 var MinStack = function() {
-    this.stack = [];
+    // this.stack = [];
+    this.head;
 };
 
 /** 
@@ -8,33 +17,35 @@ var MinStack = function() {
  * @return {void}
  */
 MinStack.prototype.push = function(val) {
-    let getMinVal = this.getMin()
-    let min = (getMinVal || getMinVal === 0 ) && getMinVal < val  ? getMinVal : val
-    this.stack.push({val, min});
+    // let getMinVal = this.getMin()
+    // let min = (getMinVal || getMinVal === 0 ) && getMinVal < val  ? getMinVal : val
+    // this.stack.push({val, min});
+    
+    if( !this.head )
+        this.head = new Node(val, val)
+    else
+        this.head = new Node(val, val < this.head.min ? val : this.head.min, this.head )
 };
 
 /**
  * @return {void}
  */
 MinStack.prototype.pop = function() {
-    if(this.stack.length <= 0) return null
-    this.stack.pop()
+    this.head = this.head.next;
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.top = function() {
-    if(this.stack.length <= 0) return null
-    return this.stack[this.stack.length-1].val
+    return this.head ? this.head.val : null
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.getMin = function() {
-    if(this.stack.length === 0) return null
-    return this.stack[this.stack.length-1].min
+    return this.head ? this.head.min : null
 };
 
 /** 
