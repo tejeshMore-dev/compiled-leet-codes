@@ -3,30 +3,27 @@
  * @return {string}
  */
 var minRemoveToMakeValid = function(s) {
-	let stack = [], invalidIndex = [];
-	let bracket = [ '(', ')' ];
+	let stack = [], bracket = {
+        opening : '(',
+        closing : ')'
+    };
+    s = s.split('');
 
-	for(let i=0; i<s.length; i++) {
-        if( !bracket.includes(s.charAt(i))  ) continue;
+	for(let i = 0; i < s.length; i++) {
         
-        if( s.charAt(i) === bracket[0] ) {
+        if( s[i] === bracket.opening ) {
             stack.push(i);
-        } else {
+        } 
+        if( s[i] === bracket.closing ) {
             if(stack.length === 0)
-                invalidIndex.push(i)
+                s[i] = '';
             else
                 stack.pop()
         }
     }
     
         while(stack.length > 0)
-            invalidIndex.push(stack.pop());
-    
-        let result = [];
-        for( let i = 0; i < s.length; i++ ) {
-            if(!invalidIndex.includes(i))
-                result.push(s[i])
-    }
+            s[stack.pop()] = '';
 
-        return result.join('');
+        return s.join('');
 };
