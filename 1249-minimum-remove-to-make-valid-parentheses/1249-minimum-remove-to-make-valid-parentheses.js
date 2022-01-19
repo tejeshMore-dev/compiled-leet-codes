@@ -22,8 +22,8 @@ var minRemoveToMakeValid = function(s) {
         }
     }
     
-        while(stack.length > 0)
-            s[stack.pop()] = '';
+    while(stack.length > 0)
+        s[stack.pop()] = '';
 
-        return s.join('');
+    return s.join('');
 };
