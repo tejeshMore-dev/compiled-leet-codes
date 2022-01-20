@@ -11,7 +11,7 @@
  * @return {number[][]}
  */
 var zigzagLevelOrder = function(root) {
-    	let queue = [root], ans = [], oddFlag = false;
+    let queue = [root], ans = [], oddFlag = false;
 
 	while(queue[0]) {
 		let qLength = queue.length, row = [];
@@ -30,11 +30,9 @@ var zigzagLevelOrder = function(root) {
                 queue.push(node.right)
         }
         
-        // row = flag ? row.reverse() : row;
 		oddFlag = !oddFlag;
 		ans.push( row );
-}
+    }
 
 	return ans;
-
 };
