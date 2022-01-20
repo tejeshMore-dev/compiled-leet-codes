@@ -12,28 +12,22 @@
  */
 
 var levelOrder = function(root) {
-    if( !root ) return []
-    
     let queue = [root], result = [];
 
-	function bfs(queue) {
-            while( queue.length > 0 ) {
-                let qLength = queue.length, row = [];
-                
-                for( let i = 0; i < qLength; i++ ) {
-                    let node = queue.shift();
-                    row.push(node.val);
-                    
-                    if(node.left)
-                        queue.push(node.left)
-                    if( node.right )
-                        queue.push(node.right);
-                }
-                result.push(row);
-            }
+    while( queue[0] ) {
+        let qLength = queue.length, row = [];
+
+        for( let i = 0; i < qLength; i++ ) {
+            let node = queue.shift();
+            row.push(node.val);
+
+            if(node.left)
+                queue.push(node.left)
+            if( node.right )
+                queue.push(node.right);
         }
-
-        bfs([root]);
-        return result;
-
+        result.push(row);
+    }
+    
+    return result;
 };
