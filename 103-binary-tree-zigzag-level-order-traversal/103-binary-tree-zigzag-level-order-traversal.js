@@ -28,7 +28,6 @@ var zigzagLevelOrder = function(root) {
         
         row = flag ? row.reverse() : row;
 		flag = !flag;
-        console.log(flag, row)
 		ans.push( row );
 }
 
