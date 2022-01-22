@@ -65,7 +65,6 @@ var findKthLargest = function(nums, k) {
     for( let num of nums ) {
         heap.insert(num);
     }
-    console.log(heap)
     
     while( k-- ) {
         ans = heap.remove();
