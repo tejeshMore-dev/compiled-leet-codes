@@ -83,7 +83,6 @@ var topKFrequent = function(nums, k) {
         heap.insert(key,map[key]); 
     }
     
-    console.log(heap)
     while( k-- ) {
         ans.push(heap.remove().val);
     }
