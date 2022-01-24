@@ -12,7 +12,6 @@ var intToRoman = function(num) {
             num -= romanValues[i];
             ans.push(romans[i]);
         }
-        console.log(ans, romans[i])
         i++;
     }
     
