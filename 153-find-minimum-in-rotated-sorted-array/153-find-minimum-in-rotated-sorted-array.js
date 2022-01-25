@@ -8,11 +8,12 @@ var findMin = function(nums) {
     while( lp < rp ) {
         let mid = Math.floor( lp + (rp-lp)/2 );
         
-        if( nums[mid] > nums[rp] )
-            lp = mid + 1;
-        else
-            rp = mid
+        if( nums[mid] > nums[rp] ) {
+            lp = mid+1;
+        } else {
+            rp= mid;
+        }
     }
     
-    return nums[lp];
+    return nums[lp]
 };
