@@ -6,11 +6,10 @@ var maxAreaOfIsland = function(grid) {
     let maxArea = 0, rows = grid.length, columns = grid[0].length;
     let directions = [ [0, -1], [0, 1], [1,0], [-1,0] ] // left right top bottom
     let queue = [];
-    let visited = new Set();
     
     for( let r=0; r<rows; r++ ) {
         for( let c=0; c<columns; c++ ) {
-            if( grid[r][c] && !visited.has(`${r}_${c}`) ) {
+            if( grid[r][c] ) {
                 maxArea = Math.max(findArea([[r,c]]), maxArea);
             }
         }
@@ -20,18 +19,17 @@ var maxAreaOfIsland = function(grid) {
         let area = 0;
         while( queue.length > 0 ) {
             let [r,c] = queue.shift();
+            grid[r][c] = 0;
             area++;
-            visited.add(`${r}_${c}`);
             directions.map((dir) => {
                let [ row, col ] = [ r+dir[0], c+dir[1] ];
                 
-                if( row < 0 || col < 0 || row >= rows || col >= columns || grid[row][col] === 0 || visited.has(`${row}_${col}`) ) {
+                if( row < 0 || col < 0 || row >= rows || col >= columns || grid[row][col] === 0 ) {
                 } else {
-                    visited.add(`${row}_${col}`);
+                    grid[row][col] = 0
                     queue.push([row, col])       
                 }
             });
-            // console.log(area, queue)
             
         }
         return area;
