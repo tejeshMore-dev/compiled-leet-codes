@@ -13,11 +13,10 @@ var findMin = function(nums) {
         if( nums[mid] > nums[rp]) {
             lp = mid+1;
                         
-        } 
-        // else if( nums[mid] < nums[lp] ) {
-        //     rp = mid;
-        //     lp--;
-        // }
+        } else if( nums[mid] < nums[lp] ) {
+            rp = mid;
+            lp--;
+        }
         else
             rp--;
     }
