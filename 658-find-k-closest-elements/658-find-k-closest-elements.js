@@ -10,7 +10,7 @@ var findClosestElements = function(arr, k, x) {
     while( rp - lp + 1 > k ) {
         let left = Math.abs( arr[lp] - x );
         let right = Math.abs( arr[rp] - x )
-        console.log(left, right)
+        
         if( left <= right )
             rp--;
         else
