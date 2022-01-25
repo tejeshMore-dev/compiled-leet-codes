@@ -11,7 +11,7 @@ var longestConsecutive = function(nums) {
     }
   
     for( let i = 0; i < nums.length; i++ ) {
-       if( !set.has(nums[i] -1) ) {
+       if( !set.has(nums[i] -1) && set.has(nums[i]+1)  ) {
            let count = 1, val = nums[i];
            while( set.has(++val) ) {
                count++;
