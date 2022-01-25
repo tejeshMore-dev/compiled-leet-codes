@@ -26,8 +26,8 @@ var maxAreaOfIsland = function(grid) {
                 
                 if( row < 0 || col < 0 || row >= rows || col >= columns || grid[row][col] === 0 ) {
                 } else {
-                    grid[row][col] = 0
-                    queue.push([row, col])       
+                    grid[row][col] = 0;
+                    queue.push([row, col]);
                 }
             });
             
