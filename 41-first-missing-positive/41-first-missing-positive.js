@@ -2,18 +2,21 @@
  * @param {number[]} nums
  * @return {number}
  */
-var firstMissingPositive = function(nums) {
-    let set = new Set();
-    
-    for( let num of nums ) {
-        if( num > 0 )
-            set.add(num);
+var firstMissingPositive = function(nums) {            
+    for( let i = 0; i< nums.length; i++ ) {
+        let index = nums[i] - 1;
+        
+        if( i === index || nums[i] === nums[index] ) continue;
+        if( index >= 0 && index <= nums.length - 1 ) {
+            [nums[i], nums[index] ] = [ nums[index], nums[i] ];
+            i--;
+        }
     }
     
-    let i = 1;
-    while( set.has(i) ) {
-        i++;
+    for( let i = 0; i< nums.length; i++ ) {
+        if( i+1 !== nums[i] )
+            return i+1
     }
     
-    return i
+    return nums.length + 1;
 };
