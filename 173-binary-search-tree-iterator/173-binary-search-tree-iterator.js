@@ -11,22 +11,23 @@
  */
 var BSTIterator = function(root) {
     this.stack = [];
-    this.pushAll(root);
+    pushAll(root, this.stack);
+    
+
 };
 
-BSTIterator.prototype.pushAll = function(node) {
+function pushAll(node, stack) {
     while( node ) {
-        this.stack.push(node);
+        stack.push(node);
         node = node.left;
     }
 }
-
 /**
  * @return {number}
  */
 BSTIterator.prototype.next = function() {
     let node = this.stack.pop();
-    this.pushAll(node.right)
+    pushAll(node.right, this.stack)
     return node.val
 };
 
