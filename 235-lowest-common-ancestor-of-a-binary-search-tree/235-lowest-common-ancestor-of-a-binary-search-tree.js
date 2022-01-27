@@ -13,10 +13,64 @@
  * @return {TreeNode}
  */
 var lowestCommonAncestor = function(root, p, q) {
-    if(root.val > p.val && root.val > q.val) {
+    
+    if( p.val < root.val && q.val < root.val )
         return lowestCommonAncestor(root.left, p, q);
-    } else if(root.val < p.val && root.val < q.val) {
+    if( p.val > root.val && q.val > root.val )
         return lowestCommonAncestor(root.right, p, q);
-    }
-    return root;
+    
+    return root
 };
+
+/*
+
+
+
+
+
+traverseDFS  
+
+
+
+
+
+p  & q  << node.val
+    go left
+
+p & q  >>> node.val
+    go right
+
+else
+    ans  >>> node.val
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
