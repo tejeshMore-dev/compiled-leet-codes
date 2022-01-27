@@ -10,35 +10,31 @@
  * @param {TreeNode} root
  */
 var BSTIterator = function(root) {
-    let stack = [],node= root;
-    this.ans = [];
-    
-    while( stack[0] || node ) {
-        while (node) {
-            stack.push(node);
-            node = node.left
-        }
-        
-        node = stack.pop();
-        this.ans.push(node.val);
-        node = node.right;
-    }
-    this.pointer = 0;
-    this.length = this.ans.length;
+    this.stack = [];
+    this.pushAll(root);
 };
+
+BSTIterator.prototype.pushAll = function(node) {
+    while( node ) {
+        this.stack.push(node);
+        node = node.left;
+    }
+}
 
 /**
  * @return {number}
  */
 BSTIterator.prototype.next = function() {
-    return this.ans[this.pointer++];
+    let node = this.stack.pop();
+    this.pushAll(node.right)
+    return node.val
 };
 
 /**
  * @return {boolean}
  */
 BSTIterator.prototype.hasNext = function() {
-    return this.pointer < this.length;
+    return this.stack.length > 0;
 };
 
 /** 
