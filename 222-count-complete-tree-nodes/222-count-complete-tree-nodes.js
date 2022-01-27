@@ -21,14 +21,9 @@ var countNodes = function(root) {
             
             if( node )
                 count++;
-            
-            if( node && nullNode )
-                break;
               
-            if( !node ) {
-                nullNode = true;
-                continue;
-            }
+            if( !node ) 
+                break
             
             queue.push(node.left);
             queue.push(node.right);
