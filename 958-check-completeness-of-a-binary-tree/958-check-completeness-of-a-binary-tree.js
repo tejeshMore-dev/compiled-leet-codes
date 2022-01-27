@@ -30,7 +30,6 @@ var isCompleteTree = function(root) {
                 
             queue.push(node.left);
             queue.push(node.right);
-            console.log(queue)
         }
         
     }
