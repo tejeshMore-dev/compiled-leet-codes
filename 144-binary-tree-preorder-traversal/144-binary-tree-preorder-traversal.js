@@ -19,13 +19,13 @@ var preorderTraversal = function(root) {
     while( stack.length > 0 ) {
         node = stack.pop();
         res.push(node.val);
-                
-        if(node.right)
-            stack.push(node.right);
         
-        if(node.left)
-            stack.push(node.left);
-    }
+        if( node.right )
+        stack.push(node.right);
+        
+        if( node.left )
+            stack.push(node.left)
+     }
     
     return res;
 };
