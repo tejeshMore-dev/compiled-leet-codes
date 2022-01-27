@@ -13,8 +13,7 @@
 var preorderTraversal = function(root) {
     if(!root) return []
     
-    let stack = [], node = root, res = [];
-    stack.push(node);
+    let stack = [ root ], node = root, res = [];
     
     while( stack.length > 0 ) {
         node = stack.pop();
