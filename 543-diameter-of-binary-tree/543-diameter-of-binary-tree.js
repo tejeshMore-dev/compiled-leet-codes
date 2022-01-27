@@ -11,18 +11,20 @@
  * @return {number}
  */
 var diameterOfBinaryTree = function(root) {
-    let result = 0;
-    function findMaxDepth(node) {
-        if( !node )
-            return 0;
+    let max = 0;
+    
+    function helper(node) {
+        if(!node)
+            return 0
         
-        let leftDepth = findMaxDepth(node.left);
-        let rightDepth = findMaxDepth(node.right);
+        let left = helper(node.left);
+        let right = helper(node.right); 
         
-        result = Math.max( result, leftDepth + rightDepth )
-        return Math.max(leftDepth, rightDepth ) + 1;
+        max = Math.max(max, left+right);
+        
+        return Math.max(left, right)+1;
     }
     
-    findMaxDepth(root);
-    return result    
+    helper(root);
+    return max
 };
