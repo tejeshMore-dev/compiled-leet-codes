@@ -21,11 +21,11 @@ var lowestCommonAncestor = function(root, p, q) {
         let leftD = helper(node.left);
         let rightD = helper(node.right);
         
-        if( node.val === p.val || node.val === q.val )
-            return node.val === p.val ? p : q
-        
         if( leftD && rightD )
             return node
+        
+        if( node.val === p.val || node.val === q.val )
+            return node.val === p.val ? p : q
         
         if( leftD || rightD )
             return leftD ? leftD : rightD
