@@ -24,6 +24,6 @@ var binaryTreePaths = function(root) {
             traverse( node.right, str.length === 0 ? `${node.val}` : `${str}->${node.val}` );
     }
     
-    traverse( root, "" );
+    traverse( root, [] );
     return ans;
 };
