@@ -13,15 +13,15 @@
 var binaryTreePaths = function(root) {
     let ans = [];
    
-    function traverse( node, str ) {
+    function traverse( node, nodes ) {
         if( !node.left && !node.right )
-            ans.push(str.length === 0 ? `${node.val}` : `${str}->${node.val}` );
+            ans.push( [ ...nodes, node.val ].join('->') );
            
         if( node.left )
-            traverse( node.left, str.length === 0 ? `${node.val}` : `${str}->${node.val}` );
+            traverse( node.left, [ ...nodes, node.val ] );
     
          if( node.right )
-            traverse( node.right, str.length === 0 ? `${node.val}` : `${str}->${node.val}` );
+            traverse( node.right, [ ...nodes, node.val ] );
     }
     
     traverse( root, [] );
