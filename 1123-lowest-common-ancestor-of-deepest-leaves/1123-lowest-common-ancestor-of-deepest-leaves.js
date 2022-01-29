@@ -11,35 +11,21 @@
  * @return {TreeNode}
  */
 var lcaDeepestLeaves = function(root) {
-    let maxDepth = 1;
-    findMaxDepth( root, 1 );
-    return helper( root, 1 );    
-
-    function findMaxDepth( node, d ) {
-        	if(!node)
-		return 
-        maxDepth = Math.max(maxDepth, d)
-        findMaxDepth( node.left, d+1 );
-        findMaxDepth( node.right, d+1 );
-    }
-	
-    function helper( node, d ) {
+    return helper(root).node;
+    
+    function helper(node, d) {
         if( !node )
-            return null
-
-        if( d === maxDepth )
-            return node
-
-            let l = helper(node.left, d+1);
-            let r = helper( node.right, d+1 );
-
-        if( !l && !r )
-            return null
-
-        if( l && r )
-            return node
-
-            if ( !l ||  !r )
-                return l ? l  : r
+            return { node, d:0 }
+        
+        let leftT = helper(node.left, d + 1);
+        let rightT = helper(node.right, d + 1);
+        
+        if( leftT.d > rightT.d )
+            return { node: leftT.node, d: leftT.d + 1 }
+        
+        if( leftT.d < rightT.d )
+            return { node: rightT.node, d: rightT.d + 1 }
+        
+        return { node: node, d: rightT.d + 1 }
     }
 };
