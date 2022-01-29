@@ -38,23 +38,24 @@ var distanceK = function(root, target, k) {
     
     
     function helper( node, k ) {
-        if( !node )
+        if( !node || visited.has(node.val) || k < 0 )
             return null
+        
+        visited.add(node.val);
         
         if( k === 0 ) {
             ans.push(node.val);
         }
-        visited.add(node.val);
         
-        if( node.left && k > 0 && !visited.has(node.left.val)) {
+        if( node.left) {
             helper( node.left, k-1 );
         }
         
-        if( node.right && k > 0 && !visited.has(node.right.val) ) {
+        if( node.right ) {
             helper( node.right, k-1 );     
         }
         
-        if( map[node.val] && k > 0 && !visited.has(map[node.val].val) ) {
+        if( map[node.val] ) {
             helper( map[node.val], k-1 )            
         }
     }
