@@ -45,7 +45,6 @@ var distanceK = function(root, target, k) {
             ans.push(node.val);
         }
         visited.add(node.val);
-        console.log(ans, node.val, visited);
         
         if( node.left && k > 0 && !visited.has(node.left.val)) {
             helper( node.left, k-1 );
