@@ -11,6 +11,7 @@ var validPalindrome = function(s) {
         if ( lp >=  rp ) {
             return true 	
         }
+        
         if( s.charAt(lp) === s.charAt(rp)  ){
             return isPalindrome(lp+1, rp -1);
         } else {
