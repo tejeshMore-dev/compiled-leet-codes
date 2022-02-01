@@ -20,5 +20,4 @@ var validPalindrome = function(s) {
                 return false
         }
     }
-	
 };
