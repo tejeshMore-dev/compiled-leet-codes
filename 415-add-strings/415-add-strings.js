@@ -10,13 +10,8 @@ var addStrings = function(num1, num2) {
         let sum = (l1 < 0 ? 0 : getNum(num1[l1])) +
                   (l2 < 0 ? 0 : getNum(num2[l2])) + 
                   c;
-        if(sum > 9) {
-            ans.push( sum%10 );
-            c = Math.floor(sum/10);
-        } else {
-            ans.push( sum );
-            c = 0;
-        }
+        ans.push( sum%10 );
+        c = Math.floor(sum/10);
         l1--;
         l2--
     }
