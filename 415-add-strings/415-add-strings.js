@@ -10,7 +10,6 @@ var addStrings = function(num1, num2) {
         let sum = (l1 < 0 ? 0 : getNum(num1[l1])) +
                   (l2 < 0 ? 0 : getNum(num2[l2])) + 
                   c;
-        console.log(getNum(num2[l2]), getNum(num1[l1]), c, sum)
         if(sum > 9) {
             ans.push( sum%10 );
             c = Math.floor(sum/10);
