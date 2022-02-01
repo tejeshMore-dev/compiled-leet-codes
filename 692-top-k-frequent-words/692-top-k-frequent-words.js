@@ -15,7 +15,6 @@ var topKFrequent = function(words, k) {
     for( let key in map ) {
         heap.insert( key, map[key] );
     }
-    // console.log(heap)
     
     while( k-- ) {
         ans.push(heap.remove().label);
