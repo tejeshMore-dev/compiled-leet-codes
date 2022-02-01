@@ -21,11 +21,8 @@ var isAlienSorted = function(words, order) {
     // helper function
     function isSorted( a, b ) {
         for( let i = 0; i < a.length && i < b.length; i++ ) {
-            if( map[b.charAt(i)] >  map[a.charAt(i)] )
-                return true
-            else if( map[b.charAt(i)] <  map[a.charAt(i)] )
-                return false  
-                
+            if( b.charAt(i) !== a.charAt(i) )
+                return map[b.charAt(i)] >  map[a.charAt(i)]
         }
             return a.length <= b.length
     }
