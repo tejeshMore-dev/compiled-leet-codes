@@ -28,8 +28,6 @@ var partitionLabels = function(s) {
             res.push(max-lp+1);
             lp = c+1;
             max = -1;
-            c++;
-            continue
         }
         c++
     }
