@@ -3,31 +3,122 @@
  * @return {string}
  */
 var reverseWords = function(s) {
-    s = trim(s);
-    let words = s.split(' ').filter((str) => str !== "")
+    let ans= [], rp =s.length-1;
+    findWord();
+    return ans.join(" ");
     
-    let lp = 0, rp = words.length-1;
-    while( lp < rp ) {
-        let temp = trim(words[rp]);
-        words[rp] = trim(words[lp]);
-        words[lp] = temp;
-        lp++;
-        rp--;
-    }
-    
-    return words.join(" ");
-    
-    function trim(str) {
-        if(s.length <= 0)
-            return str
-        let lp = 0, rp = str.length-1;
-        
-        while( str[lp] === " " || str[rp] === " " ) {
-            if( str[lp] === " " )
-                lp++
-            if(str[rp] === " ")
-                rp--
+    function findWord() {
+        if( rp < 0 )
+            return 
+
+        while( s[rp] === " " &&  rp >= 0 )
+            rp--
+
+          if( rp < 0 )
+            return 
+
+        let  end = rp+1;
+        while( s[rp] !== " " && rp >= 0 ) {
+            rp--
         }
-        return str.substring(lp, rp+1);
+        let start = rp+1
+        ans.push(s.substring(start, end));
+        findWord();    
     }
 };
+
+
+
+/*
+
+ans=[]
+rp = s.length-1;
+
+findWord(  ) {
+    if( rp < 0 )
+        return 
+        
+    while( s[rp] === " " &&  rp >= 0 )
+        rp--
+    
+      if( rp < 0 )
+        return 
+        
+    let  end = rp;
+    while( s[rp] !== " " && rp >= 0 ) {
+        rp--
+    }
+    let start = rp+1
+    ans.push(s.substring(start, end+1));
+    findWord();
+}
+
+return ans.join(" ");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+return ans.join(" ");
+
+
+
+
+
+
+
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
