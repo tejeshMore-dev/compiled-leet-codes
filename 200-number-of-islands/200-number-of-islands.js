@@ -27,6 +27,7 @@ var numIslands = function(grid) {
                let col = c + direction[1];
                 
                if( row >= 0 && row < height && col >= 0 && col < width && grid[row][col] === "1" ){
+                    grid[r][c] = "0";
                     queue.push([row, col])
                     
                }
