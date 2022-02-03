@@ -11,22 +11,22 @@
  * @return {ListNode}
  */
 var addTwoNumbers = function(l1, l2) {
-    let s1 = [], s2 = [];
+    let stack1 = [], stack2 = [];
     let c = 0;
     let ansNode = new ListNode(0), current = ansNode, prev = null;
     
     while( l1 ) {
-        s1.push( l1.val );
+        stack1.push( l1.val );
         l1 = l1.next;
     }
     
     while( l2 ) {
-        s2.push( l2.val );
+        stack2.push( l2.val );
         l2 = l2.next;
     }
     
-    while( c || s1.length > 0 || s2.length > 0 ) {
-        let sum = ( s1.length > 0 ? s1.pop() : 0 ) + ( s2.length > 0 ? s2.pop() : 0 ) + c;
+    while( c || stack1.length > 0 || stack2.length > 0 ) {
+        let sum = ( stack1.length > 0 ? stack1.pop() : 0 ) + ( stack2.length > 0 ? stack2.pop() : 0 ) + c;
         
         current = new ListNode( sum%10 );
         current.next = prev;
