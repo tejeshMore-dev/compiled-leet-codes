@@ -17,7 +17,7 @@ var addTwoNumbers = function(l1, l2) {
     while( n1 || n2 || c ) {
         let sum = ( n1 ? n1.val : 0 ) + ( n2 ? n2.val : 0 ) + c;
         
-        let nNode = new ListNode(sum%10); 
+        let nNode = new ListNode( sum%10 ); 
         prev.next = nNode;
         prev = nNode;
         c = Math.floor( sum/10 );
