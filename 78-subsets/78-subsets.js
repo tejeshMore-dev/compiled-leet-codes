@@ -16,13 +16,6 @@ var subsets = function(nums) {
         
         return ans 
     }
-    
-    
-    
-    
-    
-    
-    
 };
 
 /*
