@@ -7,9 +7,8 @@ var findTargetSumWays = function(nums, target) {
     return helper( 0, 0, new Map() );
     
     function helper( i, sum, map ) {        
-        if( map.has(`${i}_${sum}`) ) {
+        if( map.has(`${i}_${sum}`) )
             return map.get(`${i}_${sum}`)
-        }
         
         if( i === nums.length )
             return sum === target ? 1 : 0            
