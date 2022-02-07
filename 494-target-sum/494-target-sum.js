@@ -19,7 +19,7 @@ var findTargetSumWays = function(nums, target) {
         let opt2 = helper( i+1, sum - num );
         
         return opt1+opt2
-//         cache[`${i}_${sum}`] = opt1 + opt2;
+        cache[`${i}_${sum}`] = opt1 + opt2;
         
 //         return cache[`${i}_${sum}`]
         
