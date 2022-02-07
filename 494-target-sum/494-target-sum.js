@@ -5,7 +5,6 @@
  */
 var findTargetSumWays = function(nums, target) {
     let ans = 0;
-    let cache = {};
     helper( 0, 0 );
     return ans;
     
@@ -13,7 +12,7 @@ var findTargetSumWays = function(nums, target) {
         if( i === nums.length ) {
             if( sum === target )
                 ans++
-            return
+            return 
         }
         
         let num = nums[i];
