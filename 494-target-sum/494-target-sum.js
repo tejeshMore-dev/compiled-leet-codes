@@ -4,19 +4,24 @@
  * @return {number}
  */
 var findTargetSumWays = function(nums, target) {
-    let ans = 0;
-    helper( 0, 0 );
-    return ans;
+    let cache = {};
+    return helper( 0, 0 );
     
     function helper( i, sum ) {
-        if( i === nums.length ) {
-            if( sum === target )
-                ans++
-            return 
-        }
+        // if( cache[`${i}_${sum}`] )
+        //     return cache[`${i}_${sum}`]
+        
+        if( i === nums.length )
+            return sum === target ? 1 : 0
         
         let num = nums[i];
-        helper( i+1, sum + num );
-        helper( i+1, sum - num )
+        let opt1 = helper( i+1, sum + num );
+        let opt2 = helper( i+1, sum - num );
+        
+        return opt1+opt2
+//         cache[`${i}_${sum}`] = opt1 + opt2;
+        
+//         return cache[`${i}_${sum}`]
+        
     }
 };
