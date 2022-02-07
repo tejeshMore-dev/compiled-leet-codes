@@ -27,7 +27,6 @@ var lengthOfLongestSubstringKDistinct = function(s, k) {
         }
         
         map[s.charAt(rp)]  = map[s.charAt(rp)] + 1;
-        console.log(lp, rp)
         ans = Math.max( ans, rp-lp+1 );
         rp++
     }
