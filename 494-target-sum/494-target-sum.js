@@ -5,6 +5,7 @@
  */
 var findTargetSumWays = function(nums, target) {
     let ans = 0;
+    let cache = {};
     helper( 0, 0 );
     return ans;
     
