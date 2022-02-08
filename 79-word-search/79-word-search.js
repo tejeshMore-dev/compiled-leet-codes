@@ -19,8 +19,8 @@ var exist = function(board, word) {
     return false
     
     function backtrack( r, c, i ) {
-        if( cache[`${r}-${c}-${i}`] )
-            return cache[`${r}-${c}-${i}`]
+        // if( cache[`${r}-${c}-${i}`] )
+        //     return cache[`${r}-${c}-${i}`]
         
         if( i === word.length )
             return true
