@@ -5,6 +5,7 @@
  */
 var exist = function(board, word) {
     let rows = board.length, cols = board[0].length;
+    let cache = {};
     
     for( let r = 0; r < rows; r++ ) {
         for( let c = 0; c < cols; c++ ) {
@@ -16,6 +17,9 @@ var exist = function(board, word) {
     return false
     
     function backtrack( r, c, i, set ) {
+        if( cache[`${r}-${c}-${i}`] )
+            return cache[`${r}-${c}-${i}`]
+        
         if( i === word.length )
             return true
         
@@ -25,6 +29,8 @@ var exist = function(board, word) {
         set.add(`${r}-${c}`);
         let res = backtrack( r+1, c, i + 1, set ) || backtrack( r-1, c, i + 1, set ) || backtrack( r, c+1, i + 1, set ) || backtrack( r, c-1, i + 1, set )
         set.delete(`${r}-${c}`);
+        
+        cache[`${r}-${c}-${i}`] = res;
         return res
     }
 };
