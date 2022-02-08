@@ -11,7 +11,7 @@ var exist = function(board, word) {
     
     for( let r = 0; r < rows; r++ ) {
         for( let c = 0; c < cols; c++ ) {
-            if( board[r][c] === word.charAt(0) && backtrack( r, c, 0, new Set() ) ) {
+            if( backtrack( r, c, 0, new Set() ) ) {
                 return true
             }
         }
