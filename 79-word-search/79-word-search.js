@@ -34,7 +34,7 @@ var exist = function(board, word) {
         let res = backtrack( r-1, c, i + 1 ) || backtrack( r+1, c, i + 1 ) || backtrack( r, c-1, i + 1 ) || backtrack( r, c+1, i + 1 )
         board[r][c] = temp;        //setting back the value from '*' to the letter
         
-        cache[`${r}-${c}-${i}`]  = res;
+        // cache[`${r}-${c}-${i}`]  = res;
         return res
     }
 };
