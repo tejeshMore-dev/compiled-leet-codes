@@ -3,59 +3,58 @@
  * @param {string} word2
  * @return {number}
  */
-// var minDistance = function(word1, word2) {
-//     return helper( word1, word2, 0, 0, {} );
-// };
-
-// function helper(w1, w2, i1, i2, cache) {      
-//         if( w2.length === i2 ){
-//             return w1.length - i1            
-//         }
-    
-//         if( w1.length === i1 ) {
-//             return w2.length - i2            
-//         }
-    
-//           if( cache[`$[i1}-${i2}`] !== undefined ) {
-//             return cache[`$[i1}-${i2}`]
-                          
-//           }
-        
-//         if ( w1[i1] === w2[i2] ){
-//             cache[`$[i1}-${i2}`] = helper( w1, w2, i1+1, i2+1, cache )
-//             return cache[`$[i1}-${i2}`];
-//         }
-//         else {
-//             let min = Math.min( helper(w1, w2, i1+1, i2, cache), 
-//                                             helper(w1, w2, i1, i2+1, cache) );
-//             cache[`$[i1}-${i2}`] = min + 1;
-//            return cache[`$[i1}-${i2}`];
-//         }
-// }
-
 var minDistance = function(word1, word2) {
-    var json = {};
-   return recursion(word1, word2, 0, 0,json);
+    let json = {}
+    return helper( word1, word2, 0, 0, json );
 };
-function recursion(w1, w2, i1, i2, json) {
-    if (w2.length === i2) {
+
+function helper(w1, w2, i1, i2, json) {      
+        if( w2.length === i2 ){
+            return w1.length - i1;            
+        }
+    
+        if( w1.length === i1 ) {
+            return w2.length - i2;           
+        }
+    
+          if( json[`${i1}-${i2}`] !== undefined ) {
+            return json[`${i1}-${i2}`]
+                          
+          }
         
-        return w1.length - i1;
-    }
-    if (w1.length === i1) {
-        return w2.length - i2;
-    }
-    if (json[`${i1}-${i2}`] !== undefined) return json[`${i1}-${i2}`];
-    if (w1[i1] === w2[i2]) {
-        json[`${i1}-${i2}`] = recursion(w1,w2,i1+1,i2+1, json);
-        return json[`${i1}-${i2}`] 
-    } else {
-        const min = Math.min(recursion(w1,w2,i1+1, i2, json), recursion(w1,w2,i1,i2+1, json))
-		// a letter is deleted form either of the string 
-        json[`${i1}-${i2}`] = min + 1;
-        return json[`${i1}-${i2}`];
-    }
+        if ( w1[i1] === w2[i2] ){
+            json[`${i1}-${i2}`] = helper( w1, w2, i1+1, i2+1, json );
+            return json[`${i1}-${i2}`];
+        }
+        else {
+            const min = Math.min( helper(w1, w2, i1+1, i2, json), helper(w1, w2, i1, i2+1, json) );
+            json[`${i1}-${i2}`] = min + 1;
+           return json[`${i1}-${i2}`];
+        }
 }
+// var minDistance = function(word1, word2) {
+//     var json = {};
+//    return recursion(word1, word2, 0, 0,json);
+// };
+// function recursion(w1, w2, i1, i2, json) {
+//     if (w2.length === i2) {
+        
+//         return w1.length - i1;
+//     }
+//     if (w1.length === i1) {
+//         return w2.length - i2;
+//     }
+//     if (json[`${i1}-${i2}`] !== undefined) return json[`${i1}-${i2}`];
+//     if (w1[i1] === w2[i2]) {
+//         json[`${i1}-${i2}`] = recursion(w1,w2,i1+1,i2+1, json);
+//         return json[`${i1}-${i2}`] 
+//     } else {
+//         const min = Math.min(recursion(w1,w2,i1+1, i2, json), recursion(w1,w2,i1,i2+1, json))
+// 		// a letter is deleted form either of the string 
+//         json[`${i1}-${i2}`] = min + 1;
+//         return json[`${i1}-${i2}`];
+//     }
+// }
 
 
 /*
