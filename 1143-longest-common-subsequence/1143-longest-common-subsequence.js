@@ -4,12 +4,12 @@
  * @return {number}
  */
 var longestCommonSubsequence = function(text1, text2) {
-    let cache = {};
+    let map = new Map();
     return helper( text1.length-1, text2.length-1 )
     
     function helper( n, m ) {
-        if( cache[`${n}-${m}`] )
-            return cache[`${n}-${m}`]
+        if( map.has(`${n}-${m}`) )
+            return map.get(`${n}-${m}`)
         
         if( n < 0 || m < 0 )
             return 0;
@@ -22,7 +22,7 @@ var longestCommonSubsequence = function(text1, text2) {
             res = Math.max( helper( n, m-1 ), helper( n-1, m ) );
         }
         
-        cache[`${n}-${m}`] = res;
+        map.set(`${n}-${m}`, res);
         return res;
     }
 };
