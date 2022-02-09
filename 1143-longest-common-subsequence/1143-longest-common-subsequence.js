@@ -12,7 +12,7 @@ function helper( text1, text2, n, m, cache ) {
     if( n < 0 || m < 0 )
         return 0;
 
-    if( cache[`${n}-${m}`] !== undefined )
+    if( cache[`${n}-${m}`] )
         return cache[`${n}-${m}`]
 
 
