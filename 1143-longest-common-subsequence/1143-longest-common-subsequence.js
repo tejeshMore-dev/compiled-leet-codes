@@ -8,11 +8,10 @@ var longestCommonSubsequence = function(text1, text2) {
     return helper( text1.length-1, text2.length-1, map )
     
     function helper( n, m ) {
-
-        
         if( n < 0 || m < 0 )
             return 0;
-                if( map.has(`${n}-${m}`) )
+        
+        if( map.has(`${n}-${m}`) )
             return map.get(`${n}-${m}`)
         
         let res;
