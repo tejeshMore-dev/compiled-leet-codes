@@ -23,13 +23,12 @@ function helper(w1, w2, i1, i2, json) {
           }
         
         if ( w1[i1] === w2[i2] ){
-            json[`${i1}-${i2}`] = helper( w1, w2, i1+1, i2+1, json );
-            return json[`${i1}-${i2}`];
+            return json[`${i1}-${i2}`] = helper( w1, w2, i1+1, i2+1, json );
         }
         else {
-            const min = Math.min( helper(w1, w2, i1+1, i2, json), helper(w1, w2, i1, i2+1, json) );
-            json[`${i1}-${i2}`] = min + 1;
-           return json[`${i1}-${i2}`];
+            return json[`${i1}-${i2}`] = Math.min( helper(w1, w2, i1+1, i2, json), 
+                                                  helper(w1, w2, i1, i2+1, json) ) + 1;
+           
         }
 }
 // var minDistance = function(word1, word2) {
