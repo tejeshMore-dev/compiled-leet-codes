@@ -28,10 +28,10 @@ var maxAreaOfIsland = function(grid) {
 
                 if(r < 0 || c < 0 || r >= rows || c >= columns || grid[r][c] !==  1 ){
                     continue
-                } else {
-                    grid[r][c] = -1;
-                    queue.push([r, c]);
                 }
+                
+                grid[r][c] = -1;
+                queue.push([r, c]);
             }
         }
         ans = Math.max(ans, area);
