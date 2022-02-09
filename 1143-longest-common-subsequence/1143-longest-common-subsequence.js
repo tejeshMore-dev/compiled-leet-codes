@@ -15,14 +15,10 @@ function helper( text1, text2, n, m, cache ) {
     if( cache[`${n}-${m}`] )
         return cache[`${n}-${m}`]
 
-    let res;
 
     if( text1.charAt(n) === text2.charAt(m) ){
-        res = 1 + helper( text1, text2, n-1, m-1, cache );            
+        return cache[`${n}-${m}`] = 1 + helper( text1, text2, n-1, m-1, cache );            
     } else {
-        res = Math.max( helper( text1, text2, n, m-1, cache ), helper( text1, text2, n-1, m, cache ) );
+        return cache[`${n}-${m}`] = Math.max( helper( text1, text2, n, m-1, cache ), helper( text1, text2, n-1, m, cache ) );
     }
-
-    cache[`${n}-${m}`] = res;
-    return res;
 }
