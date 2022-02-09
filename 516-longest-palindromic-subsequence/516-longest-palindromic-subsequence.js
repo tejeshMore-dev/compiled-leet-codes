@@ -4,7 +4,7 @@
  */
 var longestPalindromeSubseq = function(s) {
     let len = s.length-1;
-    
+    let cache= {};
     let rs = s.split("");
     
     let lp = 0, rp = rs.length-1;
