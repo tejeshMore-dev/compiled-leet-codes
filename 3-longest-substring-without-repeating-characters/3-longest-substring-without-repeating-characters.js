@@ -11,7 +11,6 @@ var lengthOfLongestSubstring = function(s) {
                 delete set.delete(s.charAt(lp))
                 lp++
             }
-            
         }
         
         set.add(s.charAt(rp)); 
