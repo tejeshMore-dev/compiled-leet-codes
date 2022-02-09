@@ -7,7 +7,6 @@ var lengthOfLongestSubstring = function(s) {
     
     while( rp < s.length ) {
         if( set.has(s.charAt(rp)) ) {
-
             while( set.has(s.charAt(rp)) ) {
                 delete set.delete(s.charAt(lp))
                 lp++
