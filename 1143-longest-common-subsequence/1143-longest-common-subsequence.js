@@ -4,7 +4,8 @@
  * @return {number}
  */
 var longestCommonSubsequence = function(text1, text2) {
-    return helper( text1, text2, text1.length-1, text2.length-1, {} )
+    let cache = {}
+    return helper( text1, text2, text1.length-1, text2.length-1, cache )
 };
 
 function helper( text1, text2, n, m, cache ) {
