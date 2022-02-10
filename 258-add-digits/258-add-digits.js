@@ -11,7 +11,7 @@ var addDigits = function(num) {
         
         if( ans > 9 && num === 0 ) {
             num = ans;
-            ans= 0
+            ans= 0;
         }
     }
     
