@@ -21,12 +21,10 @@ function helper( s, l, r, sols ) {
 
     if( s.charAt(l) === s.charAt(r) ) {
        let max = 2 + helper( s, l+1, r-1, sols );
-        sols[l][r] = max;
-        return sols[l][r]
+         return sols[l][r] = max;
     } else {
         let max = Math.max( helper(s, l, r-1, sols), helper(s, l+1, r, sols), helper(s, l+1, r-1, sols) );
-        sols[l][r] = max;
-        return sols[l][r]
+        return sols[l][r] = max;
     }
 }
 
