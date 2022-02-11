@@ -9,7 +9,6 @@ var longestPalindromeSubseq = function(s) {
 };
 
 function helper( s, l, r, sols ) {
-
     if( l === s.length || r < 0 )
         return 0
     
