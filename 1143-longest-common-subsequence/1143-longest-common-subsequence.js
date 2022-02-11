@@ -21,5 +21,4 @@ function helper( text1, text2, n, m, sols ) {
         return sols[n][m] = Math.max( helper( text1, text2, n, m-1, sols ), 
                                              helper( text1, text2, n-1, m, sols ) );
     }
-    
 }
