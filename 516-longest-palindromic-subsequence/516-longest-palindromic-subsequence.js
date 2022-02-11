@@ -19,27 +19,8 @@ function helper( s, l, r, cache ) {
     
 
     if( s.charAt(l) === s.charAt(r) ) {
-        // let ans;
-        // if( cache[`${l+1}-${r-1}`] )
-        //     ans = 1 +  cache[`${l+1}-${r-1}`]
-        // else 
-        //     ans = 1 + helper( s, l+1, r-1, cache )
-        
         return cache[`${l}-${r}`] = 2 + helper( s, l+1, r-1, cache );
     } else {
-//         let left, right;
-//         if( cache[`${l+1}-${r}`] ) {
-//             left = cache[`${l+1}-${r}`]
-//         } else {
-//             left = helper(s, l+1, r, cache)
-//         }
-        
-//         if( cache[`${l}-${r-1}`] ) {
-//             right = cache[`${l}-${r-1}`]
-//         } else {
-//             right = helper(s, l, r-1, cache)
-//         }
-        
         cache[`${l}-${r}`] = Math.max( helper(s, l, r-1, cache), helper(s, l+1, r, cache), helper(s, l+1, r-1, cache) )
         return cache[`${l}-${r}`];
     }
