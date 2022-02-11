@@ -21,24 +21,6 @@ function helper( s, l, r, sols ) {
     }
 }
 
-// var longestPalindromeSubseq = function(s) {
-//   var sols = new Array(s.length).fill(0).map(a => new Array(s.length).fill(-1));
-//     return recursion(s, 0, s.length - 1, sols); 
-// }
-// function recursion(s, i, j, sols) {
-//     if (sols[i][j] !== -1) return sols[i][j];
-//     if (i === j) return 1;
-//     if (i  > j) return 0;
-//     if (s[i] === s[j]) {
-//         var val = 2 + recursion(s, i + 1, j - 1, sols);
-//         sols[i][j] = val;
-//         return sols[i][j];
-//     } else {
-//         var max = Math.max(recursion(s, i, j - 1, sols),recursion(s, i+1, j, sols),recursion(s, i+1, j - 1, sols));
-//          sols[i][j] = max;
-//         return sols[i][j];
-//     }
-// }
 /*
 
 
