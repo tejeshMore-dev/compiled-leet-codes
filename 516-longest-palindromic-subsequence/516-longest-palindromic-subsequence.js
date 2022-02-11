@@ -14,7 +14,6 @@ function helper( s, l, r, sols ) {
     
     if (sols[l][r] !== -1) return sols[l][r];
     
-
     if( s.charAt(l) === s.charAt(r) ) {
        return sols[l][r] = 1 + helper( s, l+1, r-1, sols );
     } else {
