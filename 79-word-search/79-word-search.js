@@ -7,7 +7,7 @@
 
 var exist = function(board, word) {
     let rows = board.length, cols = board[0].length;
-    
+    let cache = {};
     for( let r = 0; r < rows; r++ ) {
         for( let c = 0; c < cols; c++ ) {
             if( backtrack( r, c, 0 ) ) {
@@ -33,6 +33,7 @@ var exist = function(board, word) {
                 backtrack( r, c+1, i + 1 )
         board[r][c] = temp;
         
+        cache
         return res
     }
 };
