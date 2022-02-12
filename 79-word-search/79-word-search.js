@@ -26,10 +26,10 @@ var exist = function(board, word) {
             return false
         
         let temp = board[r][c];
-        board[r][c] = '*';          //marking the visited box
+        board[r][c] = '*';
         
         let res = backtrack( r-1, c, i + 1 ) || backtrack( r+1, c, i + 1 ) || backtrack( r, c-1, i + 1 ) || backtrack( r, c+1, i + 1 )
-        board[r][c] = temp;        //setting back the value from '*' to the letter
+        board[r][c] = temp;
         
         return res
     }
