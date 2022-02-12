@@ -9,7 +9,6 @@ var isArmstrong = function(n) {
     while( n ) {
         let r = n%10;
         sum += r ** k;
-        console.log(r, k, r ** k)
         n = Math.floor(n/10);        
     }
     return sum === ans
