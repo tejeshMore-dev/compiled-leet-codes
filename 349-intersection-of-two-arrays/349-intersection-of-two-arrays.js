@@ -4,16 +4,14 @@
  * @return {number[]}
  */
 var intersection = function(nums1, nums2) {
-    let ans = [], map = {};
+    let ans = [];
     
-    for( let num of nums1 ) {
-        map[num] = 1;
-    }
+    let set = new Set(nums1);
     
     for( let num of nums2 ) {
-        if( map[num] ) {
-            ans.push(num)
-            map[num] = 0;            
+        if( set.has(num) ) {
+            ans.push(num);
+            set.delete(num);
         }
     }
 
