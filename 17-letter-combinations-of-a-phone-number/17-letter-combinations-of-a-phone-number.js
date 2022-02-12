@@ -25,7 +25,9 @@ var letterCombinations = function(digits) {
         }
         
         for( let char of map[digits[i]] ) {
-            backtrack( i+1, [ ...comb, char ] );
+            comb.push(char);
+            backtrack( i+1, comb );
+            comb.pop();
         }
     }
     
