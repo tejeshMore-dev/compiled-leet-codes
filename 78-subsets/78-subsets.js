@@ -3,40 +3,32 @@
  * @return {number[][]}
  */
 var subsets = function(nums) {
-    return helper( 0, [], [] );
+    let ans = [];
+    let subset = [];
+    helper(0);
+    return ans;
     
-    function helper(i, temp, ans) {
+    function helper(i) {
         if( i === nums.length ) {
-            ans.push( temp )
+            ans.push( [ ...subset ] )
             return
         }
         
-        helper( i+1, [ ...temp, nums[i] ], ans );
-        helper( i+1,temp, ans );
+        subset.push(nums[i]);
+        helper( i+1 );
         
-        return ans 
+        subset.pop();
+        helper( i+1 );                
     }
 };
 
 /*
+two choices we can have either use ith value or don't use it.
+decision tree will look like below
 
 [] [1] 
 [] [2] [1] [12]
 [] [3] [2] [23] [1] [13] [12] [123] 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 */
 
