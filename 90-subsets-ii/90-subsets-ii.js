@@ -9,9 +9,7 @@ var subsetsWithDup = function(nums) {
     helper( 0 );
     return ans;
     
-    function helper( i ) {
-        // console.log(i, subset);
-        
+    function helper( i ) {        
         if( i === nums.length ) {
             ans.push([...subset]);
             return;
