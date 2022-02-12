@@ -5,7 +5,6 @@
  */
 var intersection = function(nums1, nums2) {
     let ans = [];
-    
     let set = new Set(nums1);
     
     for( let num of nums2 ) {
