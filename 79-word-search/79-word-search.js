@@ -17,7 +17,10 @@ var exist = function(board, word) {
     }
     return false
     
-    function backtrack( r, c, i ) {        
+    function backtrack( r, c, i ) {   
+        if( cache[`${r}-${c}-${i}`] )
+           return cache[`${r}-${c}-${i}`]
+        
         if( i === word.length )
             return true
         
@@ -33,7 +36,7 @@ var exist = function(board, word) {
                 backtrack( r, c+1, i + 1 )
         board[r][c] = temp;
         
-        cache
+        cache[`${r}-${c}-${i}`] = res;
         return res
     }
 };
