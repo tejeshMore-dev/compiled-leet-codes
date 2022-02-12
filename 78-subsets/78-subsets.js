@@ -9,7 +9,6 @@ var subsets = function(nums) {
     return ans;
     
     function helper(i) {
-        console.log(i, subset)
         if( i === nums.length ) {
             ans.push( [ ...subset ] )
             return
