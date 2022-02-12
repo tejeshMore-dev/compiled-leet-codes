@@ -8,23 +8,16 @@ var intersect = function(nums1, nums2) {
     
     for( let num of nums1 ) {
         if( !map[num] )
-            map[num] = { l1: 1, l2: 0 }
+            map[num] = 1
         else 
-            map[num].l1 = 1 + map[num].l1;
+            map[num] = 1 + map[num];
     }
     
     
     for( let num of nums2 ) {
-        if( !map[num] )
-            map[num] = { l1: 0, l2: 1 }
-        else 
-            map[num].l2 = 1 + map[num].l2;
-    }
-    
-    for( let num in map ) {
-        let fr = Math.min(map[num].l1, map[num].l2);
-        while( fr-- ){
-            ans.push(num)
+        if( map[num] ){
+            ans.push(num);
+            map[num] = map[num] -1;
         }
     }
     return ans;
