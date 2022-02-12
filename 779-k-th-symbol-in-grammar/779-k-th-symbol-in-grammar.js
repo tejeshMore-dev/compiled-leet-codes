@@ -13,6 +13,8 @@ function helper( n, k ) {
     
     let mid = (2 ** (n-1))/2;
     
-    if( k <= mid ) return helper( n-1, k )
-    else return helper( n-1, k-mid ) ? 0 : 1
+    if( k <= mid ) 
+        return helper( n-1, k )
+    else 
+        return helper( n-1, k-mid ) ? 0 : 1
 }
