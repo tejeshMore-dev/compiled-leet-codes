@@ -23,7 +23,6 @@ function dfs( nums, p, used, res ) {
         
         p.pop();
         used[i] = false;
-        // dfs(nums, p, used, res);
     }    
     return res;
 }
