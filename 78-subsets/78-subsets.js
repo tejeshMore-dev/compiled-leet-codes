@@ -3,23 +3,23 @@
  * @return {number[][]}
  */
 var subsets = function(nums) {
-    let ans = [];
-    let subset = [];
-    helper(0);
-    return ans;
+    let subset = [], result = [];
     
-    function helper(i) {
+    function helper( i ) {
         if( i === nums.length ) {
-            ans.push( [ ...subset ] )
+            result.push( [ ...subset ] );
             return
         }
         
-        subset.push(nums[i]);
+        subset.push( nums[i] );
         helper( i+1 );
         subset.pop();
         
-        helper( i+1 );                
+        helper( i+1 );
     }
+    
+    helper( 0 );
+    return result;
 };
 
 /*
