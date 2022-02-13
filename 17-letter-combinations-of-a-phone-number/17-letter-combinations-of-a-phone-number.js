@@ -17,20 +17,21 @@ var letterCombinations = function(digits) {
         "8": "tuv",
         "9" :"wxyz"
     }
+    let comb = [];
     
-    function backtrack(i, comb ) {
-        if( i === digits.length  ) {
-            result.push(  comb. join("") );
-            return
+    function backtrack(i) {
+        if( i === digits.length ) {
+            result.push([ ...comb ].join(""));
+            return;
         }
         
         for( let char of map[digits[i]] ) {
             comb.push(char);
-            backtrack( i+1, comb );
+            backtrack(i+1);
             comb.pop();
         }
     }
     
-    backtrack( 0, [] );
+    backtrack( 0 );
     return result;
 };
