@@ -15,9 +15,7 @@ var combinationSum = function(candidates, target) {
         
         combination.push( candidates[i] );
         remaining -= candidates[i];
-        
-        // helper( i+1, remaining );
-        
+                
         helper( i, remaining );
         
         combination.pop();
