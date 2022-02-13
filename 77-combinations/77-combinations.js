@@ -14,7 +14,7 @@ var combine = function(n, k) {
             return
         }
         
-        if( start === n+1 )
+        if( start > n )
             return 
         
         combination.push(start)
