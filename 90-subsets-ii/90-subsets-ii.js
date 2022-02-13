@@ -6,8 +6,6 @@ var subsetsWithDup = function(nums) {
     let ans = [];
     let subset = [];
     nums.sort();
-    helper( 0 );
-    return ans;
     
     function helper( i ) {        
         if( i === nums.length ) {
@@ -23,4 +21,8 @@ var subsetsWithDup = function(nums) {
             i++;
         helper( i+1 );
     }
+    
+    
+    helper( 0 );
+    return ans;
 };
