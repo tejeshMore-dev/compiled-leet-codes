@@ -17,10 +17,10 @@ var subsetsWithDup = function(nums) {
         
         subset.push(nums[i]);
         helper( i+1 );
+        subset.pop();
         
         while( i+1 < nums.length && nums[i] === nums[i+1] )
             i++;
-        subset.pop()
         helper( i+1 );
     }
 };
