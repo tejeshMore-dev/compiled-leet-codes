@@ -16,8 +16,8 @@ var subsets = function(nums) {
         
         subset.push(nums[i]);
         helper( i+1 );
-        
         subset.pop();
+        
         helper( i+1 );                
     }
 };
