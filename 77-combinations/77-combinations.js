@@ -8,9 +8,7 @@
 var combine = function(n, k) {
     res = [];
     
-    function helper( combination, start ) {
-        // console.log(combination, start);
-        
+    function helper( combination, start ) {        
         if( combination.length === k ) {
             res.push( [ ...combination ]);
             return
@@ -18,7 +16,6 @@ var combine = function(n, k) {
         
         if( start === n+1 )
             return 
-        
         
         combination.push(start)
         helper( combination, start+1  )
