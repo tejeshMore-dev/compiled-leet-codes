@@ -6,26 +6,26 @@ var permute = function(nums) {
     return dfs( nums, [], Array(nums.length).fill(false), [] )
 };
 
-function dfs( nums, p, used, res ) {
-    if( p.length === nums.length ) {
-        res.push( Array.from(p) )
+function dfs( nums, permutation, used, res ) {
+    if( permutation.length === nums.length ) {
+        res.push( [ ...permutation ] );
         return
     }
     
     for( let i = 0; i < nums.length; i++ ) {
         if( used[i] )
-            continue;
+            continue
         
-        p.push(nums[i]);
+        permutation.push(nums[i])
         used[i] = true;
-        
-        dfs(nums, p, used, res);
-        
-        p.pop();
+        dfs(nums, permutation, used, res)
+        permutation.pop();
         used[i] = false;
-    }    
+    }
+    
     return res;
 }
+
 /*
 123
 
