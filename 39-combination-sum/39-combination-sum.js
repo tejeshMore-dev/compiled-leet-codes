@@ -5,7 +5,6 @@
  */
 var combinationSum = function(candidates, target) {
     let combinations = [], combination = [];
-    candidates.sort();
     
     function helper( i, remaining ) {
         if( i === candidates.length || remaining <= 0 ) {
