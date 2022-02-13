@@ -27,3 +27,8 @@ function dfs( nums, permutation, used, ans ) {
     
     return ans;
 }
+/*
+[1] []
+[12] [1] [2] []
+
+*/
