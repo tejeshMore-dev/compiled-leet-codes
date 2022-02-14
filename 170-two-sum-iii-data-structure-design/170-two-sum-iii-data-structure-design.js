@@ -1,6 +1,6 @@
 
 var TwoSum = function() {
-    this.map = new Map();
+    this.map = {};
 };
 
 /** 
