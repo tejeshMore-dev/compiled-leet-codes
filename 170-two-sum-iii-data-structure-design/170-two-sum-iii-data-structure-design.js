@@ -1,33 +1,23 @@
-
 var TwoSum = function() {
-    this.list = [];
     this.map = new Map();
 };
 
-/** 
- * @param {number} number
- * @return {void}
- */
 TwoSum.prototype.add = function(number) {
-    if( this.map.hasOwnProperty(number) ) {
-        this.map[number] = this.map[number] + 1;
-    } else {
-        this.map[number] = 1;
-        this.list.push(number);
-    }
+    this.map.set(number, (this.map.get(number) || 0) + 1);
 };
 
-/** 
- * @param {number} value
- * @return {boolean}
- */
 TwoSum.prototype.find = function(value) {
-    for( let i = 0; i < this.list.length; i++ ) {
-        let num1 = this.list[i], num2 = value - num1;
-        if( (num1 === num2 && this.map[num1] >= 2) || (num1 !== num2 && this.map.hasOwnProperty(num2) ) )
-           return true
+    for (const key of this.map.keys()) {
+        const val = parseInt(key);
+        const toFind = value - val;
+        if (this.map.has(toFind)) {
+            if (val !== toFind) {
+                return true;
+            } else if (this.map.get(toFind) > 1) {
+                return true;
+            }
+        }
     }
-    
     return false;
 };
 
