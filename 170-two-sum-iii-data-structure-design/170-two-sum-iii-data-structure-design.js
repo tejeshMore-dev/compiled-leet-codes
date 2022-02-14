@@ -1,23 +1,29 @@
+
 var TwoSum = function() {
     this.map = new Map();
 };
 
+/** 
+ * @param {number} number
+ * @return {void}
+ */
 TwoSum.prototype.add = function(number) {
-    this.map.set(number, (this.map.get(number) || 0) + 1);
+    this.map[number] = this.map[number] ? this.map[number] + 1 : 1;
 };
 
+/** 
+ * @param {number} value
+ * @return {boolean}
+ */
 TwoSum.prototype.find = function(value) {
-    for (const key of this.map.keys()) {
-        const val = parseInt(key);
-        const toFind = value - val;
-        if (this.map.has(toFind)) {
-            if (val !== toFind) {
-                return true;
-            } else if (this.map.get(toFind) > 1) {
-                return true;
-            }
-        }
+    for( let num1 in this.map ) {
+        let num2 = value - num1;
+        
+        if( (num1 == num2 && this.map[num2] > 1) || 
+            (num1 != num2 && this.map[num2] ) )
+           return true
     }
+    
     return false;
 };
 
