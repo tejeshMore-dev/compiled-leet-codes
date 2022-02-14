@@ -24,7 +24,7 @@ var search = function (reader, target) {
     
     while( reader.get(r) < target ) {
         l = r;
-        r <<= 1;
+        r <<= 2;
     console.log(l, r)
     
     }
