@@ -7,7 +7,6 @@ var groupStrings = function(strings) {
     
     for( let string of strings ) {
         let pattern = getPattern(string);
-        console.log(string, pattern);
         if( !map[pattern] )
             map[pattern] = [];
         
