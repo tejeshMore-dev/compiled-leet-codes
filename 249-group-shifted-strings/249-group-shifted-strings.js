@@ -30,7 +30,7 @@ var groupStrings = function(strings) {
             if( diff < 0 )
                 diff += 26;
             
-            res.push( diff+ 'a' )
+            res.push( diff+ '-' )
         }
         return res.join("");
     }
