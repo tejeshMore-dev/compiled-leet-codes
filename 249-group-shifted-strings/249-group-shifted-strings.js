@@ -3,7 +3,7 @@
  * @return {string[][]}
  */
 var groupStrings = function(strings) {
-    let map = {}, result = [];
+    let map = {};
     
     for( let string of strings ) {
         let pattern = getPattern(string);
@@ -12,11 +12,8 @@ var groupStrings = function(strings) {
         
         map[pattern].push(string);
     }
-    
-    for( let key in map ) {
-        result.push( map[key] )
-    }
-    return result;
+
+    return Object.values(map);
     
     function getPattern(str) {
         if( str.length === 1 )
