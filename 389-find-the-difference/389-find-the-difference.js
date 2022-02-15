@@ -13,7 +13,6 @@ var findTheDifference = function(s, t) {
             map.set(s[i], map.get(s[i])+1 );        
         }
     }
-    console.log(map)
     
     for( let i = 0; i < t.length; i++ ) {
         if( map.has(t[i]) && map.get(t[i]) > 0 ) {
@@ -22,7 +21,6 @@ var findTheDifference = function(s, t) {
             result.push(t[i])
         }
     }
-    console.log(map)
     
     return result.join("");
 };
