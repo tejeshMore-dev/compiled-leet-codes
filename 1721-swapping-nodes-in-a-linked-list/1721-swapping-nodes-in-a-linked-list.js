@@ -25,7 +25,6 @@ var swapNodes = function(head, k) {
         
         node = node.next;
     }
-    // console.log(node1.val, node2.val);
     let temp = node1.val;
     node1.val = node2.val;
     node2.val = temp;
