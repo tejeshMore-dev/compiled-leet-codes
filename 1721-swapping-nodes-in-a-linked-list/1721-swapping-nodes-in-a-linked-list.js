@@ -11,14 +11,13 @@
  * @return {ListNode}
  */
 var swapNodes = function(head, k) {
-    let node = head, c = 0;
+    let node = head;
     let node1, node2;
     
     while( node ) {
-        c++;        
         node2 = node2 ? node2.next : null;
         
-        if( c === k ) {
+        if( --k === 0 ) {
             node1 = node;
             node2 = head;            
         }
