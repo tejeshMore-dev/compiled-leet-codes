@@ -61,7 +61,6 @@ var findCircleNum = function(isConnected) {
         }
     }
     
-    console.log(uf)
     for( let i = 0; i < rows; i++  ) {
         if( uf.find(i) === i )
             ans++;
