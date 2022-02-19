@@ -20,6 +20,7 @@ var wallsAndGates = function(rooms) {
                 visited.add(`${r}-${c}`);
         }
     }
+    
     while( queue.length > 0 ) {
         
         let length = queue.length;
@@ -41,9 +42,7 @@ var wallsAndGates = function(rooms) {
                 }
             });
         }
-        dist = dist +1;
+        dist++;
         queue.push(...newRooms);
     }
-    
-    
 };
