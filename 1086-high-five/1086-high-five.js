@@ -19,7 +19,6 @@ var highFive = function(items) {
             map[id].c = map[id].c + 1;
         }
     }
-    // console.log(map)
     for( let id in map ) {
         let average = Math.floor(map[id].score/MAX);
         ans.push([id, average]);
