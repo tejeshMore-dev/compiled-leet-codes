@@ -31,7 +31,7 @@ StringIterator.prototype.next = function() {
  * @return {boolean}
  */
 StringIterator.prototype.hasNext = function() {
-    return ( this.pointer < this.str.length -1 || this.count > 0)
+    return ( this.pointer < this.str.length || this.count > 0)
 };
 
 /** 
