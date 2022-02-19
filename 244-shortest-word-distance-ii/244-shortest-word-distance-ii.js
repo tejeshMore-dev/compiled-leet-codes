@@ -28,7 +28,6 @@ WordDistance.prototype.shortest = function(word1, word2) {
             min = Math.min(min, Math.abs(wI2[j] - wI1[i]) );
         }
     }
-    
     return min;
 };
 
