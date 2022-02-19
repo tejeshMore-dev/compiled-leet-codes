@@ -12,19 +12,21 @@
  * @return {ListNode}
  */
 var deleteNodes = function(head, m, n) {
-    let p1 = 0;
     let node = head;
-    while ( node ) {
-        if( p1 < m-1  ){
-            p1++
-        } else { 
-            let p2 = 0; 
-            while( p2 < n && node.next ) {
-                p2++;
+    let counter = 0;
+    
+    while( node ) {
+        if( counter < m-1 ) {
+            counter++;
+        } else {
+            let counter2 = 0;
+            while( counter2 < n && node.next  ) {
                 node.next = node.next.next;
+                counter2++;
             }
-            p1 = 0;
+            counter = 0;
         }
+        
         node = node.next;
     }
     
