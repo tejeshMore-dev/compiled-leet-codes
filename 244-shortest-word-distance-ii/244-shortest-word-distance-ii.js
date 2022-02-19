@@ -23,13 +23,9 @@ WordDistance.prototype.shortest = function(word1, word2) {
     let wI2 = this.map[word2];
     let min = Number.MAX_VALUE;
     
-    for( let i=0, j = 0; i < wI1.length && j < wI2.length;  ) {
-        if( wI1[i] < wI2[j] ) {
-            min = Math.min(min, wI2[j] - wI1[i] );
-            i++;
-        } else {
-            min = Math.min(min, wI1[i] - wI2[j] );
-            j++;
+    for( let i=0; i < wI1.length; i++ ) {
+        for( let j = 0; j < wI2.length; j++ ) {
+            min = Math.min(min, Math.abs(wI2[j] - wI1[i]) );
         }
     }
     
