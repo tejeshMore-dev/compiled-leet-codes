@@ -46,6 +46,7 @@ var depthSum = function(nestedList) {
     function helper( list, d, sum ) {
         for( let i=0; i<list.length; i++ ) {
             let val = list[i];
+            
             if( val.isInteger() ) {
                 val = val.getInteger()
                 sum += val * d;
