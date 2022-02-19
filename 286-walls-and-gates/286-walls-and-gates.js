@@ -41,7 +41,6 @@ var wallsAndGates = function(rooms) {
                 }
             });
         }
-        console.log(...newRooms, dist)
         dist = dist +1;
         queue.push(...newRooms);
     }
