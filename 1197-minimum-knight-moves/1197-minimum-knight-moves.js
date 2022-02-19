@@ -6,7 +6,7 @@
 var minKnightMoves = function(x, y) {
     let directions = [ [-2, 1], [-1, 2], [-1, -2], [-2, -1], [2, 1], [1, 2], [1, -2], [2, -1]]; 
     
-    let queue = [[0, 0]], minMoves = Number.MAX_VALUE, counter = 0;
+    let queue = [[0, 0]], minMoves = 0;
     let visited = new Set();
     visited.add(`${0}-${0}`);
     
@@ -17,7 +17,7 @@ var minKnightMoves = function(x, y) {
             let [x1, y1] = queue.shift();
         
             if( x1 === x && y1 === y ) {
-                return minMoves = Math.min(minMoves, counter);
+                return minMoves;
             }
 
             directions.map((direction) => {
@@ -32,7 +32,7 @@ var minKnightMoves = function(x, y) {
             })
         }
 
-        counter++;        
+        minMoves++;        
     }
     
     return minMoves;
