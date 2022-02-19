@@ -12,21 +12,20 @@
  * @return {number}
  */
 var closestValue = function(root, target) {
-    let ans, diff = Number.MAX_VALUE;
+    let ans = root;
     dfs(root)
-    return ans;
+    return ans.val;
     
     function dfs(node) {
         if( !node )
             return null
         
-        if( Math.abs(node.val - target) < diff ) {
-            diff = Math.abs(node.val - target);
-            ans = node.val;
-        }
+        ans = Math.abs(node.val - target) < Math.abs(ans.val - target) ? node : ans;
         
-        dfs(node.left);
-        dfs(node.right);
+        if( target < node.val )
+            dfs(node.left);
+        else if( target > node.val )
+            dfs(node.right);
     }
     
     
