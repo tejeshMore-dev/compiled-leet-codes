@@ -22,7 +22,6 @@ var wallsAndGates = function(rooms) {
     }
     
     while( queue.length > 0 ) {
-        
         let length = queue.length;
         let newRooms = [];
         
