@@ -38,6 +38,7 @@ var wallsAndGates = function(rooms) {
                    cN < cols && !visited.has(`${rN}-${cN}`) ) {
                     newRooms.push([rN, cN]);
                     visited.add((`${rN}-${cN}`))
+
                 }
             });
         }
