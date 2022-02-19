@@ -9,15 +9,11 @@ var arraysIntersection = function(arr1, arr2, arr3) {
     let ans = [];
     
     while( p1 < arr1.length && p2 < arr2.length && p3 < arr3.length ) {
-        if( arr1[p1] === arr2[p2] && arr2[p2] === arr3[p3] ) {
-            ans.push(arr1[p1]);
-            p1++;
-            p2++;
-            p3++;
-            continue;
-        }
-        
         let min = Math.min(arr1[p1], arr2[p2], arr3[p3]);
+        
+        if( arr1[p1] === min && arr2[p2] === min && arr3[p3] === min ) {
+            ans.push(arr1[p1]);
+        }        
         
         if( arr1[p1] === min )
             p1++;
