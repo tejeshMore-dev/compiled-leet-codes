@@ -10,11 +10,12 @@ var twoSumLessThanK = function(nums, k) {
     while( lp < rp ) {
         let sum = nums[lp] + nums[rp];
         
+        if( sum >= k )
+            rp--;
         if( sum < k ) {
             lp++;
             result = Math.max(result, sum);            
-        } else
-            rp--;
+        }
     }
     
     return result
