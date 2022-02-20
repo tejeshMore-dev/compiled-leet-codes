@@ -58,10 +58,8 @@ var smallestStringWithSwaps = function(s, pairs) {
         } );
     }
     
-    // console.log(map)
     for( let i=0; i < s.length; i++ ) {
         let p = uf.find(i);
-        // console.log(i, p, map[p])
         ans.push(map[p].pop());
     }
     
