@@ -5,11 +5,11 @@
 var allPathsSourceTarget = function(graph) {
     const _graph = createGraph(graph);
     let nodes = [0], paths = [];
-    dfs(0, 0, graph.length-1, {});
+    
+    dfs(0, graph.length-1, {});
     return paths
     
-    function dfs(n, s, e, visited) {
-        console.log(n)
+    function dfs(n, e, visited) {
         visited[n] = 1;
         if( n === e ) {
             paths.push( [ ...nodes ] );
@@ -17,7 +17,7 @@ var allPathsSourceTarget = function(graph) {
         }
         for( let node of _graph[n] ) {                
                 nodes.push(node);
-                dfs(node, s, e, visited)
+                dfs(node, e, visited)
                 nodes.pop();
         }
         
