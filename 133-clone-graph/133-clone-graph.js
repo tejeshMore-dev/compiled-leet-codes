@@ -21,17 +21,20 @@ var cloneGraph = function(n) {
         let node = queue.shift();
         
         if( !map[node.val] ) {
+            // node not cloned, so cloned and stored in map
             let cNode = new Node(node.val);
             map[node.val] = cNode;            
         }
         
         for( let nNode of node.neighbors ) {
             if( !map[nNode.val] ) {
+                // neighbor node not cloned, so cloned and stored in map
                 map[nNode.val] = new Node(nNode.val);
                 queue.push(nNode);                
             }
         
-            map[node.val].neighbors.push(map[nNode.val]);
+            // use cloned refrence from map to add neigbors
+            map[node.val].neighbors.push(map[nNode.val]); 
         }
     }
     
