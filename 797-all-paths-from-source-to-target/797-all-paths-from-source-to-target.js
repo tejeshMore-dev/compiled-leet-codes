@@ -4,24 +4,23 @@
  */
 var allPathsSourceTarget = function(graph) {
     const _graph = createGraph(graph);
-    let nodes = [0], paths = [];
     
-    dfs(0, graph.length-1);
-    return paths
-    
-    function dfs(n, e) {
-        if( n === e ) {
-            paths.push( [ ...nodes ] );
-            return
-        }
-        for( let node of _graph[n] ) {                
-                nodes.push(node);
-                dfs(node, e)
-                nodes.pop();
-        }
-        
-    }
+    return dfs(_graph, 0, graph.length-1, [0], []);
 };
+
+function dfs(graph, curr, e, nodes, paths) {
+    if( curr === e ) {
+        paths.push( [ ...nodes ] );
+        return
+    }
+    for( let node of graph[curr] ) {                
+            nodes.push(node);
+            dfs(graph, node, e, nodes, paths)
+            nodes.pop();
+    }
+    
+    return paths;
+}
 
 function createGraph(graph) {
     let map = {};
