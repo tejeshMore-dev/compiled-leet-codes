@@ -6,12 +6,10 @@ var allPathsSourceTarget = function(graph) {
     const _graph = createGraph(graph);
     let nodes = [0], paths = [];
     
-    console.log(_graph)
     dfs(0, graph.length-1);
     return paths
     
     function dfs(n, e) {
-        console.log(n)
         if( n === e ) {
             paths.push( [ ...nodes ] );
             return
