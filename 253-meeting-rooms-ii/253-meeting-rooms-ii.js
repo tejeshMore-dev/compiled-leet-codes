@@ -17,10 +17,7 @@ var minMeetingRooms = function(intervals) {
     startT.sort((a, b) => a-b )
     endT.sort((a, b) => a-b )
     let sP = 0, eP = 0;
-    
-    
-    console.log(startT, endT)
-    
+        
     while( eP < endT.length && sP < startT.length ) {
         if( startT[sP] < endT[eP] ) {
             roomRequired++;
