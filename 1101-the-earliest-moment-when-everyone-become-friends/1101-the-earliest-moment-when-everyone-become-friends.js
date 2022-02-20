@@ -50,7 +50,6 @@ class unionFind {
 var earliestAcq = function(logs, n) {
     
     logs.sort( (a, b) => a[0] - b[0] )
-    console.log(logs)
     const uf = new unionFind(n);
     
     for( let i=0; i < logs.length; i++ ) {
