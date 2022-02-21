@@ -20,7 +20,7 @@ var maxAreaOfIsland = function(grid) {
         while( queue.length > 0 ) {
             let [ row, col ] = queue.shift(); 
             area++;
-            grid[row][col] = -1;
+            grid[row][col] = 0;
 
             for( let i = 0; i < directions.length; i++ ) {
                 let dir = directions[i];
@@ -30,7 +30,7 @@ var maxAreaOfIsland = function(grid) {
                     continue
                 }
                 
-                grid[r][c] = -1;
+                grid[r][c] = 0;
                 queue.push([r, c]);
             }
         }
