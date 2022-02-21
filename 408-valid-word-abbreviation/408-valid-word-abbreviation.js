@@ -4,27 +4,31 @@
  * @return {boolean}
  */
 var validWordAbbreviation = function(word, abbr) {
-    let lp1 = 0, lp2= 0, len1 = word.length, len2 = abbr.length, result = true;
+    let wP = 0, abbrP= 0, wL = word.length, abbrL = abbr.length;
+    let result = true;
     
-    while( lp2 < len2 && lp1 < len1 ) {
-        if( word.charAt(lp1) === abbr.charAt(lp2) ) {
-            lp1++;
-            lp2++;
+    while( wP < wL && abbrP < abbrL ) {
+        //if same continue
+        if( word.charAt(wP) === abbr.charAt(abbrP) ) {
+            wP++;
+            abbrP++;
             continue
         }
-        
-        if( isNaN(abbr.charAt(lp2)) || abbr.charAt(lp2) === "0"  )
+        // if not digit or leading 0, return false
+        if( isNaN(abbr.charAt(abbrP)) || abbr.charAt(abbrP) === "0"  )
             return result = false
         
-        let i = lp2;
+        // calculate num, as it can be > 9
+        let i = abbrP;
         let num = 0;
         
-        while( i < len2 && !isNaN(abbr.charAt(i)) ) {
+        while( i < abbrL && !isNaN(abbr.charAt(i)) ) {
             num = num * 10 + parseInt(abbr.charAt(i));
             i++;
         }
-        lp2 = i;
-        lp1 += num;
+        // skip the index till >> i + num
+        abbrP = i;
+        wP += num;
     }
-	return result && ( lp1 === len1 && lp2 === len2 )
+	return result && ( wP === wL && abbrP === abbrL )
 };
