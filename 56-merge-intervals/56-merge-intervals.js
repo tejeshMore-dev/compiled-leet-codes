@@ -10,10 +10,12 @@ var merge = function(intervals) {
     let mergedIntervals = [ intervals[0] ];
     
     for( let i=0; i < intervals.length; i++ ) {
-        let end = mergedIntervals[mergedIntervals.length-1];
-        
-        if( end[1] >= intervals[i][0] ) {
-            end[1] = Math.max(end[1], intervals[i][1])
+        let lastMerged = mergedIntervals[mergedIntervals.length-1];
+        // if last Merged end is >= current start then
+        // >> stil merge present >> update end 
+        //(check diagram at end of code )
+        if( lastMerged[1] >= intervals[i][0] ) {
+            lastMerged[1] = Math.max(lastMerged[1], intervals[i][1])
         } else {
             // if no merge then push as is
             mergedIntervals.push( intervals[i] )
@@ -22,3 +24,9 @@ var merge = function(intervals) {
     
     return mergedIntervals;
 };
+/*
+---------
+   ----------  >> merge >> since last end > current start
+                ----------
+                              --------    
+*/
