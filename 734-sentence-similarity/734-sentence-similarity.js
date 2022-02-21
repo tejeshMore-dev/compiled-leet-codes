@@ -20,7 +20,6 @@ var areSentencesSimilar = function(sentence1, sentence2, similarPairs) {
         
         map[w1].add(w2);
         map[w2].add(w1);
-        
     }
     
     for( let i=0 ; i<sentence1.length; i++ ) {
@@ -32,7 +31,6 @@ var areSentencesSimilar = function(sentence1, sentence2, similarPairs) {
         else if( !(map[w1] && map[w1].has(w2) || 
                    map[w2] && map[w2].has(w1) ) )
             return false
-        
     }
     
     return true;
