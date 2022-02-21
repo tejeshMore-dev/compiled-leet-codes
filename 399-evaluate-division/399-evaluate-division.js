@@ -56,7 +56,6 @@ function _dfs(s, e, visited) {
         return 1.0
 
     visited[s] = 1;
-    console.log(s)
     for (let nNode of _graph[s]) {
         if (!visited[nNode.label]) {
             let ans = _dfs(nNode.label, e, visited);
