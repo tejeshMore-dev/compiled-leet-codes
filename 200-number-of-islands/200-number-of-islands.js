@@ -19,7 +19,7 @@ var numIslands = function(grid) {
     
     function markNeighbourLand(queue) {
         while(queue.length > 0) {
-            let [r, c] = queue.pop();
+            let [r, c] = queue.shift();
             grid[r][c] = "0";
             
             directions.map((direction) => {
@@ -27,7 +27,7 @@ var numIslands = function(grid) {
                let col = c + direction[1];
                 
                if( row >= 0 && row < height && col >= 0 && col < width && grid[row][col] === "1" ){
-                    grid[r][c] = "0";
+                    grid[row][col] = "0";
                     queue.push([row, col])
                     
                }
