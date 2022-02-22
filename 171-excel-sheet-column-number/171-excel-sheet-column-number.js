@@ -6,12 +6,12 @@ var titleToNumber = function(columnTitle) {
     let num = 0;
     
     for( let i in columnTitle ) {
-        num = num * 26 + getNumber(columnTitle.charCodeAt(i));
+        num = num * 26 + getNumber(columnTitle.charAt(i));
     }
     return num
     
   
     function getNumber(char) {
-        return char - 'A'.charCodeAt(0) + 1;
+        return char.charCodeAt(0) - 'A'.charCodeAt(0) + 1;
     }
 };
