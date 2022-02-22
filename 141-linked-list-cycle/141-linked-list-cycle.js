@@ -20,6 +20,5 @@ var hasCycle = function(head) {
         if( sp === fp )
             return true
     }
-    
     return false
 };
