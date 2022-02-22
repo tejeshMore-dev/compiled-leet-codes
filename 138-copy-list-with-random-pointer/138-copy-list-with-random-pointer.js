@@ -13,13 +13,11 @@
  */
 var copyRandomList = function(head) {
     let map = new Map();
-    let i=0;
     
     let node = head;
     while( node ) {
         map.set( node, new Node(node.val) );
         node = node.next;
-        i++
     }
     
     node = head;
