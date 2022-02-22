@@ -25,7 +25,6 @@ var copyRandomList = function(head) {
     node = head;
     while( node ) {
         let clonedNode = map.get(node);
-        console.log(clonedNode)
         if( clonedNode ) {
             clonedNode.next = (node.next ? map.get(node.next) : null);
             clonedNode.random = (node.random ? map.get(node.random) : null);   
