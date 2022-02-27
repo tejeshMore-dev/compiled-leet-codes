@@ -52,24 +52,26 @@ class Graph {
         if( s === d )
             return 1.0;
         
-        return dfs(s, d, new Set(), this.graph);
+        return _dfs(s, d, new Set(), this.graph);
         
-        function dfs(node, d, visited, graph) {
-            if( node === d )
-                return 1.0;
-            
-            visited.add(node);
-            
-            for( let nNode of graph[node] ) {
-                if( visited.has(nNode.val) )
-                    continue;
-                let ans = dfs(nNode.val, d, visited, graph);
-                if( ans !== -1 ) 
-                    return ans * nNode.w;
-            }
-            
-            return -1.0
-        }
+
     }
+}
+
+function _dfs(node, d, visited, graph) {
+    if( node === d )
+        return 1.0;
+
+    visited.add(node);
+
+    for( let nNode of graph[node] ) {
+        if( visited.has(nNode.val) )
+            continue;
+        let ans = _dfs(nNode.val, d, visited, graph);
+        if( ans !== -1 ) 
+            return ans * nNode.w;
+    }
+
+    return -1.0
 }
 
