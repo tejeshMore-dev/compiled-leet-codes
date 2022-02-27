@@ -5,11 +5,65 @@
  * @param {number} destination
  * @return {boolean}
  */
+
+// /* Graph solution
 var validPath = function(n, edges, source, destination) {
+    const graph = new Graph();
+    graph.buildGraph(n , edges);
+    
+    return graph.hasPath(source, destination);
+}
+
+class Graph {
+    constructor() {
+        this.graph = {};
+    }
+    
+    buildGraph(n, edges) {
+        for( let i=0; i<n; i++ ) {
+            this.graph[i] = [];
+        }
+        
+        for( let edge of edges ) {
+            let [s, d] = edge;
+            
+            this.graph[s].push(d);
+            this.graph[d].push(s);
+        }
+    }
+    
+    hasPath(s, d) {
+        let visited = new Set();
+        let queue = [s];
+        let result = false;
+
+        while( queue.length ) {
+            let current = queue.shift();
+            visited.add(current);
+            
+            if( current === d )
+                return result = true
+            for( let nNode of this.graph[current] ) {
+                if( visited.has(nNode) )
+                    continue
+                
+                queue.push(nNode);
+            }
+        }
+        
+        return result;
+    }
+}
+
+function __hasPath(s, d) {
+
 }
 
 
-// UF based
+// */
+
+
+/* Union Find solution
 var validPath = function(n, edges, source, destination) {
     const uf = new UnionFind();
     uf.makeSet(n);
@@ -64,3 +118,4 @@ class UnionFind {
     }
     
 }
+*/
