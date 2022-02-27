@@ -3,14 +3,17 @@
  * @return {number[][]}
  */
 var allPathsSourceTarget = function(graph) {
-    return findAllPath( 0, graph.length-1, graph, [], [0] )
+    let temp = [0];
+    return findAllPath( 0, graph.length-1, graph, [] )
     
-    function findAllPath(node, d, graph, ans, temp) {
+    function findAllPath(node, d, graph, ans) {
         if( node === d )
             ans.push([ ...temp ])
         
         for( let nNode of graph[node] ) {
-            findAllPath(nNode, d, graph, ans, [ ...temp, nNode ]);
+            temp.push(nNode);
+            findAllPath(nNode, d, graph, ans);
+            temp.pop()
         }
         
         return ans
