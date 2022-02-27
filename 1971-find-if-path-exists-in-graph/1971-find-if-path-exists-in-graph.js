@@ -5,55 +5,62 @@
  * @param {number} destination
  * @return {boolean}
  */
-var root;
-var rank;
+var validPath = function(n, edges, source, destination) {
+}
 
-class unionFind {
-    constructor(size) {
-        root = new Array(size);
-        rank = new Array(size);
-        
-        for( let i=0; i<size; i++ ) {
-            root[i] = i;
-            rank[i] = 1;
+
+// UF based
+var validPath = function(n, edges, source, destination) {
+    const uf = new UnionFind();
+    uf.makeSet(n);
+    
+    for( let edge of edges ) {
+        let [s, d] = edge;
+        uf.union(s, d);    
+    }
+    
+    return uf.connected(source, destination);
+}
+
+class UnionFind {
+    constructor() {
+        this.root = {};
+        this.rank = {};
+    }
+    
+    makeSet(nodes) {
+        for( let i=0; i < nodes; i++  ) {
+            this.root[i] = i;
+            this.rank[i] = 1;
         }
     }
     
-    find(x) {
-        if( x === root[x] )
-            return x
+    union(s, d) {
+        let rootS = this.find(s);
+        let rootD = this.find(d);
         
-        return root[x] = this.find(root[x]);
-    }
-    
-    union(x, y) {
-        let rootX = this.find(x);
-        let rootY = this.find(y);
-        
-        if( rootX !== rootY ) {
-            if( rank[rootX] > rank[rootY] ){
-                root[rootY] = rootX
-            } else if( rank[rootY] > rank[rootX] ){
-                root[rootX] = rootY
+        if( rootS !== rootD ) {
+            if( this.rank[rootS] > this.rank[rootD] ) {
+                this.root[rootD] = rootS;
+            } else if( this.rank[rootS] < this.rank[rootD] ) {
+                this.root[rootS] = rootD;
             } else {
-                root[rootY] = rootX
-                rank[rootX] += 1;
+                this.root[rootD] = rootS;
+                this.rank[rootS] += 1;
             }
         }
     }
     
-    connected(x, y) {
-        return this.find(x) === this.find(y);
+    find(node) {
+        if( node === this.root[node] ) {
+            return node
+        }
+        
+        return this.root[node] = this.find(this.root[node]);
     }
+    
+    connected(s, d) {
+        return this.find(s) === this.find(d);
+    }
+    
 }
-
-var validPath = function(n, edges, source, destination) {
-    const uf = new unionFind(n);
-    
-    for( let i=0; i < edges.length; i++ ) {
-        let [x, y] = edges[i];
-        uf.union(x, y);
-    }
-    
-    return uf.connected(source, destination);
-};
