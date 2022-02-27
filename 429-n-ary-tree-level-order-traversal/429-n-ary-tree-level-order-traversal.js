@@ -19,18 +19,18 @@ var levelOrder = function(root) {
     
     while( queue.length ) {
         let qLength =  queue.length;
-        let levelNode = [];
+        let levelNodes = [];
         
         for( let i=0; i < qLength; i++ ) {
             let current = queue.shift();
-            levelNode.push(current.val);
+            levelNodes.push(current.val);
             
             for( let child of current.children ) {
                 queue.push(child)
             }
         }
         
-        ans.push([ ...levelNode ]);
+        ans.push([ ...levelNodes ]);
     }
     
     return ans;
