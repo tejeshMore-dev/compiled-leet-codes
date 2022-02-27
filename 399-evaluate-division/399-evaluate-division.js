@@ -5,63 +5,71 @@
  * @return {number[]}
  */
 var calcEquation = function (equations, values, queries) {
-    const graph = new Graph(equations, values);
-    console.log(_graph)
     let ans = [];
-    for (let query of queries) {
-        let [s, e] = query;
-        ans.push(graph.dfs(s, e))
+    
+    const graph = new Graph();
+    graph.buildGraph(equations, values);
+    
+    for( let query of queries ) {
+        let [ s, d ] = query;
+        ans.push( graph.calcDivision(s, d) )
     }
+    
     return ans;
 }
 
-var _graph;
+class EdgeNode {
+    constructor(val, weight) {
+        this.val = val;
+        this.w = weight;
+    }
+}
 class Graph {
-    constructor(edges, weight) {
-        _graph = {};
-
-        for (let i = 0; i < edges.length; i++) {
-            let [s, e] = edges[i];
-            if (!_graph[s])
-                _graph[s] = [];
-            if (!_graph[e])
-                _graph[e] = [];
-
-            _graph[s].push({
-                val: weight[i],
-                label: e
-            });
-            _graph[e].push({
-                val: 1 / weight[i],
-                label: s
-            });
+    constructor() {
+        this.graph = {};
+    }
+    
+    buildGraph( edges, weights ) {
+        for( let i=0; i < edges.length; i++ ) {
+            let [s, d] = edges[i];
+            let weight = weights[i];
+            
+            if( !this.graph[s] )
+                this.graph[s] = [];
+            
+            if( !this.graph[d] )
+                this.graph[d] = [];
+            
+            this.graph[s].push( new EdgeNode(d, weight) );
+            this.graph[d].push( new EdgeNode(s, 1/weight) );
         }
     }
-
-
-
-
-    dfs(s, e, visited) {
-        if (!_graph[s] || !_graph[e])
+    
+    calcDivision(s, d) {
+        if( !this.graph[s] || !this.graph[d] )
             return -1.0;
-        if (s === e)
+        
+        if( s === d )
             return 1.0;
-
-        return _dfs(s, e, {});
-    }
-}
-
-function _dfs(s, e, visited) {
-    if (s === e)
-        return 1.0
-
-    visited[s] = 1;
-    for (let nNode of _graph[s]) {
-        if (!visited[nNode.label]) {
-            let ans = _dfs(nNode.label, e, visited);
-            if (ans !== -1)
-                return ans * nNode.val
+        
+        return dfs(s, d, new Set(), this.graph);
+        
+        function dfs(node, d, visited, graph) {
+            if( node === d )
+                return 1.0;
+            
+            visited.add(node);
+            
+            for( let nNode of graph[node] ) {
+                if( visited.has(nNode.val) )
+                    continue;
+                let ans = dfs(nNode.val, d, visited, graph);
+                if( ans !== -1 ) 
+                    return ans * nNode.w;
+            }
+            
+            return -1.0
         }
     }
-    return -1.0
 }
+
