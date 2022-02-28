@@ -20,7 +20,6 @@ var connect = function(root) {
     
     while( queue.length ) {
         let qLen = queue.length;
-        // let levelNodes = [];
         
         for( let i=0; i < qLen; i++ ) {
             let current = queue.shift();
