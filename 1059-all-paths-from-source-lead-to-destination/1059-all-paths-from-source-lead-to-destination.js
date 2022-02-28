@@ -37,7 +37,6 @@ class Graph {
 function _dfs(node, d, visited, graph) {
     if( graph[node].length === 0 && node !== d )
         return false
-    // console.log(node)
     visited.add(node);
     
     for( let nNode of graph[node] ) {
