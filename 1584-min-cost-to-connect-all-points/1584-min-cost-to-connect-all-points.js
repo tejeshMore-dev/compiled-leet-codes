@@ -28,7 +28,6 @@ var minCostConnectPoints = function(points) {
             ans += val
         }
     }
-    // console.log(uf)
     
     return ans;
 };
