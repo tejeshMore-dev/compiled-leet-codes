@@ -12,6 +12,21 @@
  */
 var cloneTree = function(root) {
     if( !root )
+        return root;
+    
+    let cNode = new Node( root.val );
+    
+    for( let chNode of root.children ) {
+        cNode.children.push( cloneTree(chNode) )
+    }
+    
+    return cNode
+}
+
+
+/*ITERATIVE
+var cloneTree = function(root) {
+    if( !root )
         return null
     
     let cRoot = new Node(root.val);
@@ -30,3 +45,4 @@ var cloneTree = function(root) {
     
     return cRoot;
 };
+*/
