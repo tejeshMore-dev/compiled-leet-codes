@@ -3,7 +3,7 @@
  * @return {number}
  */
 var rob = function(nums) {
-    let cache = new Array(nums.length).fill(-1);
+    let cache = {};
     
     return helper(0);
     
@@ -11,7 +11,7 @@ var rob = function(nums) {
         if( i >= nums.length )
             return 0;
 
-        if( cache[i] > -1 )
+        if( cache.hasOwnProperty(i) )
             return cache[i];
         
         let ans = Math.max( helper(i+1), helper(i+2) + nums[i] );
