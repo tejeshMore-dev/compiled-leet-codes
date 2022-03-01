@@ -11,108 +11,27 @@ var minCostConnectPoints = function(points) {
             if( i === j ) continue;
             let val = Math.abs(points[i][0] - points[j][0]) + Math.abs(points[i][1] - points[j][1])
             
-            edges.push({ p1: points[i], p2: points[j], val  });
+            edges.push({ i, j, val });
         }
-    }
-    
-    const minHeap = new MinHeap();
-    
-    for( let edge of edges ) {
-        minHeap.add(edge, edge.val);
-    }
+    }    
+    edges.sort((a, b) => b.val - a.val );
     
     const uf = new UnionFind();
     uf.makeSet(points);
     
-    // console.log(minHeap);
-    // console.log(uf)
-    while( minHeap.size ) {
-        let current = minHeap.remove();
-        let { node, val } = current;
-        let { p1, p2 } = node;
-        // console.log(p1, p2, val)
-        
-        let [x1, y1] = p1;
-        let [x2, y2] = p2;
-        
-        if( !uf.connected(`${x1}-${y1}`, `${x2}-${y2}`) ) {
-            uf.union(`${x1}-${y1}`, `${x2}-${y2}`);
+    while( edges.length ) {
+        let current = edges.pop();
+        let { i, j, val } = current;
+
+        if( !uf.connected(i, j) ) {
+            uf.union(i, j);
             ans += val
         }
     }
+    // console.log(uf)
     
     return ans;
 };
-
-class heapNode {
-    constructor(node, val) {
-        this.node = node;
-        this.val = val;
-    }    
-}
-
-class MinHeap {
-    constructor() {
-        this.data = [];
-        this.size = 0;
-    }
-    
-    add(node, val) {
-        this.data.push( new heapNode(node, val) );
-        let index = this.data.length-1;
-        this.size++;
-        
-        while( index > 0 && this.data[index].val < this.data[getPI(index)].val ) {
-            let temp = this.data[index];
-            this.data[index] = this.data[getPI(index)];
-            this.data[getPI(index)] = temp;
-            index = getPI(index);
-        }
-        
-        function getPI(index) {
-            return Math.floor( (index-1)/2 );
-        }
-    }
-    
-    remove() {
-        if( this.data.length === 0 )
-            return null;
-        
-        this.size--;
-        
-        if( this.data.length === 1 )
-            return this.data.pop();
-        
-        let min = this.data[0];
-        let current = this.data.pop();
-        this.data[0] = current;
-        
-        let i = 0, length = this.data.length;
-        
-        while( 1 ) {
-            let lCI = i*2+1, rCI = i*2+2;
-            let swap = null;
-            
-            if( lCI < length && this.data[lCI].val < current.val ) {
-                swap = lCI;
-            }
-            
-            if( rCI < length ) {
-                if( ( !swap && this.data[rCI].val < current.val ) || 
-                    (  swap && this.data[rCI].val < this.data[lCI].val  ))
-                    swap = rCI;
-            }
-            
-            if( swap === null ) break;
-            
-            this.data[i] = this.data[swap];
-            this.data[swap] = current;
-            i = swap;
-        }
-        
-        return min;
-    }
-}
 
 class UnionFind {
     constructor() {
@@ -121,10 +40,9 @@ class UnionFind {
     }
     
     makeSet(points) {
-        for( let point of points ) {
-            let [x, y] = point;
-            this.root[`${x}-${y}`] = `${x}-${y}`;
-            this.rank[`${x}-${y}`] = 1;
+        for( let i=0; i <points.length; i++) {
+            this.root[i] = i;
+            this.rank[i] = 1;
         }
     }
     
