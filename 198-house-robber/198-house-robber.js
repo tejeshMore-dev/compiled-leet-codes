@@ -18,10 +18,4 @@ var rob = function(nums) {
         cache[i] = ans;
         return ans;
     }
-}
-
-/*
-
-*/
-
-      
+}      
