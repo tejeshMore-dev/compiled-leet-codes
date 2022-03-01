@@ -12,12 +12,13 @@
  */
 var cloneTree = function(root) {
     if( !root )
-        return root
+        return null
+    
     let cRoot = new Node(root.val);
     let queue = [[root, cRoot]];
     
     while( queue.length ) {
-        let current = queue.shift();
+        let current = queue.pop();
         let [ node, cNode ] = current;
         
         for( let chNode of node.children ) {
