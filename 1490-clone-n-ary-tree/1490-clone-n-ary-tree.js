@@ -26,7 +26,6 @@ var cloneTree = function(root) {
             queue.push([chNode, node] );               
         }        
     }
-            // console.log(map[root])
     
     return cRoot;
 };
