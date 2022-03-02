@@ -3,21 +3,16 @@
  * @return {number}
  */
 var minCostClimbingStairs = function(cost) {
-    let cache = {};
-    return Math.min( helper(0), helper(1) );
+    let prevCost1 = 0;
+    let prevCost2 = 0;
     
-    function helper( i ) {
-        if( i >= cost.length )
-            return 0;
-        
-        if( cache.hasOwnProperty(i) )
-            return cache[i]
-        
-        let ans = Math.min( helper(i+1) + cost[i], helper(i+2) + cost[i] )
-        cache[i] = ans;
-        return ans;
-        
+    for( let i=2; i <=cost.length; i++ ) {
+        let min = Math.min( cost[i-1] + prevCost2, cost[i-2] + prevCost1 );
+        prevCost1 = prevCost2;
+        prevCost2 = min;
     }
+    
+    return prevCost2;
 };
 
 /*
