@@ -5,7 +5,7 @@
 var deleteAndEarn = function(nums) {
     nums.sort((a, b) => a-b );
     let cache = new Array(nums.length).fill(-1);
-    console.log(nums);
+    // console.log(nums);
     return helper(0);
     
     function helper(i) {
