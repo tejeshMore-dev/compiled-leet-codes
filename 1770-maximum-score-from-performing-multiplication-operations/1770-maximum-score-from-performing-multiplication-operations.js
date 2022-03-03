@@ -4,7 +4,7 @@
  * @return {number}
  */
 
-// /* Top Down Approach
+/* Top Down Approach
 var maximumScore = function(nums, multipliers) {
     let cache = new Array(multipliers.length).fill(0).map( a => new Array(multipliers.length).fill(0) );
     let length = nums.length;
@@ -24,18 +24,18 @@ var maximumScore = function(nums, multipliers) {
         return cache[i][l] = Math.max( opt1, opt2 );
     }
 };
-// */
+*/
 
 
-/* Bottom Up Apporach
+// /* Bottom Up Apporach
 var maximumScore = function(nums, multipliers) {
     let nLen = nums.length;
     let mLen = multipliers.length;
     
-    let dp = new Array(nLen+1).fill(0).map(a => new Array(mLen+1).fill(0));
+    let dp = new Array(mLen+1).fill(0).map(a => new Array(mLen+1).fill(0));
     
     for( let m = mLen-1 ; m>=0; m-- ) {
-        for( let l = nLen-1 ; l>=0; l-- ) {
+        for( let l = m; l>=0; l-- ) {
             
             let mul = multipliers[m];
             let r = nLen - 1 - ( m -l );
@@ -46,4 +46,4 @@ var maximumScore = function(nums, multipliers) {
     
     return dp[0][0];
 }
-*/
+// */
