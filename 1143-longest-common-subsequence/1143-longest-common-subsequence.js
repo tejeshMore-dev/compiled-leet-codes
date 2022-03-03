@@ -4,7 +4,9 @@
  * @return {number}
  */
 var longestCommonSubsequence = function(text1, text2) {
-    var sols = new Array(text1.length).fill(0).map(a => new Array(text2.length).fill(-1));
+    var sols = new Array(text1.length+1).fill(0).map(a => new Array(text2.length).fill(-1));
+    
+    
     return helper( text1.length-1, text2.length-1 );
     
     function helper( i, j ) {
