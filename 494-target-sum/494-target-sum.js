@@ -4,19 +4,19 @@
  * @return {number}
  */
 var findTargetSumWays = function(nums, target) {
-    return helper( 0, 0, new Map() );
+    let ans = 0;
+    helper( 0, 0 );
+    return ans;
     
-    function helper( i, sum, map ) {        
-        if( map.has(`${i}_${sum}`) )
-            return map.get(`${i}_${sum}`)
+    function helper( i, sum ) {
+        if( i === nums.length ) {
+            if( sum === target )
+                ans = ans + 1;
+    
+            return 
+        }
         
-        if( i === nums.length )
-            return sum === target ? 1 : 0            
-        
-        let res = helper( i+1, sum + nums[i], map ) + 
-                  helper( i+1, sum - nums[i], map );
-        
-        map.set(`${i}_${sum}`, res);
-        return res
+        helper( i+1, sum + nums[i] );
+        helper( i+1, sum - nums[i] );        
     }
 };
