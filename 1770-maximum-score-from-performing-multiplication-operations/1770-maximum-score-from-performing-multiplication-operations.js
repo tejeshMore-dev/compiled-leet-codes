@@ -35,15 +35,16 @@ var maximumScore = function(nums, multipliers) {
     let dp = new Array(mLen+1).fill(0).map(a => new Array(mLen+1).fill(0));
     
     for( let m = mLen-1; m>=0; m-- ) {
-        for( let l = mLen-1; l>=0; l-- ) {
+        for( let l = m; l>=0; l-- ) {
             
             let mul = multipliers[m];
             let r = nLen - 1 - ( m -l );
-            
+            // console.log(m, l, r)
             dp[m][l] = Math.max(mul * nums[l] + dp[m+1][l+1], mul * nums[r] + dp[m+1][l] )
         }
     }
     
+    // console.log(dp);
     return dp[0][0];
 }
 // */
