@@ -19,7 +19,6 @@ var maximumScore = function(nums, multipliers) {
         
         let opt1 = multipliers[i] * nums[l] + helper( i+1, l+1 );
         let opt2 = multipliers[i] * nums[r] + helper( i+1, l );
-        // console.log(i, opt1, opt2)
         return cache[i][l] = Math.max( opt1, opt2 );
     }
 };
