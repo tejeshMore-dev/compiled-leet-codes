@@ -10,22 +10,21 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
+// /* Recursive Approach
 var preorderTraversal = function(root) {
-    if(!root) return []
+    let ans = [];
+    traverse( root, ans );
+    return ans;
     
-    let stack = [ root ], node = root, res = [];
-    
-    while( stack.length > 0 ) {
-        node = stack.pop();
-        res.push(node.val);
+    function traverse( node, ans ) {
+        if( !node )
+            return 
         
-        if( node.right )
-        stack.push(node.right);
-        
-        if( node.left )
-            stack.push(node.left)
-     }
+        ans.push( node.val )
+        traverse( node.left, ans);
+        traverse( node.right, ans);
+    }
     
-    return res;
 };
+// */
 
