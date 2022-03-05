@@ -19,7 +19,7 @@ var buildTree = function(preorder, inorder) {
     for( let i in inorder ) {
         map.set( inorder[i], i );
     }
-    // console.log(map);
+    
     return helper( 0, 0, inorder.length-1 );
     
     function helper( pS, iS, iE ) {
