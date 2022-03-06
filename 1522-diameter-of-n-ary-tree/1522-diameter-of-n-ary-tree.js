@@ -22,21 +22,20 @@ var diameter = function(root) {
         if( node.children.length === 0 ) {
             return 1;
         } else {
-            let heights = [];
-            for( let child of node.children ) {
-                heights.push( traverse( child ) );
-            }
+            let max1 = 0, max2 = 0;
             
-            if( heights.length > 1 ) {
-                heights.sort();
-                let max1 = heights.pop();
-                let max2 = heights.pop();
-                ans = Math.max( ans, max1 + max2 );
-                return max1 + 1;                
-            } else {                
-                ans = Math.max( ans, heights[0] );                
-                return heights[0] + 1;
+            for( let child of node.children ) {
+                let d = traverse( child );
+                
+                if( d > max1 ) {
+                    max2 = max1;
+                    max1 = d;
+                } else if( d > max2 ) {
+                    max2 = d;
+                }
             }
+            ans = Math.max( ans, max1 + max2 );
+            return max1 + 1;
         }
     }
 };
