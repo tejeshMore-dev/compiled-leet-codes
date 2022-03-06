@@ -20,7 +20,6 @@ function findNode(node, val) {
         return null
     
     if(node.val === val) {
-        console.log(node)
         return node        
     }
     
