@@ -11,7 +11,7 @@
  * @return {number}
  */
 
-/* Recursive Solution
+// /* Recursive Solution
 var maxDepth = function(root) {
     if ( !root )
         return 0;
@@ -31,7 +31,7 @@ var maxDepth = function(root) {
         }
     }
 };
-*/
+// */
 
 // /* Iterative Solution
 var maxDepth = function(root) {
