@@ -11,12 +11,13 @@
  * @return {number}
  */
 var maxDepth = function(root) {
+    if ( !root )
+        return 0;
+    
     return traverse( root );
     
     function traverse( node ) {
-        if( !node ) {
-            return 0;            
-        } if( node.children.length === 0 ) {
+        if( node.children.length === 0 ) {
             return 1;
         } else {
             let heights = [];
