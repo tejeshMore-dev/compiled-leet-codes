@@ -32,6 +32,5 @@ var levelOrder = function(root) {
         
         ans.push([ ...levelNodes ]);
     }
-    
     return ans;
 };
