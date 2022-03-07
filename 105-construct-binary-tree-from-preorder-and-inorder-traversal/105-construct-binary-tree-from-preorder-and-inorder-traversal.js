@@ -15,25 +15,29 @@ var buildTree = function(preorder, inorder) {
     if( preorder.length === 0 || inorder.length === 0 )
         return null;
     
-    let map = new Map();
-    for( let i in inorder ) {
-        map.set( inorder[i], i );
+    let map = {};
+    
+    for( let i=0; i<inorder.length; i++ ) {
+        map[inorder[i]] = i;
     }
     
-    return helper( 0, 0, inorder.length-1 );
+    return createTree( 0, preorder.length-1, 0, inorder.length-1 );
     
-    function helper( pS, iS, iE ) {
-        let root = new TreeNode( preorder[pS] );
-        let mid = parseInt(map.get(root.val));
+    function createTree( pS, pE, iS, iE ) {
+        if( pS > pE || iS > iE )
+            return null;
         
-        if( mid > iS )
-            root.left = helper( pS+1, iS, mid-1 );
+        let val = preorder[pS];
+        let node = new TreeNode( parseInt(val) );
         
-        if(mid < iE )
-            root.right = helper( pS+mid-iS+1, mid+1, iE );
-        
-        return root
+        let mid = map[val];
+        let nEle = mid-iS;
+        node.left = createTree( pS+1, pS+nEle, iS, mid-1 )
+        node.right = createTree(  pS+nEle+1, pE, mid+1, iE )
+            
+        return node;
     }
+    
 };
 
 /*
