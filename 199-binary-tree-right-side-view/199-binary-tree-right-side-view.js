@@ -10,6 +10,31 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
+
+// /* Recursive Solution
+var rightSideView = function(root) {
+    if( !root )
+        return [];
+    
+    let ans = [];
+    traverse( root, 0 );
+    return ans;
+    
+    
+    function traverse( node, level ) {
+        if( !node )
+            return
+        
+        if( ans.length === level )
+            ans.push( node.val );
+        
+        traverse( node.right, level+1 );
+        traverse( node.left, level+1 );
+    }
+}
+// */
+
+// /* Iterative Solution
 var rightSideView = function(root) {
     if( !root ) return []
     
@@ -31,3 +56,4 @@ var rightSideView = function(root) {
 
     return result;
 };
+// */
