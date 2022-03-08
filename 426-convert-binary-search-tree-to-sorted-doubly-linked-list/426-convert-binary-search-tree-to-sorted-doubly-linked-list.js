@@ -31,8 +31,8 @@ var treeToDoublyList = function(root) {
         if( !prev ) {
             head = node;
         } else {
-            node.left = prev;
             prev.right = node;
+            node.left = prev;
         }
         
         prev = node;
