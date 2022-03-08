@@ -40,12 +40,13 @@ var serialize = function(root) {
  * @return {TreeNode}
  */
 var deserialize = function(data) {
-    
     if( data.length === 0 )
         return null;
     
     let nodeValues = data.split(",");
     let i = 0;
+    console.log( nodeValues )
+    
     return createTree(nodeValues);
     
     function createTree( nodeValues) {
