@@ -27,7 +27,6 @@ class Trie {
             let bit = ( num >> i ) & 1;
             if( node[bit ^ 1 ] ) {                
                 xOr += ( 1 << i );
-                // console.log(bit, xOr, i, );
                 node = node[bit ^ 1];
             } else {
                 node = node[bit];
