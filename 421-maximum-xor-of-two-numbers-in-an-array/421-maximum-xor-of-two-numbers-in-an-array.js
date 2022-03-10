@@ -15,7 +15,7 @@ class Trie {
     insert(num) {
         let node = this.root;
         for( let i=31; i >= 0; i-- ) {
-            let bit = ( num & ( 1 << i ) ) > 0 ? 1 : 0 
+            let bit = ( num >> i ) & 1;
             if( !node.childs[bit] ) {
                 node.childs[bit] = new Node()
             }
