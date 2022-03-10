@@ -2,24 +2,20 @@
  * @param {number[]} nums
  * @return {number}
  */
-class Node {
-    constructor() {
-        this.childs = {}
-    }
-}
+
 class Trie {
     constructor() {
-        this.root = new Node();
+        this.root = [];
     }
     
     insert(num) {
         let node = this.root;
         for( let i=31; i >= 0; i-- ) {
             let bit = ( num >> i ) & 1;
-            if( !node.childs[bit] ) {
-                node.childs[bit] = new Node()
+            if( !node[bit] ) {
+                node[bit] = []
             }
-            node = node.childs[bit];
+            node = node[bit];
         }
     }
     
@@ -29,12 +25,12 @@ class Trie {
         
         for( let i=31; i >= 0; i-- ) {
             let bit = ( num >> i ) & 1;
-            if( node.childs[bit ^ 1 ] ) {                
+            if( node[bit ^ 1 ] ) {                
                 xOr += ( 1 << i );
                 // console.log(bit, xOr, i, );
-                node = node.childs[bit ^ 1];
+                node = node[bit ^ 1];
             } else {
-                node = node.childs[bit];
+                node = node[bit];
             }
             
         }
