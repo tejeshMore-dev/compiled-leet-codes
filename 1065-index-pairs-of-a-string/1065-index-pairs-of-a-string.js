@@ -5,6 +5,7 @@
  */
 class TrieNode {
     constructor(val) {
+        this.val = val;
         this.childs = {};
         this.isEnd = false;
     }
@@ -12,7 +13,7 @@ class TrieNode {
 
 class Trie {
     constructor() {
-        this.root = new TrieNode();
+        this.root = new TrieNode("");
     }
     
     insert( word ) {
@@ -20,7 +21,7 @@ class Trie {
         
         for( let char of word ) {
             if( !node.childs[char] )
-                node.childs[char] = new TrieNode();
+                node.childs[char] = new TrieNode(char);
             
             node = node.childs[char];
         }
@@ -28,25 +29,20 @@ class Trie {
         node.isEnd = true;
     }
     
-    hasChild( char ) {
-        return this.root.childs[char]
-    }
-    
-    dfs( i, text ) {
+    getWordIndex( i, text ) {
+        let start = i;
         let arr = [];
         let node = this.root;
+        let char = text.charAt(i);
         
-        helper(i, text, node);
-        
-        function helper(i, text, node) {
-             if( node.isEnd )
-                arr.push(i-1)
+        while( node.childs[char] ) {
+            node = node.childs[char];
             
-            if( !node.childs[text.charAt(i)] )
-               return;
+            if( node.isEnd )
+                arr.push([ start, i ]);   
             
-            helper( i+1, text, node.childs[text.charAt(i)] );
-        }        
+            char = text.charAt(++i);
+        }      
         return arr;
     }
 }
@@ -61,8 +57,7 @@ var indexPairs = function(text, words) {
     
     for( let i in text ) {
         let char = text.charAt(i);
-        
-        trie.dfs(parseInt(i), text).map( eI => ans.push([i, eI]) )
+        ans.push( ...trie.getWordIndex(parseInt(i), text) );
     }  
     
     return ans;
