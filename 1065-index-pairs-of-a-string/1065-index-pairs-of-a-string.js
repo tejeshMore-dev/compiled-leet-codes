@@ -62,12 +62,7 @@ var indexPairs = function(text, words) {
     for( let i in text ) {
         let char = text.charAt(i);
         
-        if( trie.hasChild(char) ) {
-            let indexArray = trie.dfs(parseInt(i), text);
-            for( let index of indexArray ) {
-                ans.push( [ i, index  ] );
-            }
-        }
+        trie.dfs(parseInt(i), text).map( eI => ans.push([i, eI]) )
     }  
     
     return ans;
