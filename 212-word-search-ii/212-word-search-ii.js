@@ -68,7 +68,7 @@ var findWords = function(board, words) {
         serachWord(r, c+1, word, node);
         serachWord(r, c-1, word, node);
         
-        word.pop();
+        word.pop()
         visitedChar.delete( `${r}-${c}` );
     }
 };
