@@ -45,7 +45,6 @@ var findWords = function(board, words) {
         }
     }
     
-    console.log(ans)
     let res = [];
     for( let i in words ) {
         if( ans.has( words[i] ) ) {
