@@ -45,13 +45,7 @@ var findWords = function(board, words) {
         }
     }
     
-    let res = [];
-    for( let i in words ) {
-        if( ans.has( words[i] ) ) {
-            res.push(words[i])
-        }
-    }
-    return res;
+    return [ ...ans ];
     
     function serachWord( r, c, word, node ) {
         if( r < 0 || c < 0 || r >= rows || c >= cols || visitedChar.has( `${r}-${c}` ) || !node.childs[board[r][c]] )
