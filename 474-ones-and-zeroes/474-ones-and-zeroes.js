@@ -5,15 +5,15 @@
  * @return {number}
  */
 var findMaxForm = function(strs, m, n) {
-    let cache = {};
+    let cache = new Map();
     return helper( 0, m , n );
     
     function helper( i, zeroes, ones ) {
         if( i === strs.length )
             return 0;
         
-        if( cache.hasOwnProperty(`${i}-${zeroes}-${ones}`) )
-            return cache[`${i}-${zeroes}-${ones}`];
+        if( cache.has(`${i}-${zeroes}-${ones}`) )
+            return cache.get(`${i}-${zeroes}-${ones}`);
         
         let [ z, o ] = count(strs[i]);
         let opt_taken = -1;
@@ -22,8 +22,8 @@ var findMaxForm = function(strs, m, n) {
         }
         let opt_not_taken = helper( i+1, zeroes, ones )
         
-        cache[`${i}-${zeroes}-${ones}`] = Math.max( opt_taken, opt_not_taken ); 
-        return cache[`${i}-${zeroes}-${ones}`];
+        cache.set(`${i}-${zeroes}-${ones}`, Math.max( opt_taken, opt_not_taken )); 
+        return cache.get(`${i}-${zeroes}-${ones}`);
     }
     
     function count( str ) {
