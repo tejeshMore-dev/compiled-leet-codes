@@ -5,14 +5,6 @@
 var rotate = function(matrix) {
     let l = 0, r = matrix.length-1;
     
-    /*
-    
-     l     top                  r    
-    
-    
-    bottom
-    
-    */
     while( l < r ) {
         let top = l, bottom = r;
         
@@ -31,3 +23,12 @@ var rotate = function(matrix) {
         r--;
     }
 };
+/*
+
+ l     top                  r    
+
+
+bottom
+
+
+*/
