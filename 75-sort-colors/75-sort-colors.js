@@ -11,9 +11,10 @@ var sortColors = function(nums) {
     
     let i = 0;
     for( let key in map ) {
-        while( map[key] > 0 ) {
+        let count = map[key];
+        while( count ) {
             nums[i++] = key;
-            map[key] = map[key] - 1;
+            count--;
         }
     }
     
