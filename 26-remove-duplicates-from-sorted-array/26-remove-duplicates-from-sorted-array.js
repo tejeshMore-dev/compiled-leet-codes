@@ -9,13 +9,14 @@ var removeDuplicates = function(nums) {
     let i = 0; 
     for( let j = 1; j < nums.length; j++ ) {
         if( nums[i] !== nums[j] ) {
-            nums[i++] = nums[j]
+            nums[++i] = nums[j]
         }
     }
     
     return i+1;
 };
 
+/* Approach 2
 var removeDuplicates = function(nums) {
     let pointer = 0, lastVal = null;
     
@@ -29,3 +30,4 @@ var removeDuplicates = function(nums) {
     
     return pointer
 };
+*/
