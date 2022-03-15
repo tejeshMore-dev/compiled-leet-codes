@@ -11,17 +11,20 @@
  * @return {ListNode}
  */
 var detectCycle = function(head) {
-    if( !head ) return head
-    let sp = head, fp = head, isCycleFound = false;
+    if( !head ) return null;
     
-    while( sp && fp && sp.next && fp.next ) {
+    let sp = head;
+    let fp = head;
+    let cycleFound = false;
+    
+    while( sp && sp.next && fp && fp.next ) {
         sp = sp.next;
-        fp = isCycleFound ? fp.next : fp.next.next;
+        fp = cycleFound ? fp.next : fp.next.next;
         
         if( sp === fp ) {
-            if( isCycleFound || sp === head ) return sp
-            isCycleFound = true;
-            sp = head;
+            if( cycleFound || sp == head ) return sp
+            cycleFound = true;
+            fp = head;
         }
     }
     
