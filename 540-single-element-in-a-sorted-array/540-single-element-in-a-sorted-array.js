@@ -4,11 +4,7 @@
  */
 var singleNonDuplicate = function(nums) {
     let ans = -1;
-    if( nums.length == 1 )
-        return nums[0]
-    
     let lp = 0, rp = nums.length-1;
-
     
     while( lp <= rp ) {
         let mid = Math.floor( lp + (rp-lp)/2 );
