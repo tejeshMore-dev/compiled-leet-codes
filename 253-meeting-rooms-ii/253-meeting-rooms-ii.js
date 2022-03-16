@@ -14,21 +14,18 @@ var minMeetingRooms = function(intervals) {
         endT[i] = end;
     }
     
-    startT.sort((a, b) => a-b )
-    endT.sort((a, b) => a-b )
+    startT.sort((a, b) => a-b ) //  sort all start time
+    endT.sort((a, b) => a-b ) // start all end time
     let sP = 0, eP = 0;
         
     while( eP < endT.length && sP < startT.length ) {
-        if( startT[sP] < endT[eP] ) {
+        if( startT[sP] < endT[eP] ) { // meeting already started
             roomRequired++;
             ans = Math.max(roomRequired, ans);
             sP++;
-        } else if( startT[sP] > endT[eP] ) {
+        } else { //meeting ended
             roomRequired--;
             eP++;
-        } else {
-            eP++;
-            sP++;
         }
     }
     
