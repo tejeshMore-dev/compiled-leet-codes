@@ -19,7 +19,6 @@ var singleNonDuplicate = function(nums) {
             rp = mid-1;
         }
     }
-    
 
     return ans;
 }
