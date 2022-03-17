@@ -14,7 +14,7 @@ var groupAnagrams = function(strs) {
         
         // fill count detail
         for( let i=0; i < str.length; i++ ) {
-            sb[str.charCodeAt(i) - 97] += 1;
+            sb[str.charCodeAt(i) - 'a'.charCodeAt(0)] += 1;
         }
         
         let key = sb.join("#");
