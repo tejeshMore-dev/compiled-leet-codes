@@ -19,7 +19,6 @@ var nextGreaterElement = function(nums1, nums2) {
     while( stack.length ) {
             map.set( stack.pop(), -1 );
     }
-    // console.log(map);
     for(  let num of nums1) {
         ans.push(map.get(num))
     }
