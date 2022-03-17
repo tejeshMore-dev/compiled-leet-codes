@@ -18,7 +18,6 @@ var groupAnagrams = function(strs) {
         }
         
         let key = sb.join("#");
-        console.log(key, sb)
         if( map[key] ){
             map[key].push(str);
         } else {
