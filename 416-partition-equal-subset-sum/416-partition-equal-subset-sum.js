@@ -14,21 +14,20 @@ var canPartition = function(nums) {
     if( sum%2 !== 0 )
         return false;
     
-    return findSubsetSum( 0, sum/2, new Map() );
+    let subsetSum = sum/2;
+    let cache = new Array(nums.length).fill(-1).map(a => new Array(subsetSum+1).fill(-1) );
+    return findSubsetSum( 0, subsetSum, cache );
     
     function findSubsetSum( i, s, cache ) {
-        if( cache.has(`${i}-${s}`) )
-            return cache.get( `${i}-${s}` );
-        
         if( s === 0 )
             return true
-        
-        if( i === nums.length )
+        else if( i === nums.length || s < 0 )
             return false
         
-        let ans = findSubsetSum( i+1, s-nums[i], cache ) || findSubsetSum( i+1, s, cache )
-        cache.set( `${i}-${s}` , ans );
-        return ans;
+        if( cache[i][s] !== -1 )
+            return cache[i][s];
+        
+        return cache[i][s] = findSubsetSum( i+1, s-nums[i], cache ) || findSubsetSum( i+1, s, cache );
     }
 };
 // */
