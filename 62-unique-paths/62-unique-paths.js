@@ -4,21 +4,13 @@
  * @return {number}
  */
 var uniquePaths = function(m, n) {
-    let r = 0, c = 0;
-    let cache = {};
-    return calculatePaths(r, c);
+    let dp = new Array( m ).fill(1).map(a => new Array(n).fill(1) );
     
-    function calculatePaths(r, c) {
-        if(cache[`${r}-${c}`])
-            return cache[`${r}-${c}`]
-        
-        if( r === m-1 && c === n-1  )
-            return 1;
-        
-        if( r >= m || c >= n )
-            return 0
-        
-        return cache[`${r}-${c}`] = calculatePaths( r+1, c ) + calculatePaths( r, c+1 ) 
+    for( let i=1; i < m; i++ ) {
+        for( let j=1; j < n; j++ ) {
+            dp[i][j] = dp[i-1][j] + dp[i][j-1]
+        }
     }
     
+    return dp[m-1][n-1];
 };
