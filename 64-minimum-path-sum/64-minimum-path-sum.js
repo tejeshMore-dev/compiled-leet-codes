@@ -3,7 +3,7 @@
  * @return {number}
  */
 
-/* Top down Approach
+// /* Top down Approach
 var minPathSum = function(grid) {
     let rows = grid.length;
     let cols = grid[0].length;
@@ -22,7 +22,7 @@ var minPathSum = function(grid) {
         return cache[r][c] = grid[r][c] + Math.min( helper(r+1, c), helper(r, c+1) )
     }
 };
-*/
+// */
 
 // /* Bottom Up Approach
 var minPathSum = function(grid) {
