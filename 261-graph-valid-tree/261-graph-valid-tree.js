@@ -3,65 +3,61 @@
  * @param {number[][]} edges
  * @return {boolean}
  */
-var root;
-var rank;
-
-class unionFind{
-    
-    constructor(size) {
-        root = new Array(size);
-        rank = new Array(size);
-        
-        for( let i=0; i < size; i++ ) {
-            root[i] = i
-            rank[i] = 1;
-        } 
-    }
-    
-    find(x) {
-        if( x === root[x] )
-            return x
-        
-        return root[x] = this.find(root[x]);
-    }
-    
-    union(x, y) {
-        let rootX = this.find(x);
-        let rootY = this.find(y);
-        
-        if( rootX !== rootY ) {
-            if( rank[rootX] > rank[rootY] ) {
-                root[rootY] = rootX;
-            } else if( rank[rootX] < rank[rootY] ) {
-                root[rootX] = rootY;
-            } else {
-                root[rootY] = rootX;
-                rank[rootX] = 1 + rank[rootX];
-            }
-        }
-        
-    }
-    
-    connected(x, y) {
-        return this.find(x) === this.find(y);
-    }
-    
-}
-
 var validTree = function(n, edges) {
     if( edges.length !== n-1 )
         return false;
     
-    const uf = new unionFind(n);
+    const uf = new UnionFind(n);
     
-    for( let i = 0; i < edges.length; i++ ) {
-        let [ x, y ] = edges[i];
+    for( let edge of edges ) {
+        let [a, b] = edge;
         
-        if( uf.connected(x, y) )
-            return false
+        if( uf.connected(a,b) )
+            return false;
         
-        uf.union(x, y);
+        uf.union(a,b);
     }
-    console.log(rank, root)
-    return true
+    
+    return true;
 };
+
+class UnionFind {
+    constructor(n) {
+        this.root = new Array(n);
+        this.rank = new Array(n);
+        
+        for( let i=0; i<n; i++ ) {
+            this.root[i] = i;
+            this.rank[i] = 1;
+        }
+    }
+    
+    find(a) {
+        if( a === this.root[a] )
+            return a
+        
+        return this.root[a] = this.find(this.root[a])
+    }
+    
+    union(a, b) {
+        let rootA = this.find(a);
+        let rootB = this.find(b);
+        
+        if( rootA !== rootB ) {
+            if( this.rank[rootA] > this.rank[rootB] ) {
+                this.root[rootB] = rootA
+            } else if( this.rank[rootA] < this.rank[rootB] ) {
+                this.root[rootA] = rootB;
+            } else {
+                this.root[rootB] = rootA
+                this.rank[rootA] += 1;
+            }
+            
+            
+        }
+    }
+    
+    connected(a, b) {
+        return this.find(a) === this.find(b);
+    }
+}
