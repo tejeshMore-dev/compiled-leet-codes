@@ -8,7 +8,7 @@ var minReorder = function(n, connections) {
     
     for( let connection of connections ) {
         let [ s, d ] = connection;
-        edges.add( `${s}-${d}` );
+        edges.add( `${s}-${d}` ); // s --> d
     }
     
     const cityGraph = {};
@@ -34,8 +34,8 @@ var minReorder = function(n, connections) {
             if( visited.has(nCity) )
                 continue;
             
-            if( !edges.has(`${nCity}-${city}`) )
-                changes++
+            if( !edges.has(`${nCity}-${city}`) ) // s --> d
+                changes++;
             dfs( nCity, visited )
         }
     }
