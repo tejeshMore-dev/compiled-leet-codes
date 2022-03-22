@@ -69,22 +69,8 @@ class Graph {
         }
         
         distance.delete(s);
-        let max = 0;
-        let val = [];
-        
-        distance.forEach((d) => {
-            val.push(d)
-        })
-        
-        for( let i=0; i <val.length; i++ ) {
-            if( val[i] === Number.MAX_VALUE ) {
-                return -1;
-                
-            }
-            max = Math.max(val[i], max)
-        }
-        
-        return max        
+        let max = Math.max( ...[ ...distance.values() ] )
+        return max === MAX ? -1 : max;
     }
 }
 
