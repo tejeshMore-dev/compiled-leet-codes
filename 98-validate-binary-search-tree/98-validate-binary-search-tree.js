@@ -10,16 +10,42 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
+/*
 var isValidBST = function(root) {
-    const MAX = Number.MAX_VALUE;
-    return validate( root, MAX, -MAX );
+    return validate( root );
     
     function validate( node, max, min ) {
-        if( !node )
-            return true;        
+        if( !node.left && !node.right )
+            return node
         
-        return (  node.val > min && node.val < max && 
-                  validate( node.left, node.val, min ) &&
-                  validate( node.right, max, node.val ))
+        let left = validate( node.left, node.val, min )
+        let right = validate( node.right, max, node.val )
+        
+        
+        return validBST( node, left, right )
+    }
+    
+    function validBST( node, left, right ) {
+        if( !left )
+        return  node.val > left.val && node.val < right.val
+    }
+};
+*/
+
+var isValidBST = function(root) {    
+    const MAX = Number.MAX_VALUE;
+    return validate(root, -MAX, MAX );
+        
+    function validate( node, left, right ) {
+        if( !node )
+            return true
+        
+        if( node.val <= left || node.val >= right)
+            return false;
+        
+        let isLeftValid = validate( node.left, left, node.val );
+        let isRightValid = validate( node.right, node.val, right );
+        
+        return isLeftValid && isRightValid;
     }
 };
