@@ -23,7 +23,6 @@ var wallsAndGates = function(rooms) {
     
     while( queue.length > 0 ) {
         let length = queue.length;
-        let newRooms = [];
         
         for( let i = 0; i<length; i++ ) {
             let [ r, c ] = queue.shift();
@@ -35,13 +34,12 @@ var wallsAndGates = function(rooms) {
                 
                 if( rN >= 0 && cN >= 0 && rN < rows && 
                    cN < cols && !visited.has(`${rN}-${cN}`) ) {
-                    newRooms.push([rN, cN]);
+                    queue.push([rN, cN]);
                     visited.add((`${rN}-${cN}`))
 
                 }
             });
         }
         dist++;
-        queue.push(...newRooms);
     }
 };
