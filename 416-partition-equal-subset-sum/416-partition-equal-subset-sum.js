@@ -3,7 +3,7 @@
  * @return {boolean}
  */
 
-/* Top Down Approach
+// /* Top Down Approach
 var canPartition = function(nums) {
     let sum = 0;
     for( let num of nums ) {
@@ -29,7 +29,7 @@ var canPartition = function(nums) {
         return cache[i][s] = findSubsetSum( i+1, s-nums[i], cache ) || findSubsetSum( i+1, s, cache );
     }
 };
-*/
+// */
 
 // /* Bottom up Approach
 var canPartition = function(nums) {
