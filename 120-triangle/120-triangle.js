@@ -15,6 +15,7 @@ var minimumTotal = function(triangle) {
         
         let left = solve(i+1, j);
         let right = solve(i+1, j+1);
+        
         let ans = triangle[i][j] + Math.min(left, right);
         cache.set(`${i}-${j}`, ans)
         return ans;
