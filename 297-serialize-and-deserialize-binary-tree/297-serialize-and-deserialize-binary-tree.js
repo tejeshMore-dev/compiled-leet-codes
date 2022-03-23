@@ -45,7 +45,6 @@ var deserialize = function(data) {
     
     let nodeValues = data.split(",");
     let i = 0;
-    console.log( nodeValues )
     
     return createTree(nodeValues);
     
