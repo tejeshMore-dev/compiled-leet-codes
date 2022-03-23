@@ -2,11 +2,6 @@
  * @param {character[][]} matrix
  * @return {number}
  */
-// /* Top Down Approach
-var maximalSquare = function(matrix) {
-};
-// */
-
 
 // /* Bottom up Approach
 var maximalSquare = function(matrix) {
