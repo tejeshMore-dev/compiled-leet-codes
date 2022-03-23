@@ -46,9 +46,9 @@ var deserialize = function(data) {
     let nodeValues = data.split(",");
     let i = 0;
     
-    return createTree(nodeValues);
+    return createTree();
     
-    function createTree( nodeValues) {
+    function createTree( ) {
         let val = nodeValues[i++];
         if( val === "null" ) {
             return null
@@ -56,8 +56,8 @@ var deserialize = function(data) {
         
         let root = new TreeNode( parseInt(val) );
 
-        root.left = createTree(nodeValues);
-        root.right = createTree(nodeValues);
+        root.left = createTree();
+        root.right = createTree();
         
         return root;
     }
