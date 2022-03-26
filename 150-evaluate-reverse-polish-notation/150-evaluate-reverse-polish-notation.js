@@ -25,7 +25,7 @@ var evalRPN = function(tokens) {
             let a = stack.pop();
             stack.push(eval[token](a, b))
         } else {
-            stack.push(~~token);
+            stack.push(parseInt(token));
         }
     }
     
