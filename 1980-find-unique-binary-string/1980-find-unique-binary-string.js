@@ -11,9 +11,11 @@ var findDifferentBinaryString = function(nums) {
             return !set.has(current.join("")) ? current.join("") : null;
         }
         
+        // keeping ith bit as is
         let res = backtrack( i+1, current );
         if (res) return res;
         
+        // making ith bit as "1"
         current[i] = "1";
         res = backtrack( i+1, current );
         if (res) return res;
