@@ -19,8 +19,8 @@ var combine = function(n, k) {
         
         combination.push(start)
         helper( combination, start+1  )
-        combination.pop();
         
+        combination.pop();
         helper( combination, start+1  )
     }
     
