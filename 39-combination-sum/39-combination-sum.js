@@ -7,17 +7,21 @@ var combinationSum = function(candidates, target) {
     let combinations = [], combination = [];
     
     function helper( i, remaining ) {
-        if( i === candidates.length || remaining <= 0 ) {
-            if( remaining === 0 )
-                combinations.push( [ ...combination ] );
+        if( remaining === 0 ) {
+            combinations.push( [ ...combination ] );
             return;
         }
         
+        if( i === candidates.length || remaining <= 0 )
+            return;     
+        
+        
+        // selected
         combination.push( candidates[i] );
         remaining -= candidates[i];
-                
         helper( i, remaining );
         
+        // not selected
         combination.pop();
         remaining += candidates[i];
         helper( i+1, remaining );
