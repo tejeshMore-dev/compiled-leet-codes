@@ -4,8 +4,8 @@
  * @return {number[]}
  */
 var searchRange = function(nums, target) {
-    let left = search( true );
-    let right = search( false );
+    let left = search( leftMost=true );
+    let right = search( leftMost=false );
     
     return [ left, right ];
     
@@ -31,5 +31,4 @@ var searchRange = function(nums, target) {
         
         return i
     }
-    
 };
