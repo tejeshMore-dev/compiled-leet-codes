@@ -4,28 +4,29 @@
  * @return {number}
  */
 var search = function(nums, target) {
-    let lp = 0, rp = nums.length-1, result = -1;
+    let lp = 0, rp = nums.length-1;
+    let res = -1;
     
-    while( lp < rp ) {
+    while( lp <= rp ) {
         let mid = Math.floor( lp + (rp-lp)/2 );
-        if( target === nums[mid] ) return lp = mid
         
-        if( target > nums[mid] ) {
-            if(  target > nums[rp] && nums[mid] < nums[lp] ) {
-                rp = mid - 1;
-            } else {
-                lp = mid + 1; 
-            }
-        } else {
-            if( target < nums[lp] && nums[mid] > nums[rp] ) {
-                lp = mid + 1
-            } else {
-                rp = mid - 1
-            }
+        if( nums[mid] === target )
+            return res = mid;
+        
+        // left half: strict increasing
+        if( nums[mid] >= nums[lp] ) {
+            if( target >= nums[lp] && target <= nums[mid] )
+                rp = mid-1;
+            else
+                lp = mid+1;
+        } else { // right half: strict increasing
+            if( target >= nums[mid] && target <= nums[rp] )
+                lp = mid +1;
+            else
+                rp = mid-1;
+            
         }
-        
-        
     }
     
-    return nums[lp] === target ? lp : -1;
+    return res;
 };
