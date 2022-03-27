@@ -5,7 +5,7 @@
  */
 var minEatingSpeed = function(piles, h) {
     let lp = 1, rp = Math.max( ...piles );
-    let res = Number.MAX_VALUE;
+    let res = rp;
     
     while( lp <= rp ) {
         let k = Math.floor( lp + (rp-lp)/2 );
