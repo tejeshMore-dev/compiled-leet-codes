@@ -10,7 +10,6 @@ var minEatingSpeed = function(piles, h) {
     while( lp <= rp ) {
         let mid = Math.floor( lp + (rp-lp)/2 );
         let hrReq = findHrs(mid);
-        console.log(mid, hrReq)
         
         if( hrReq > h ) {
             lp = mid+1;
