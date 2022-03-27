@@ -8,26 +8,20 @@ var minEatingSpeed = function(piles, h) {
     let res = Number.MAX_VALUE;
     
     while( lp <= rp ) {
-        let mid = Math.floor( lp + (rp-lp)/2 );
-        let hrReq = findHrs(mid);
+        let k = Math.floor( lp + (rp-lp)/2 );
+        let hrReq = 0;
+        
+        for( let pile of piles ) {
+            hrReq += Math.ceil(pile/k);
+        }
         
         if( hrReq > h ) {
-            lp = mid+1;
+            lp = k+1;
         } else {
-            res = Math.min(res, mid);
-            rp = mid-1;
+            res = Math.min(res, k);
+            rp = k-1;
         }
     }
     
     return res;
-    
-    function findHrs(val) {
-        let ans = 0;
-        
-        for( let pile of piles ) {
-            ans += Math.ceil(pile/val);
-        }
-        
-        return ans;
-    }
 };
