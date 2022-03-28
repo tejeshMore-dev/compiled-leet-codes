@@ -9,11 +9,10 @@ var canPartitionKSubsets = function(nums, k) {
         sum += num;
     }
     
-    if( sum % k !== 0 ) {
+    if( sum % k !== 0 )
         return false;       
-     }
+    
     let target = sum/k;
-    nums.sort((a, b) => b-a);
     let used = new Array(nums.length).fill(false);
     return backtrack(0, k, subSetSum=0 );
     
