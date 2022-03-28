@@ -7,7 +7,7 @@ var MAX = Number.MAX_VALUE;
 
 var findMedianSortedArrays = function(nums1, nums2) {
     if( nums1.length === 0 && nums2.length === 1 )
-        return nums2[0]
+        return nums2[0];
     
     if( nums1.length > nums2.length )
         return findMedianSortedArrays( nums2, nums1 );
