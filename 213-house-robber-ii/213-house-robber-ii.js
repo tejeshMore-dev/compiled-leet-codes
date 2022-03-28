@@ -10,6 +10,7 @@ var rob = function(nums) {
     temp = nums.pop();
     let opt2 = helper(nums);
     nums.push(temp);
+    
     return Math.max( nums[0], opt1, opt2 );
         
     function helper( arr ) {
