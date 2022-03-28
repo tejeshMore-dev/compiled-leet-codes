@@ -11,10 +11,8 @@ var numRescueBoats = function(people, limit) {
     while( lp <= rp  ) {
         if( people[rp] + people[lp] <= limit  ) {
             lp++;
-            rp--;
-        } else {
-            rp--;            
         }
+        rp--;
         ans += 1;
     }
     
