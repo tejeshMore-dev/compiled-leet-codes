@@ -6,10 +6,10 @@ var canJump = function(nums) {
     let n = nums.length;
     let reach = 0;
     
-    for( let i in nums ) {        
+    for( let i=0; i < nums.length; i++ ) {        
         if( reach < i )
             return false;
-        reach = Math.max(reach,  parseInt(i) + nums[i])
+        reach = Math.max(reach, i + nums[i])
         
     }
     
