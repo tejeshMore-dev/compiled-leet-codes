@@ -23,7 +23,7 @@ var restoreIpAddresses = function(s) {
         
         for( let j=i; j < Math.min(i+MAX_DIGIT, s.length); j++ ) {
             let val = parseInt( s.substring(i, j+1));
-            if( val < MAX && ( s[i] !== "0" || i === j ) )
+            if( val < MAX && ( i === j || s[i] !== "0" ) )
                 backtrack(j+1, dots+1, [ ...combination, val, "." ] )
         }
     }
