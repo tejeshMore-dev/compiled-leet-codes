@@ -3,61 +3,60 @@
  * @param {number[][]} edges
  * @return {number}
  */
-var root;
-var rank;
-var component;
-
-class unionFind{
-    constructor(size) {
-        rank = new Array(size);
-        root = new Array(size);
-        component = size;
-        
-        for( let i=0; i <size; i++ ) {
-            rank[i] = 1;
-            root[i] = i
-        }
-    }
-    
-    find(x) {
-        if( x === root[x] )
-            return x
-        
-        return root[x] = this.find(root[x])
-    }
-    
-    union(x, y) {
-        let rootX = this.find(x);
-        let rootY = this.find(y);
-        if( rootX !== rootY ) {
-            component--;
-            
-            if( rank[rootX] > rank[rootY] ) {
-                root[rootY] = rootX;   
-            } else if( rank[rootX] < rank[rootY] ) {
-                root[rootX] = rootY;    
-            } else {
-                root[rootY] = rootX;   
-                rank[rootX] += 1; 
-            }       
-        }
-        
-    }
-    
-    getComponentCount(){
-        return component;
-    }
-    
-}
-
-
 var countComponents = function(n, edges) {
-    const uf = new unionFind(n);
+    const uf = new UnionFind(n);
     
-    for( let i=0; i < edges.length; i++ ) {
-        let [ x, y ] = edges[i];
-        uf.union(x, y);   
+    for( let edge of edges ) {
+        let [a, b] = edge;
+        uf.union(a,b);
     }
     
-    return uf.getComponentCount()
+    return uf.getComponents();
 };
+
+class UnionFind {
+    constructor(n) {
+        this.root = {};
+        this.rank = {};
+        this.component = n;
+        
+        for( let i=0; i<n; i++ ) {
+            this.root[i] = i;
+            this.rank[i] = 1;
+        }
+    }
+    
+    find(a) {
+        if( a === this.root[a] )
+            return a
+        
+        return this.root[a] = this.find(this.root[a])
+    }
+    
+    union(a, b) {
+        let rootA = this.find(a);
+        let rootB = this.find(b);
+        
+        if( rootA !== rootB ) {
+            this.component--;
+            if( this.rank[rootA] > this.rank[rootB] ) {
+                this.root[rootB] = rootA
+            } else if( this.rank[rootA] < this.rank[rootB] ) {
+                this.root[rootA] = rootB;
+            } else {
+                this.root[rootB] = rootA
+                this.rank[rootA] += 1;
+            }
+            
+            
+        }
+    }
+    
+    connected(a, b) {
+        return this.find(a) === this.find(b);
+    }
+    
+    getComponents(){
+        return this.component;
+    }
+}
