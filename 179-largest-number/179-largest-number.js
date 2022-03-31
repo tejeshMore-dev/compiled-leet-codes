@@ -9,6 +9,7 @@ var largestNumber = function(nums) {
         else
             return 1;
     })
+    
     if(nums[0] === 0)
         return "0";
     
