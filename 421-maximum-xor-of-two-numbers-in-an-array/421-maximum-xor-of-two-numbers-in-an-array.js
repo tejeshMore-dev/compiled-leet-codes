@@ -2,7 +2,6 @@
  * @param {number[]} nums
  * @return {number}
  */
-
 class Trie {
     constructor() {
         this.root = [];
@@ -10,44 +9,49 @@ class Trie {
     
     insert(num) {
         let node = this.root;
-        for( let i=31; i >= 0; i-- ) {
+        
+        for( let i = 31; i >= 0; i-- ) {
             let bit = ( num >> i ) & 1;
             if( !node[bit] ) {
-                node[bit] = []
+                node[bit] = [];
             }
-            node = node[bit];
+            
+            node = node[bit] 
         }
     }
     
-    findMaximumXOR(num) {
+    findMaxXor(num) {
+        let res = 0;
         let node = this.root;
-        let xOr = 0;
         
-        for( let i=31; i >= 0; i-- ) {
+        for( let i = 31; i >= 0; i-- ) {
             let bit = ( num >> i ) & 1;
-            if( node[bit ^ 1 ] ) {                
-                xOr += ( 1 << i );
-                node = node[bit ^ 1];
-            } else {
-                node = node[bit];
-            }
             
+            if( node[ bit ^ 1 ] ) {
+                res += ( 1 << i );
+                node = node[ bit ^ 1];
+            } else {
+                node = node[ bit ];
+            }
         }
-        return xOr;
+        
+        return res;
     }
+    
 }
 
+
 var findMaximumXOR = function(nums) {
+    let res = 0;
     const trie = new Trie();
-    let max = 0;
     
     for( let num of nums ) {
         trie.insert(num);
     }
     
     for( let num of nums ) {
-        max = Math.max(max, trie.findMaximumXOR(num));
+        res = Math.max( res, trie.findMaxXor(num) );
     }
     
-    return max;
+    return res;
 };
