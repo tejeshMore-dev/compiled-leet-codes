@@ -3,6 +3,7 @@
  * @param {string[]} words
  * @return {number[][]}
  */
+// /* Trie Node
 class TrieNode {
     constructor(val) {
         this.val = val;
@@ -10,7 +11,9 @@ class TrieNode {
         this.isEnd = false;
     }
 }
+// */
 
+// /* Trie interface
 class Trie {
     constructor() {
         this.root = new TrieNode("");
@@ -46,7 +49,9 @@ class Trie {
         return arr;
     }
 }
+// */
 
+// /* Solution
 var indexPairs = function(text, words) {
     const trie = new Trie();
     let ans = [];
@@ -62,3 +67,4 @@ var indexPairs = function(text, words) {
     
     return ans;
 };
+// */
