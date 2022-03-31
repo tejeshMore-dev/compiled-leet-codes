@@ -24,7 +24,6 @@ var search = function(nums, target) {
                 lp = mid +1;
             else
                 rp = mid-1;
-            
         }
     }
     
