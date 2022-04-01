@@ -26,7 +26,7 @@ var hasPathSum = function(root, targetSum ) {
         if( currentSum === targetSum && !node.left && !node.right )
             return ans = true;
         
-        helper( node.left, currentSum );
+        return helper( node.left, currentSum ) ||
         helper( node.right, currentSum );
     }
 };
