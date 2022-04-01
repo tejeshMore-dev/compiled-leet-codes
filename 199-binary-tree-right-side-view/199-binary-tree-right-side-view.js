@@ -11,7 +11,7 @@
  * @return {number[]}
  */
 
-// /* Recursive Solution
+/* Recursive Solution
 var rightSideView = function(root) {
     if( !root )
         return [];
@@ -32,7 +32,7 @@ var rightSideView = function(root) {
         traverse( node.left, level+1 );
     }
 }
-// */
+*/
 
 // /* Iterative Solution
 var rightSideView = function(root) {
