@@ -39,7 +39,7 @@ var distanceK = function(root, target, k) {
     
     function helper( node, k ) {
         if( !node || visited.has(node.val) || k < 0 )
-            return null
+            return
         
         visited.add(node.val);
         
