@@ -24,7 +24,7 @@ var invertTree = function(root) {
             queue.push(node.left);
         
         if(node.right)
-        queue.push(node.right);        
+            queue.push(node.right);        
         
         let temp = node.left;
         node.left = node.right;
