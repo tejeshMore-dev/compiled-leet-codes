@@ -4,60 +4,55 @@
  * @return {boolean}
  */
 var validTree = function(n, edges) {
-    if( edges.length !== n-1 )
+    if( edges.length+1 !== n )
         return false;
     
-    const uf = new UnionFind(n);
-    
+    const unionFind = new UnionFind(n);
     for( let edge of edges ) {
         let [a, b] = edge;
         
-        if( uf.connected(a,b) )
+        if( unionFind.connected(a, b) )
             return false;
         
-        uf.union(a,b);
+        unionFind.union(a, b);
     }
-    
-    return true;
+    return true
 };
+
 
 class UnionFind {
     constructor(n) {
-        this.root = new Array(n);
-        this.rank = new Array(n);
+        this.root = {};
+        this.rank = {};
         
-        for( let i=0; i<n; i++ ) {
+        for( let i=0; i < n; i++ ) {
             this.root[i] = i;
             this.rank[i] = 1;
         }
     }
     
-    find(a) {
-        if( a === this.root[a] )
-            return a
+    find(x) {
+        if( x === this.root[x] )
+            return x
         
-        return this.root[a] = this.find(this.root[a])
+        return this.root[x] = this.find(this.root[x])
     }
     
-    union(a, b) {
-        let rootA = this.find(a);
-        let rootB = this.find(b);
+    union(x, y) {
+        let rootX = this.find(x);
+        let rootY = this.find(y);
         
-        if( rootA !== rootB ) {
-            if( this.rank[rootA] > this.rank[rootB] ) {
-                this.root[rootB] = rootA
-            } else if( this.rank[rootA] < this.rank[rootB] ) {
-                this.root[rootA] = rootB;
-            } else {
-                this.root[rootB] = rootA
-                this.rank[rootA] += 1;
-            }
-            
-            
+        if( this.rank[rootX] > this.rank[rootY] ) {
+            this.root[rootY] = rootX;
+        } else if( this.rank[rootX] < this.rank[rootY] ) {
+            this.root[rootX] = rootY;
+        } else {
+            this.root[rootY] = rootX;
+            this.rank[rootX] += 1;
         }
     }
     
-    connected(a, b) {
-        return this.find(a) === this.find(b);
+    connected(x, y) {
+        return this.find(x) === this.find(y);
     }
 }
