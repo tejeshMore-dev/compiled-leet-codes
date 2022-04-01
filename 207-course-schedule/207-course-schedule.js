@@ -4,68 +4,65 @@
  * @return {boolean}
  */
 var canFinish = function(numCourses, prerequisites) {
-    if( numCourses === 0 || prerequisites.length === 0 )
-        return true
+    const graph = new Graph();
+    graph.buildGraph(prerequisites);
     
-    const graph = new Graph(numCourses, prerequisites);
     return !graph.hasCycle();
 };
 
-var _graph;
-
 class Graph {
-    constructor(nodes, edges) {
-        _graph = {};
-        
-        for( let i=0; i < edges.length; i++ ) {
-            let [a, b] = edges[i];
-            if( !_graph[a] )
-                _graph[a] = [];
+    constructor( ) {
+        this.graph = {};
+    }
+    
+    buildGraph(edges) {
+        for( let edge of edges ) {
+            let [s, d] = edge;
             
-            if( !_graph[b] )
-                _graph[b] = [];
+            if( !this.graph[s] )
+                this.graph[s] = [];
             
-            _graph[b].push(a);
+            if( !this.graph[d] )
+                this.graph[d] = [];
+            
+            this.graph[s].push(d);
         }
     }
     
     hasCycle() {
-        let all = new Set();
-        let visiting = new Set();
+        let allNodes = new Set( Object.keys(this.graph) );
         let visited = new Set();
-        let result = false;
+        let visiting = new Set();
+        let res = false;
         
-        for(let node in _graph) {
-            all.add(node);
+        while( allNodes.size ) {
+            allNodes.forEach((node) => {
+                if( _hasCycle(node, allNodes, visited, visiting, this.graph ) )
+                    return res = true
+                
+            })
         }
         
-        while( all.size > 0 ) {   
-            all.forEach((node) => {
-                if( _hasCycle(node, all, visiting, visited) )
-                    return result = true
-            });
-        }
-        
-        return result;
+        return res;
     }
 }
 
-function _hasCycle(node, all, visiting, visited) {
-    all.delete(node);
+function _hasCycle(node, allNodes, visited, visiting, graph) {
+    allNodes.delete(node);
     visiting.add(node);
     
-    for( let nNode of _graph[node] ) {
-        if( visited.has(nNode) )
-            continue
-        
+    for( let nNode of graph[node] ) {
         if( visiting.has(nNode) )
-            return true
+            return true;
         
-        if( _hasCycle( nNode, all, visiting, visited ) )
+        if( visited.has(nNode) )
+            continue;
+        
+        if( _hasCycle(nNode, allNodes, visited, visiting, graph) )
             return true
     }
     
-    visiting.delete(node);
     visited.add(node);
-    return false
+    visiting.delete(node);
+    return false;
 }
