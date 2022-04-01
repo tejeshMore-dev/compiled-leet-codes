@@ -18,7 +18,7 @@ var cloneGraph = function(n) {
     let queue = [ n ];
     
     while( queue.length > 0 ) {
-        let node = queue.shift();
+        let node = queue.pop();
         
         if( !map[node.val] ) {
             // node not cloned, so cloned and stored in map
