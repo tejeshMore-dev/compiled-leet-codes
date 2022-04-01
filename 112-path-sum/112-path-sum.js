@@ -19,12 +19,12 @@ var hasPathSum = function(root, targetSum ) {
     
     function helper( node, currentSum ) {
         if( !node )
-            return;
+            return false;
         
         currentSum += node.val;
         
-        if( currentSum === targetSum && !node.left && !node.right )
-            return ans = true;
+        if( !node.left && !node.right )
+            return ans = currentSum === targetSum;
         
         return helper( node.left, currentSum ) ||
         helper( node.right, currentSum );
