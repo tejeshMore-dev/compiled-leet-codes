@@ -31,13 +31,12 @@ var buildTree = function(preorder, inorder) {
         let node = new TreeNode( parseInt(val) );
         
         let mid = map[val];
-        let nEle = mid-iS;
-        node.left = createTree( pS+1, pS+nEle, iS, mid-1 )
-        node.right = createTree(  pS+nEle+1, pE, mid+1, iE )
+        let lEle = mid-iS;
+        node.left = createTree( pS+1, pS+lEle, iS, mid-1 )
+        node.right = createTree(  pS+lEle+1, pE, mid+1, iE )
             
         return node;
     }
-    
 };
 
 /*
