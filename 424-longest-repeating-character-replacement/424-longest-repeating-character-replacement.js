@@ -15,7 +15,7 @@ var characterReplacement = function(s, k) {
         
         map[char] += 1;
         
-        while( rp-lp+1 - Math.max( ...Object.values(map) )  > k ) {
+        while( rp-lp+1 - Math.max( ...Object.values(map) ) > k ) {
             map[s[lp]] -= 1;
             lp++;
         }
