@@ -4,9 +4,7 @@
  * @return {number}
  */
 var characterReplacement = function(s, k) {
-    let lp = 0;
-    let map = {};
-    let res = 0;
+    let lp = 0, map = {}, res = 0, maxF = 0;
 
     for( let rp in s ) {
         let char  = s[rp];
@@ -15,7 +13,8 @@ var characterReplacement = function(s, k) {
         
         map[char] += 1;
         
-        while( rp-lp+1 - Math.max( ...Object.values(map) ) > k ) {
+        maxF = Math.max( maxF, map[char] )
+        while( rp-lp+1 - maxF > k ) {
             map[s[lp]] -= 1;
             lp++;
         }
