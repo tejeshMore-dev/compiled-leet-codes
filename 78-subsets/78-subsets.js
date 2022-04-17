@@ -3,6 +3,8 @@
  * @return {number[][]}
  */
 var subsets = function(nums) {
+    // TC: O( N * 2^N )
+    // SC: O( N )
     let set = [], result = [];
     findSubSets( 0 );
     return result;
