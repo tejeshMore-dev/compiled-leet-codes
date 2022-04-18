@@ -1,38 +1,29 @@
 var numIslands = function(grid) {
-    let height = grid.length;
-    let width = grid[0].length;
+    const ROWS = grid.length, COLS = grid[0].length;
     let result = 0;
-    let directions = [[-1,0],[0,1],[1,0],[0,-1]] // left right top bottom
     
-    for( let row = 0; row < height; row++ ) {
-        for (let col = 0; col < width; col++) {
-            if( grid[row][col] === "1" ) {
-                result++
-                markNeighbourLand([[row,col]]); // mark neighbour land as "0"
-
+    for( let r=0; r<ROWS; r++ ) {
+        for( let c=0; c<COLS; c++ ) {
+            if( grid[r][c] === "1" ) {
+                result++;
+                markNeighbourLand( r, c );
             }
-            
+    
         }
+        
     }
     
     return result;
     
-    function markNeighbourLand(queue) {
-        while(queue.length > 0) {
-            let [r, c] = queue.shift();
-            grid[r][c] = "0";
-            
-            directions.map((direction) => {
-               let row = r + direction[0];
-               let col = c + direction[1];
-                
-               if( row >= 0 && row < height && col >= 0 && col < width && grid[row][col] === "1" ){
-                    grid[row][col] = "0";
-                    queue.push([row, col])
-                    
-               }
-            });
-            
-        }
+    function markNeighbourLand( r, c ) {
+        if( r<0 || c<0 || r >= ROWS || c >= COLS || grid[r][c] === "0" )  
+            return;
+        
+        grid[r][c] = "0";
+        
+        markNeighbourLand( r+1, c );
+        markNeighbourLand( r-1, c );
+        markNeighbourLand( r, c+1 );
+        markNeighbourLand( r, c-1 );
     }
 };
