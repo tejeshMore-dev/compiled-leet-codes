@@ -22,7 +22,7 @@ var cloneGraph = function(n) {
     
     function clone( queue ) {
         while( queue.length ) {
-            let node = queue.shift();
+            let node = queue.pop();
             if( !map[ node.val ] )
             map[ node.val ] = new Node( node.val )
 
