@@ -1,4 +1,7 @@
 var numIslands = function(grid) {
+    // TC: O( M*N )
+    // SC: O( 1 )
+    
     const ROWS = grid.length, COLS = grid[0].length;
     let result = 0;
     
