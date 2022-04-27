@@ -14,23 +14,24 @@ var levelOrderBottom = function(root) {
     if( !root )
         return []
     
-    let queue = [ root ], result = [];
+    let result = [];
+    let queue = [ root ];
     
     while( queue.length ) {
-        let qlength = queue.length, nodes = [];
+        let nodes = [], qLength = queue.length;
         
-        for( let i=0; i < qlength; i++ ) {
-            let node = queue.shift();
-            nodes.push( node.val );
+        for( let i=0; i < qLength; i++ ) {
+            let current = queue.shift();
+            nodes.push(current.val);
             
-            if( node.left )
-                queue.push( node.left );
-            
-            if( node.right )
-                queue.push( node.right );
+            if( current.left )
+                queue.push(current.left);
+           
+            if( current.right )
+                queue.push(current.right);
         }
         
-        result.push( [ ...nodes ] );
+        result.push( nodes );
     }
     
     return result.reverse();
