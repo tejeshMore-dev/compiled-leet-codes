@@ -11,6 +11,74 @@
  * @return {number[]}
  */
 
+var rightSideView = function(root) {
+    if( !root )
+        return [];
+    
+    let queue = [ root ];
+    let result = [];
+    
+    while( queue.length ) {
+        let qLength = queue.length;
+        
+        for( let i=0; i<qLength; i++ ) {
+            let current = queue.shift();
+            
+            if( i === qLength-1 )
+                result.push( current.val );
+            
+            if( current.left )
+                queue.push( current.left );
+            
+            if( current.right )
+                queue.push( current.right );
+        }
+    }
+    
+    return result;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Recursive Solution
 var rightSideView = function(root) {
     if( !root )
@@ -34,7 +102,7 @@ var rightSideView = function(root) {
 }
 */
 
-// /* Iterative Solution
+/* Iterative Solution
 var rightSideView = function(root) {
     if( !root ) return []
     
@@ -56,4 +124,4 @@ var rightSideView = function(root) {
 
     return result;
 };
-// */
+*/
