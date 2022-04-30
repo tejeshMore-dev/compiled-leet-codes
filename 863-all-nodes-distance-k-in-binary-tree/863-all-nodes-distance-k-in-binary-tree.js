@@ -12,6 +12,93 @@
  * @return {number[]}
  */
 var distanceK = function(root, target, k) {
+    let parentMap = new Map(), visited = new Set();
+    let result = [];
+    
+    findParentMapping( root, null );
+    bfs( target, k );
+    return result;
+    
+    function findParentMapping( node, parent ) {
+        if( !node )
+            return
+        
+        if( parent )
+            parentMap.set( node.val, parent );
+        
+        findParentMapping( node.left, node );
+        findParentMapping( node.right, node );
+    }
+    
+    function bfs( node, k ) {
+        if( !node )
+            return;
+        
+        if( visited.has(node.val) )
+            return
+        
+        visited.add( node.val );
+        
+        if( k === 0 ) {
+            result.push( node.val );
+            return;
+        } 
+        
+        bfs( node.left, k-1 );
+        bfs( node.right, k-1 );
+        bfs( parentMap.get(node.val), k-1 );
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+var distanceK = function(root, target, k) {
     let ans = [];
     let map = {};
     let visited = new Set();
@@ -60,3 +147,4 @@ var distanceK = function(root, target, k) {
         }
     }
 };
+*/
