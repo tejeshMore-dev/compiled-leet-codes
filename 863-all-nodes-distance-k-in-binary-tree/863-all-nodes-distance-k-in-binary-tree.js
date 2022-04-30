@@ -31,18 +31,13 @@ var distanceK = function(root, target, k) {
     }
     
     function bfs( node, k ) {
-        if( !node )
+        if( !node ||visited.has(node.val) || k < 0 )
             return;
-        
-        if( visited.has(node.val) )
-            return
         
         visited.add( node.val );
         
-        if( k === 0 ) {
+        if( k === 0 )
             result.push( node.val );
-            return;
-        } 
         
         bfs( node.left, k-1 );
         bfs( node.right, k-1 );
