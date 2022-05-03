@@ -6,19 +6,22 @@
 
 // /* Top Down Approach
 var findTargetSumWays = function(nums, target) {
-    let ans = 0, cache = new Map();
-    helper( 0, 0 );
-    return ans;
+    let cache = new Map();
+    return helper( 0, 0 );
     
     function helper( i, sum ) {
-        if( i === nums.length ) {
-            if( sum === target )
-                ans++;
-            return;
-        }
+        if( i === nums.length )
+            return sum === target ? 1 : 0;
+        
+        let key = `${i}-${sum}`;
+        if( cache.has(key) )
+            return cache.get(key);
                 
-        helper( i+1, sum + nums[i] );
-        helper( i+1, sum - nums[i] );
+        let opt1 = helper( i+1, sum + nums[i] );
+        let opt2 = helper( i+1, sum - nums[i] );
+        
+        cache.set(key, opt1+opt2);
+        return opt1+opt2;
     }
 };
 // */
