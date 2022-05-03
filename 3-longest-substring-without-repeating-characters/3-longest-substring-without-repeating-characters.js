@@ -3,21 +3,19 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
-    // initialize data 
-    let lp = 0, rp = 0, ans = 0, map = new Map();
+    let lp = 0, map = new Map(), ans = 0;
     
-    while( rp < s.length ) {
-        if( map.has(s.charAt(rp)) ) {
-            // if set have current value, 
-            // then need to remove all value till current value first apperance
-            lp = Math.max(map.get(s.charAt(rp)), lp);
-       
+    for( let rp = 0; rp < s.length; rp++ ) {
+        let char = s[rp];
+        if( map.has(char) ) {
+            while( lp <= map.get(char) ) {
+                map.delete(s[lp]);
+                lp++;
+            }
         }
-        // if set doesn't have current value then increase right pointer and update substring length
-        ans = Math.max( ans, rp-lp+1 );
-        map.set(s.charAt(rp), rp+1); 
         
-        rp++;
+        map.set(char, rp);
+        ans = Math.max( ans, rp - lp + 1 );
     }
     
     return ans;
