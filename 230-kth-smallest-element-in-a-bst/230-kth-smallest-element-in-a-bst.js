@@ -11,45 +11,21 @@
  * @param {number} k
  * @return {number}
  */
-var kthSmallest = function(root, k) {
+var kthSmallest = function(root, k) {    
+    let ans;
+    traverse( root);
+    return ans;
     
-//     // using iteration
-//     let stack = [];
-//     stack.push(root);
-//     let current = root;
-//     let result;
-    
-//     while( current ) {
-//         while ( current ) {
-//             stack.push(current);
-//             current = current.left;
-//         }    
+    function traverse( node ) {
+        if( !node )
+            return;
         
-//         current = stack.pop();
-//         k--;
-//         console.log(k, current.val)
-//         if( k === 0 )
-//             return result = current.val
-        
-//         if( current.right )
-//             current = current.right
-//     }
-    
-    let res
-    inorderTraverse(root);
-    return res;
-    
-    function inorderTraverse(node) {
-        if(!node)
-            return null
-        
-        inorderTraverse(node.left);
+        traverse(node.left);
         
         k--;
-        if(k === 0){
-            return res = node.val;
-            
+        if( k === 0 ) {
+           ans = node.val;
         }
-        inorderTraverse(node.right);
+        traverse(node.right);
     }
 };
