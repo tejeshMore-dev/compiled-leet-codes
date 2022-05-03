@@ -12,23 +12,25 @@
  * @return {number[][]}
  */
 var pathSum = function(root, targetSum) {
-    let result = [];
-    findPath(root, 0, []);
+    let result = [], path = [];
+    findPath(root, 0);
     return result;
     
-    function findPath(node, sum, path) {
+    function findPath(node, sum) {
         if( !node )
             return
         
         sum += node.val;
-        
+        path.push( node.val );
         if( !node.left && !node.right && sum === targetSum ) {
-            result.push([ ...path, node.val ]);
+            result.push([ ...path ]);
+            path.pop();
             return;
         }
         
-        findPath( node.left, sum, [ ...path, node.val ] );
-        findPath( node.right, sum, [ ...path, node.val ] );
+        findPath( node.left, sum );
+        findPath( node.right, sum );
+        path.pop();
     }
     
 };
