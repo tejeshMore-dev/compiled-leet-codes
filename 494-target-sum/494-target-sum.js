@@ -6,7 +6,7 @@
 
 // /* Top Down Approach
 var findTargetSumWays = function(nums, target) {
-    let ans = 0;
+    let ans = 0, cache = new Map();
     helper( 0, 0 );
     return ans;
     
@@ -16,7 +16,7 @@ var findTargetSumWays = function(nums, target) {
                 ans++;
             return;
         }
-        
+                
         helper( i+1, sum + nums[i] );
         helper( i+1, sum - nums[i] );
     }
