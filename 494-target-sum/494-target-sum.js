@@ -4,23 +4,30 @@
  * @return {number}
  */
 
-
+// /* Top Down Approach
 var findTargetSumWays = function(nums, target) {
-    let cache = new Map();
-    return helper( 0, 0 );
+    let ans = 0;
+    helper( 0, 0 );
+    return ans;
     
     function helper( i, sum ) {
         if( i === nums.length ) {
-            return sum === target ? 1 : 0;
+            if( sum === target )
+                ans++;
+            return;
         }
         
-        if( cache.has(`${i}-${sum}`) )
-            return cache.get(`${i}-${sum}`);
-        
-        let opt1 = helper( i+1, sum + nums[i] );
-        let opt2 = helper( i+1, sum - nums[i] );
-        
-        cache.set(`${i}-${sum}`, opt1 + opt2);
-        return opt1 + opt2;
+        helper( i+1, sum + nums[i] );
+        helper( i+1, sum - nums[i] );
     }
 };
+// */
+
+/* Bottom up Approach
+var findTargetSumWays = function(nums, target) {
+    let sols = new Map();
+    sols.set(`${nums.length}-${target}`, 1);
+    
+    for(  )
+}
+*/
