@@ -31,21 +31,19 @@ var isValidBST = function(root) {
     }
 };
 */
+const MAX = Number.MAX_VALUE;
 
 var isValidBST = function(root) {    
-    const MAX = Number.MAX_VALUE;
-    return validate(root, -MAX, MAX );
+    return helper( root, -MAX, MAX );
+    
+    function helper( node, min, max ) {
+        if(!node)
+            return true;
         
-    function validate( node, left, right ) {
-        if( !node )
-            return true
-        
-        if( node.val <= left || node.val >= right)
+        if( node.val <= min || node.val >= max )
             return false;
         
-        let isLeftValid = validate( node.left, left, node.val );
-        let isRightValid = validate( node.right, node.val, right );
-        
-        return isLeftValid && isRightValid;
+        return helper( node.left, min, node.val ) && 
+            helper( node.right, node.val, max ); 
     }
 };
