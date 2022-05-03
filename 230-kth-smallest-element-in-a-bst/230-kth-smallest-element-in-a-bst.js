@@ -25,6 +25,7 @@ var kthSmallest = function(root, k) {
         k--;
         if( k === 0 ) {
            ans = node.val;
+            return
         }
         traverse(node.right);
     }
