@@ -11,7 +11,70 @@
  * @param {number} targetSum
  * @return {boolean}
  */
-// /*
+var hasPathSum = function(root, targetSum ) {
+    if( !root )
+        return false;
+    
+    return helper( root, 0 );
+    
+    function helper( node, sum ) {
+        if( !node )
+            return false;
+        
+        sum += node.val;
+        
+        if( !node.left && !node.right )
+            return sum === targetSum;
+        
+        return helper( node.left, sum ) ||
+         helper( node.right, sum );
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 var hasPathSum = function(root, targetSum ) {    
     let ans = false; 
     helper( root, 0 );
