@@ -3,20 +3,22 @@
  * @param {number[]} nums
  * @return {number}
  */
+const MAX = Number.MAX_VALUE;
+
 var minSubArrayLen = function(target, nums) {
-    const MAX = Number.MAX_VALUE;
-    let result = MAX;
-    let p1 = 0, p2 = 0, currentSum = 0;
+    let lp = 0, sum = 0, res = MAX;
     
-    while( p2 < nums.length ) {
-        currentSum += nums[p2];
+    for( let rp = 0; rp < nums.length; rp++ ) {
+        sum += nums[rp];
         
-        while( currentSum >= target ) {
-            result = Math.min( result, p2-p1+1 );
-            currentSum -= nums[p1++];
-        }
-        p2++;
+        if( sum >= target ) {
+            while( sum >= target && lp < nums.length ) {
+                res = Math.min( res, rp-lp+1 );
+                sum -= nums[lp]; 
+                lp++;
+            }
+        };
     }
     
-    return result === MAX ? 0 : result;
+    return res === MAX  ? 0 : res;
 };
