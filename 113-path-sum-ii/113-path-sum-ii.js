@@ -13,24 +13,22 @@
  */
 var pathSum = function(root, targetSum) {
     let result = [];
+    findPath(root, 0, []);
+    return result;
     
-    function DFS(node, sum, path) {
-        if(!node)
+    function findPath(node, sum, path) {
+        if( !node )
             return
         
         sum += node.val;
-        path.push(node.val);
         
-        if( sum === targetSum && !node.left && !node.right) {
-            result.push( [ ...path ] )
+        if( !node.left && !node.right && sum === targetSum ) {
+            result.push([ ...path, node.val ]);
+            return;
         }
         
-        DFS(node.left, sum, path);
-        DFS(node.right, sum, path)
-        path.pop();
+        findPath( node.left, sum, [ ...path, node.val ] );
+        findPath( node.right, sum, [ ...path, node.val ] );
     }
     
-    DFS(root,0, []);
-    
-    return result
 };
