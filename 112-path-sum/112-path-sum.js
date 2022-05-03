@@ -23,8 +23,8 @@ var hasPathSum = function(root, targetSum ) {
         
         sum += node.val;
         
-        if( !node.left && !node.right )
-            return sum === targetSum;
+        if( !node.left && !node.right && sum === targetSum )
+            return true;
         
         return helper( node.left, sum ) ||
          helper( node.right, sum );
