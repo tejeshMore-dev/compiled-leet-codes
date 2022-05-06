@@ -11,8 +11,8 @@
  * @return {ListNode}
  */
 var addTwoNumbers = function(l1, l2) {
-    let res = new ListNode(0), c = 0;
-    let pointer = res;
+    let dummyNode = new ListNode(0), c = 0;
+    let pointer = dummyNode;
     
     while( l1 || l2 || c ) {
         let sum = (l1 ? l1.val : 0) + (l2 ? l2.val : 0) + c;
@@ -27,5 +27,5 @@ var addTwoNumbers = function(l1, l2) {
         l2 = l2 ? l2.next : l2;
     }
     
-    return res.next;
+    return dummyNode.next;
 };
