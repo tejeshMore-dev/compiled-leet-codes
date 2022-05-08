@@ -3,47 +3,27 @@
  * @return {number[][]}
  */
 var permute = function(nums) {
-    return dfs( nums, [], Array(nums.length).fill(false), [] )
-};
-
-function dfs( nums, permutation, used, res ) {
-    if( permutation.length === nums.length ) {
-        res.push( [ ...permutation ] );
-        return
-    }
+    let ans = [], temp = [];
+    findPermutation( new Array(nums.length).fill(false) );
+    return ans;
     
-    for( let i = 0; i < nums.length; i++ ) {
-        if( used[i] )
-            continue
+    function findPermutation( used ) {
+        if( temp.length === nums.length ) {
+            ans.push( [ ...temp ] );
+            return;
+        }
         
-        permutation.push(nums[i])
-        used[i] = true;
-        dfs(nums, permutation, used, res)
-        permutation.pop();
-        used[i] = false;
+        for( let index = 0; index < nums.length; index++ ) {
+            if( used[index] )
+                continue;
+            
+            temp.push( nums[index] );
+            used[index] = true;
+            
+            findPermutation( used );
+            
+            temp.pop();
+            used[index] = false;
+        }
     }
-    
-    return res;
-}
-
-/*
-123
-
-123
-[123] [231] [  ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
-
+};
