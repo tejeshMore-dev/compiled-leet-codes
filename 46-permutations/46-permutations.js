@@ -19,7 +19,6 @@ var permute = function(nums) {
             
             temp.push( nums[index] );
             used[index] = true;
-            
             findPermutation( used );
             
             temp.pop();
