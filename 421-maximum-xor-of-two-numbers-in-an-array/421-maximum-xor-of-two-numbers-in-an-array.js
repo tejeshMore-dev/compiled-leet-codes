@@ -4,45 +4,42 @@
  */
 class Trie {
     constructor() {
-        this.root = [];
+        this.root = {};
     }
     
-    insert(num) {
+    insert( num ) {
         let node = this.root;
         
         for( let i = 31; i >= 0; i-- ) {
             let bit = ( num >> i ) & 1;
-            if( !node[bit] ) {
+            if( !node[bit] )
                 node[bit] = [];
-            }
             
-            node = node[bit] 
+            node = node[bit];
         }
     }
     
-    findMaxXor(num) {
+    findXOR( num ) {
         let res = 0;
         let node = this.root;
         
         for( let i = 31; i >= 0; i-- ) {
             let bit = ( num >> i ) & 1;
             
-            if( node[ bit ^ 1 ] ) {
+            if( node[bit ^ 1] ) {
                 res += ( 1 << i );
-                node = node[ bit ^ 1];
+                node = node[bit ^ 1];                
             } else {
-                node = node[ bit ];
+                node = node[bit];   
             }
         }
         
         return res;
     }
-    
 }
 
-
 var findMaximumXOR = function(nums) {
-    let res = 0;
+    let ans = 0;
     const trie = new Trie();
     
     for( let num of nums ) {
@@ -50,8 +47,8 @@ var findMaximumXOR = function(nums) {
     }
     
     for( let num of nums ) {
-        res = Math.max( res, trie.findMaxXor(num) );
+        ans = Math.max(trie.findXOR(num), ans);
     }
     
-    return res;
+    return ans;
 };
