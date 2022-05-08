@@ -3,36 +3,20 @@
  * @return {number[][]}
  */
 var subsets = function(nums) {
-    // TC: O( N * 2^N )
-    // SC: O( N )
-    let set = [], result = [];
-    findSubSets( 0 );
-    return result;
+    let ans = [], temp = [];
+    findSubSet( 0 );
+    return ans;
     
-    function findSubSets( i ) {
+    function findSubSet( i ) {
         if( i === nums.length ) {
-            result.push( [ ...set ] );
+            ans.push( [ ...temp ] )
             return;
         }
         
-        set.push( nums[i] );
-        findSubSets( i+1 );
-        set.pop();
-        findSubSets( i+1 );
+        temp.push( nums[i] );
+        findSubSet( i+1 );
+        
+        temp.pop();
+        findSubSet( i+1 );
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
