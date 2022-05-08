@@ -10,6 +10,7 @@
  * @return {void} Do not return anything, modify node in-place instead.
  */
 var deleteNode = function(node) {
-    node.val = node.next.val;
-    node.next = node.next.next
+    let nextNode = node.next;
+    node.val = nextNode ? nextNode.val : nextNode;
+    node.next = nextNode ? nextNode.next : nextNode; 
 };
