@@ -6,36 +6,33 @@
  * }
  */
 /**
- * @param {ListNode} l1
- * @param {ListNode} l2
+ * @param {ListNode} list1
+ * @param {ListNode} list2
  * @return {ListNode}
  */
-var mergeTwoLists = function(l1, l2) {
-    if( !l2 )
-        return l1
-    
-    if( !l1 )
-        return l2
+var mergeTwoLists = function(list1, list2) {
+    if( !list1 || !list2 )
+        return !list1 ? list2 : list1
     
     let dummyNode = new ListNode(0);
-    let current = dummyNode;
+    let pointer = dummyNode;
     
-    while( l1 && l2 ) {
-        if( l1.val <= l2.val ) {
-            current.next = l1;
-            current  = l1;
-            l1 = l1.next;
+    while( list1 && list2 ) {
+        if( list1.val <= list2.val ) {
+            pointer.next = list1;
+            pointer = list1;
+            list1 = list1.next;
         } else {
-            current.next = l2;
-            current  = l2;
-            l2 = l2.next;
+            pointer.next = list2;
+            pointer = list2;
+            list2 = list2.next;
         }
+                
+        if( !list1 )
+            pointer.next = list2;
         
-        if( !l1 )
-            current.next = l2
-        
-        if( !l2 )
-            current.next = l1
+        if( !list2 )
+            pointer.next = list1;
     }
     
     return dummyNode.next;
