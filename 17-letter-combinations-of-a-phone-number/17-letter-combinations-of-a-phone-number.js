@@ -2,7 +2,7 @@
  * @param {string} digits
  * @return {string[]}
  */
-var letterCombinations = function(digits) {
+var letterCombinations = function(digits) { // TC: O(4^N) SC: O(N)
     if( digits.length === 0 )
         return []
     
