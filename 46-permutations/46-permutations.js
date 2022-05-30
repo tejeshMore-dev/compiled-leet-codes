@@ -3,26 +3,24 @@
  * @return {number[][]}
  */
 var permute = function(nums) {
-    let ans = [], temp = [];
-    findPermutation( new Array(nums.length).fill(false) );
+    let ans = [], temp  = [], used = new Set();
+    findPermutation( temp, used );
     return ans;
     
-    function findPermutation( used ) {
-        if( temp.length === nums.length ) {
-            ans.push( [ ...temp ] );
-            return;
-        }
+    function findPermutation( temp, used ) {
+        if( temp.length === nums.length )
+            ans.push([ ...temp ]);
         
-        for( let index = 0; index < nums.length; index++ ) {
-            if( used[index] )
+        for( let i = 0; i < nums.length; i++ ) {
+            if( used.has(nums[i]) )
                 continue;
             
-            temp.push( nums[index] );
-            used[index] = true;
-            findPermutation( used );
+            used.add(nums[i]);
+            temp.push(nums[i]);
+            findPermutation( temp, used );
             
             temp.pop();
-            used[index] = false;
+            used.delete(nums[i]);
         }
     }
 };
