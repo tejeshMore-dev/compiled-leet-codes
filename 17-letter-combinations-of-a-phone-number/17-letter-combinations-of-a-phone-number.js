@@ -6,7 +6,7 @@ var letterCombinations = function(digits) {
     if( digits.length === 0 )
         return []
     
-    let result = [];
+    let result = [], temp = [];
     let map = {
         "2": "abc",
         "3": "def",
@@ -17,21 +17,21 @@ var letterCombinations = function(digits) {
         "8": "tuv",
         "9" :"wxyz"
     }
-    let comb = [];
     
-    function backtrack(i) {
+    findCombination(0);
+    return result;
+    
+    function findCombination( i ) {
         if( i === digits.length ) {
-            result.push([ ...comb ].join(""));
+            result.push( temp.join("") );
             return;
         }
         
         for( let char of map[digits[i]] ) {
-            comb.push(char);
-            backtrack(i+1);
-            comb.pop();
+            temp.push( char );
+            findCombination(i+1);
+            
+            temp.pop();
         }
     }
-    
-    backtrack( 0 );
-    return result;
 };
