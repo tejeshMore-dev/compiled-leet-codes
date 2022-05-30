@@ -17,7 +17,6 @@ var hasCycle = function(head) {
         sp = sp.next;
         fp = fp.next.next;
         
-        
         if( sp === fp )
             return result = true;
     }
