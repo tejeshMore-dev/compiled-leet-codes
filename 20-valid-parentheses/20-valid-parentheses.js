@@ -3,21 +3,23 @@
  * @return {boolean}
  */
 var isValid = function(s) {
+    const bracketMap = {
+        ")": "(",
+        "]": "[",
+        "}": "{",
+    };
     let stack = [];
     
-    let map = { 
-        ")" : "(",
-        "]" : "[", 
-        "}" : "{"
+    for( let char of s ) {
+        if( !bracketMap.hasOwnProperty(char) ) {
+            stack.push(char);
+        } else {
+            if( !stack.length || stack[stack.length-1] !== bracketMap[char])
+                return false;
+            
+            stack.pop();
+        }
     }
     
-    for( let char of s ) {
-        if( !map[char] )
-            stack.push(char);
-        else  
-            if( !stack[0] || map[char] !== stack.pop() ) return false
-     
-    };
-    
-    return !stack[0]
+    return !stack.length;
 };
