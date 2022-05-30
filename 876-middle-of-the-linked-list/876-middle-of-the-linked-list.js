@@ -12,7 +12,7 @@
 var middleNode = function(head) {
     let sp = head, fp = head;
     
-    while( fp && fp.next ) {
+    while( sp && sp.next && fp && fp.next ) {
         sp = sp.next;
         fp = fp.next.next;
     }
