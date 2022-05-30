@@ -7,11 +7,11 @@ var twoSum = function(nums, target) {
     let map = new Map();
     
     for( let i in nums ) {
-        let num = nums[i], val = target - num; 
-        
-        if( map.has(val) ) {
-            return [ map.get(val), i ]
+        let num = nums[i];
+        if( map.has( target - num ) ) {
+            return [ map.get(target - num), i ]
         }
+        
         map.set(num, i);
     }
 };
