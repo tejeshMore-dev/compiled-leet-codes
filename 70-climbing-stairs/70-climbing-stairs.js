@@ -24,22 +24,20 @@ var climbStairs = function(n) {
 // DP Solution
 var climbStairs = function(n) {
     let cache = {};
-    let target = n;
+    return backtrack( 0 );
     
-    function backtrack(n) {
-        if(cache[n])
-            return cache[n]
+    function backtrack( i ) {
+        if( cache[i] )
+            return cache[i];
         
-        if( n >= target ) {
-            if(n === target)
-                return 1
-            return 0
+        if( i >= n ) {
+            if( i === n )
+                return 1;
+            return 0;
         }
         
-        let count = backtrack(n + 1) + backtrack(n + 2)
-        cache[n] = count;
-        return count
+        let steps = backtrack( i+1 ) + backtrack( i+2 )
+        cache[i] = steps;
+        return steps;
     }
-    
-    return backtrack(0)
 };
