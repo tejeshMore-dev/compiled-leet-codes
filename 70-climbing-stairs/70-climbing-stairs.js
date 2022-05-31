@@ -20,6 +20,8 @@ var climbStairs = function(n) {
     return ans;
 };
 */
+
+// DP Solution
 var climbStairs = function(n) {
     let cache = {};
     let target = n;
