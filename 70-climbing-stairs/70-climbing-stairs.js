@@ -2,7 +2,7 @@
  * @param {number} n
  * @return {number}
  */
-
+/*
 var climbStairs = function(n) {
     if( n <= 2 )
         return n;
@@ -19,7 +19,7 @@ var climbStairs = function(n) {
     
     return ans;
 };
-
+*/
 var climbStairs = function(n) {
     let cache = {};
     let target = n;
