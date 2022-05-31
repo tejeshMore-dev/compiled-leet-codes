@@ -19,3 +19,25 @@ var climbStairs = function(n) {
     
     return ans;
 };
+
+var climbStairs = function(n) {
+    let cache = {};
+    let target = n;
+    
+    function backtrack(n) {
+        if(cache[n])
+            return cache[n]
+        
+        if( n >= target ) {
+            if(n === target)
+                return 1
+            return 0
+        }
+        
+        let count = backtrack(n + 1) + backtrack(n + 2)
+        cache[n] = count;
+        return count
+    }
+    
+    return backtrack(0)
+};
