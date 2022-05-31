@@ -7,14 +7,10 @@ var majorityElement = function(nums) {
     let ans;
     
     for( let num of nums ) {
-        if( count === 0 ) {
-            ans = num
-            count++;            
-        } else if( num === ans ) {
-            count++;
-        } else {
-            count--;
-        }
+        if( count === 0 )
+            ans = num;
+            
+        count += ( num === ans ) ? 1 : -1
     }
     
     return ans
