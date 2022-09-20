@@ -4,23 +4,24 @@
  * @return {boolean}
  */
 var isAnagram = function(s, t) {
+    if( s.length !== t.length )
+        return false;
+    
     let sMap = {};
     
-    for( let char of s ) {
-        if( !sMap[char] )
-            sMap[char] = 0;
+    for( let c of s ) {
+        if( !sMap[c] )
+            sMap[c] = 0
         
-        sMap[char] += 1;         
+        sMap[c] = sMap[c] + 1;
     }
     
-    for( let char of t ) {
-        if( !sMap[char] )
-            return false;
+    for( let c of t ) {
+        if( !sMap[c] )
+            return false
         
-        sMap[char] -= 1;
-        if( sMap[char] === 0 )
-            delete sMap[char]
+        sMap[c] = sMap[c] +- 1;
     }
     
-    return Object.keys(sMap).length === 0
+    return true
 };
