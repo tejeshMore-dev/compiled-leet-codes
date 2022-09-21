@@ -19,7 +19,7 @@ var isAnagram = function(s, t) {
     }
     
     for( let c of t ) {
-        if( !map.has(c) || map.get(c) <= 0 )
+        if( !map.has(c) || map.get(c) === 0 )
             return false;
         
         map.set(c, map.get(c)-1);
