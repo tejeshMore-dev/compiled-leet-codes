@@ -3,7 +3,6 @@
  * @param {string} t
  * @return {boolean}
  */
-
 // /* usin MAP TC:O(N) SC:O(N)
 var isAnagram = function(s, t) {
     if( s.length !== t.length )
