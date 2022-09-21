@@ -24,4 +24,3 @@ var groupAnagrams = function(strs) {
 const getSortedString = function(str) {
     return str.split("").sort((a,b) => a.localeCompare(b) ).join("");
 }
-
