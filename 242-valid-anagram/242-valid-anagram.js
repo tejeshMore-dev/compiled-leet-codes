@@ -3,25 +3,28 @@
  * @param {string} t
  * @return {boolean}
  */
+
+// /* usin MAP TC:O(N) SC:O(N)
 var isAnagram = function(s, t) {
     if( s.length !== t.length )
         return false;
     
-    let sMap = {};
+    let map = new Map();
     
     for( let c of s ) {
-        if( !sMap[c] )
-            sMap[c] = 0
+        if( !map.has(c) )
+            map.set(c, 0);
         
-        sMap[c] = sMap[c] + 1;
+        map.set(c, map.get(c)+1);
     }
     
     for( let c of t ) {
-        if( !sMap[c] )
-            return false
+        if( !map.has(c) || map.get(c) <= 0 )
+            return false;
         
-        sMap[c] = sMap[c] +- 1;
+        map.set(c, map.get(c)-1);
     }
     
     return true
 };
+// */
