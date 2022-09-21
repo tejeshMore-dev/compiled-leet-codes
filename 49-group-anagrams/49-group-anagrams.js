@@ -3,47 +3,25 @@
  * @return {string[][]}
  */
 var groupAnagrams = function(strs) {
-    let sb = new Array(26);
     let map = {};
+    let result = [];
     
     for( let str of strs ) {
-        // reset array count
-        for( let i=0; i < 26; i++ ) {
-            sb[i] = 0;
-        }
+        if( !map[getSortedString(str)] )
+            map[getSortedString(str)] = []
         
-        // fill count detail
-        for( let i=0; i < str.length; i++ ) {
-            sb[str.charCodeAt(i) - 'a'.charCodeAt(0)] += 1;
-        }
-        
-        let key = sb.join("#");
-        if( map[key] ){
-            map[key].push(str);
-        } else {
-            map[key] = [ str ];
-        }
+        map[getSortedString(str)].push(str);
     }
     
-    return Object.values(map);
+    
+    for( let key in map ) {
+        result.push(map[key])
+    }
+    
+    return result;
 };
 
-/*
+const getSortedString = function(str) {
+    return str.split("").sort((a,b) => a.localeCompare(b) ).join("");
+}
 
-
-eat
-tea
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
