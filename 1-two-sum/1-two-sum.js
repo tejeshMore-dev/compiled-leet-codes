@@ -3,7 +3,7 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
+var twoSum = function(nums, target) { // TC: O(N) SC:O(N)
     let map = {};
     
     for( let i=0; i<nums.length; i++ ) {
