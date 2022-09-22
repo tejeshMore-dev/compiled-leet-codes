@@ -10,6 +10,7 @@ var isValidSudoku = function(board) {
     for( let r=0; r<9; r++ ) {
         for( let c=0; c<9; c++ ) {
             let val = board[r][c];
+            
             if(val !== "." ){
                 let subGridkey = `${Math.floor(r/3)}-${Math.floor(c/3)}`;
                 if( has(row, r, val) || has(col, c, val) || has(subGrid, subGridkey, val) ) {
