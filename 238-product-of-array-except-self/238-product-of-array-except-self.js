@@ -3,71 +3,25 @@
  * @return {number[]}
  */
 var productExceptSelf = function(nums) {
-    let res = new Array(nums.length);
+    let suffix = new Array(nums.length+1).fill(1);
+    let prefix = new Array(nums.length+1).fill(1);
+    let result = new Array(nums.length);
     
-    let prefix = 1;
-    for( let i in nums ) {
-        res[i] = prefix;
-        prefix *= nums[i];
+    for(let i=0; i<nums.length; i++ ) {
+        prefix[i+1]= nums[i]*prefix[i];
+        suffix[nums.length-i-1]= nums[nums.length-i-1] * suffix[nums.length-i] ;   
     }
     
-    let postfix = 1;
-    for( let i = nums.length-1; i >= 0; i-- ) {
-        res[i] *= postfix;
-        postfix *= nums[i];
+    for(let i=0; i<nums.length; i++ ) {
+        result[i] = prefix[i] * suffix[i+1]
     }
     
-    return res
+    return result;
 };
 /*
+  1  2  3  4
 
-
-solution(i, p, s)
-    p==0
-    return 
-    
-    s==li
-    return nums[li]
-
-    solution
-    
-    
-    
-    
-    
-    
-1 2 3 4
-1 1 2 6
-24 12 4 1
-
-24 12  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  1 1  2  6  24 // prefix
+  24 24 12 4  1//sufix
+  24 12 8  6
 */
-
