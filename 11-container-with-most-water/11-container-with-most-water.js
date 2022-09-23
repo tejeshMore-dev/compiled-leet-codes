@@ -8,7 +8,6 @@ var maxArea = function(height) {
     
     while( lp < rp ) {
         let area = (rp-lp) * Math.min(height[lp], height[rp]);
-        // console.log(lp, rp, area)
 
         if( height[lp] > height[rp] )
             rp--
