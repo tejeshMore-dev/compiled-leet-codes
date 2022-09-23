@@ -3,24 +3,32 @@
  * @return {number}
  */
 var longestConsecutive = function(nums) {
-    if( nums.length === 0 )
-        return 0
+    if( nums.length < 2 )
+        return nums.length;
     
-    let set = new Set(), ans = 1;
-    for( let num of nums ) {
-        set.add(num);
-    }
+    let set =  new Set(nums);
+    let res = 1;
     
     for( let num of nums ) {
-        if( !set.has(num-1) && set.has(num+1) ) {
-            let count = 1, val = num;
-            while( set.has(++val) ) {
-                count++;
+        let currentMax = 1;
+        
+        if( !set.has(num-1) ) { // start    
+            while( set.has(num+1) ) {
+                currentMax++;
+                num++;                
             }
-            
-            ans = Math.max( ans, count );
         }
+        
+        res = Math.max(res, currentMax);
     }
     
-    return ans;
+    return res
 };
+/*
+[100,4,200,1,3,2, 201, 101 
+1 2 3 4 5 6 7 8
+ 
+2 0 2 4 0 0 0
+
+
+*/
