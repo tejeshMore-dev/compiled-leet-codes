@@ -21,7 +21,13 @@ var productExceptSelf = function(nums) {
 /*
   1  2  3  4
 
-  1 1  2  6  24 // prefix
+  1  1  2  6  24 // prefix
   24 24 12 4  1//sufix
   24 12 8  6
+  
+  1  1  2  6  24
+         8   6        
+  
 */
+
+
