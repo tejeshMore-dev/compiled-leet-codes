@@ -3,24 +3,29 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let maxProfit = 0;
     if( prices.length < 2 )
-        return maxProfit;
+        return 0;
     
-    let minPrice = prices[0];
+    let lp=0, rp= lp+1;
+    let maxProfit = 0;
     
-    for( let i=1; i<prices.length; i++ ) {
-        if( minPrice < prices[i]  ) {
-            maxProfit = Math.max( maxProfit, prices[i]-minPrice );        
-        } else
-            minPrice = Math.min(minPrice, prices[i]);
+    while( rp < prices.length ) {
+        if( prices[lp] >= prices[rp] )
+            lp = rp;
+        else
+            maxProfit = Math.max(maxProfit, prices[rp] - prices[lp] );
+        
+        rp++;
     }
     
     return maxProfit;
 };
 /*
- [7,1,5,3,6,4]
+ [7,6,4,1,5,-1,6,4]
  
-profit 5
-minPrice 1
+lp -1
+rp 6
+
+
+
 */
