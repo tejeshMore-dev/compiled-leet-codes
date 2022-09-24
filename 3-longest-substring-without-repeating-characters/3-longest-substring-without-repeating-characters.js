@@ -3,20 +3,39 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
-    let lp = 0, map = new Map(), ans = 0;
+    if( s.length < 2 )
+        return s.length;
     
-    for( let rp = 0; rp < s.length; rp++ ) {
-        let char = s[rp];
-        if( map.has(char) ) {
-            while( lp <= map.get(char) ) {
-                map.delete(s[lp]);
+    let lp = 0, rp=lp; 
+    let res = 1;
+    let set = new Set();
+    
+    while( rp < s.length ) {
+        if( set.has(s[rp]) ) {
+            while( s[lp] !== s[rp] && lp<rp ) {
+                set.delete(s[lp]);
                 lp++;
             }
+            set.delete(s[lp]);
+            lp++;
         }
         
-        map.set(char, rp);
-        ans = Math.max( ans, rp - lp + 1 );
+        res = Math.max(res, rp-lp+1);
+        set.add(s[rp]);
+        rp++;
     }
     
-    return ans;
+    return res;
 };
+/*
+"dabcabcbb"
+
+
+b
+c
+a
+  l r
+dabca
+
+3
+*/
