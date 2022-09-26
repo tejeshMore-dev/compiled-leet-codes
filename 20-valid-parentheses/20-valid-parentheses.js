@@ -12,10 +12,10 @@ var isValid = function(s) {
     
     for( let char of s ) {
         if( mapOfBrackets.hasOwnProperty(char) ) {
-            if( ! (stack.length && mapOfBrackets[char] === stack[stack.length-1]) )
-                return false;
-            else
+            if( stack.length && mapOfBrackets[char] === stack[stack.length-1] )
                 stack.pop();
+            else
+                return false;
         } else 
             stack.push(char);
     }
