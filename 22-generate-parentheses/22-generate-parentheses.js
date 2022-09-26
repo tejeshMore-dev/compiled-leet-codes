@@ -3,44 +3,57 @@
  * @return {string[]}
  */
 var generateParenthesis = function(n) {
-    let ans = [];
-    helper(0, 0, []);
-    return ans;
+    let openB = "(";
+    let closeB = ")";
+    let res = [];
+    findCombination(n, 0, 0, [], res)
+    return res;
     
-    function helper( oB, cB, temp ) {
-        if( temp.length === n*2 )
-            return ans.push( temp.join("") )
-        
-        if( oB < n ) {
-           helper( oB + 1, cB, [ ...temp, "(" ] )
+    function findCombination(n, oC, cC, current, res) {
+        if( current.length === n*2 ){
+            if( oC === n && cC === n )
+                res.push(current.join(""));
+            
+            return
         }
         
-        if( cB < oB ) {
-           helper( oB, cB + 1, [ ...temp, ")" ] )
-        }        
+        if( oC < n )
+            findCombination(n, oC+1, cC, [ ...current, openB ], res);
+        
+        if( cC < n && oC > cC)
+            findCombination(n, oC, cC+1, [ ...current, closeB ], res);
     }
 };
 
+/*
+3
+
+())(()
+
+((
+()
+
+(((
+(()
+()(
 
 
+((()
+(()(
+(())
+()((
+()()
+
+((())
+(()()
+(())(
+()(()
+()()(
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+((()))
+(()())
+(())()
+()(())
+()()()
+*/
