@@ -1,6 +1,6 @@
 
 var TimeMap = function() {
-    this.data = { };
+    this.map = {};
 };
 
 /** 
@@ -10,10 +10,11 @@ var TimeMap = function() {
  * @return {void}
  */
 TimeMap.prototype.set = function(key, value, timestamp) {
-    if( !this.data[key] )
-        this.data[key] = [];
+    if( !this.map.hasOwnProperty(key))
+        this.map[key] = { timeStamps:[] }
     
-    this.data[key].push([ value, timestamp ]);
+    this.map[key].timeStamps.push(timestamp);
+    this.map[key][timestamp] = value;
 };
 
 /** 
@@ -22,26 +23,22 @@ TimeMap.prototype.set = function(key, value, timestamp) {
  * @return {string}
  */
 TimeMap.prototype.get = function(key, timestamp) {
-    if( !this.data[key] )
+    if( !this.map.hasOwnProperty(key) )
         return "";
     
-    let list = this.data[key];
-    let lp = 0, rp = list.length-1;
-    let res = "";
+    let lp = 0, rp = this.map[key]["timeStamps"].length-1;
     
-    while( lp <= rp ) {
-        let mid = Math.floor( lp + (rp-lp)/2 );
-        let midVal = list[mid];
+    while( lp < rp ) {
+        let mid = lp + Math.ceil((rp-lp)/2);
         
-        if( timestamp >= midVal[1] ) {
-            lp = mid+1;
-            res = midVal[0];
-        } else {
-            rp = mid-1;
-        }
+        if( timestamp < this.map[key]["timeStamps"][mid]  )
+           rp = mid-1;
+        else
+           lp = mid;
+        
     }
-    
-    return res;
+    return this.map[key]["timeStamps"][lp] <= timestamp ? this.map[key]
+    [this.map[key]["timeStamps"][lp]] : ""
 };
 
 /** 
@@ -50,3 +47,19 @@ TimeMap.prototype.get = function(key, timestamp) {
  * obj.set(key,value,timestamp)
  * var param_2 = obj.get(key,timestamp)
  */
+
+/*
+
+foo  
+    1: bar
+    4: bar2
+    timestamp [1,2,3,4,5 ]
+     
+bar 
+bar
+bar2
+bar2
+
+
+
+*/
