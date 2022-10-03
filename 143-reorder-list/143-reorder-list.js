@@ -10,43 +10,86 @@
  * @return {void} Do not return anything, modify head in-place instead.
  */
 var reorderList = function(head) {
-    if( !head || !head.next || !head.next.next )
-        return head
-
-    let sp = head;
-    let fp = head;
-
-    while( sp && sp.next && fp.next && fp.next.next ) {
-        sp = sp.next;
-        fp = fp.next.next
+    let length = 0;
+    
+    let currentNode = head;
+    while( currentNode ) {
+        length++;
+        currentNode = currentNode.next;
     }
-
-    //reverse second half
-    let node = sp.next;
+    
+    let mid = Math.ceil(length/2);
+    
+    let count = mid-1;
+    currentNode = head;
+    while( count ) {
+        currentNode = currentNode.next;
+        count--;
+    }
+    
+    let temp = currentNode.next;
+    currentNode.next = null;
+    
     let prev = null;
-    while( node ) {
-        let temp = node.next;
-        node.next = prev;
-        prev = node;
-        node = temp;
-    } 
-
-    sp.next = null;
-    let startP = head;
-    let endP = prev;
-    while( startP && endP  ) {
-        let temp1 = startP.next;
-        let temp2 = endP.next;
-
-        startP.next = endP;
-        endP.next = temp1;
-
-        startP = temp1;
-        endP = temp2;	
+    currentNode = temp;
+    while(currentNode) {
+        let nextNode = currentNode.next;
+        currentNode.next = prev
+        
+        prev = currentNode;
+        currentNode = nextNode;
     }
-	
-
-	return head;
+    
+    let l = head, r = prev; 
+    let dummyNode = new ListNode(-1)
+    
+    if(!r)
+        return l;
+    
+    currentNode = dummyNode;
+    while( l && r ) {
+        let temp1 = l.next;
+        let temp2 = r.next;
+        
+        currentNode.next = l;
+        currentNode = l;
+        currentNode.next = r
+        currentNode = r;
+        
+        l = temp1;
+        r = temp2;
+        
+        if(!r)
+            currentNode.next = l;
+    }
+    
+    return dummyNode.next;
 };
+/*
+[1,2,3,4]
+ 0 1 2 3
+5
+p1 3
+p2 2
+
+length
+l
+p1 = l1/2 ceil
+p1 node ignore
+
+reverse remaining
+r
+
+l && r
+curren > l > r
+current = r;
+
+l >> l.next
+r >> r.next
+
+if(!r)
+current > l
 
 
+dumm.next
+*/
