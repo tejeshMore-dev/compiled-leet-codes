@@ -11,15 +11,28 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
-    let sp = head, fp = head, result = false;
+    if( !head )
+        return false;
     
-    while( sp && sp.next && fp && fp.next ) {
-        sp = sp.next;
-        fp = fp.next.next;
-        
+    let sp = head, fp = head;
+    let result = false;
+    
+    sp = sp.next;
+    fp = fp.next ? fp.next.next : null;
+    
+    while( sp && fp ) {
         if( sp === fp )
             return result = true;
+        
+        sp = sp.next;
+        fp = fp.next ? fp.next.next : null;
     }
     
-    return false;
+    return result;
 };
+
+/*
+[3,2,0,-4]
+
+
+*/
