@@ -2,37 +2,43 @@
  * @param {number[]} nums
  * @return {number}
  */
-/*
-var findDuplicate = function(nums) {
-    let sp = nums[0], fp = nums[nums[0]];
-    
-    while( sp !== fp ) {
-        sp = nums[sp];
-        fp = nums[nums[fp]];
-    }
-    
-    fp = 0;
-     while( sp !== fp ) {
-        sp = nums[sp];
-        fp = nums[fp];
-    }
-    
-    return sp;
-};
-*/
 var findDuplicate = function(nums) {
     let res;
     
-    for( let i in nums ) {
-        let index = Math.abs( nums[i] ) - 1;
+    for( let i=0; i<nums.length; i++ ) {
+        let current = Math.abs(nums[i]);
+        let index = current-1;
         
-        if( nums[index] < 0 )
-            return Math.abs( nums[i] )
+        let val = nums[index];
         
-        nums[index] *= -1;
+        if( val < 0 ) {
+            res = current
+            break;            
+        }
+        else
+            nums[index] = -1 * nums[index]; 
+    }
+    
+    for( let i=0; i<nums.length; i++ ) {
+        nums[i] = Math.abs(nums[i])
     }
     
     return res;
-}
+};
 
+/*
+[-1,-3,-4,-2,2]
 
+cur = abs(nums[i])
+cur-1 
+in = 1
+
+val = nums[in]
+
+if -ve 
+return  cur
+
+else
+nums[in] = -ve
+
+*/
