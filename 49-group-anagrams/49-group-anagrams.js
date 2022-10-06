@@ -10,7 +10,7 @@ var groupAnagrams = function(strs) {
         if( !map.has(hash) )
             map.set(hash, [])
         
-        let arr =  map.get(hash)
+        let arr =  map.get(hash);
         arr.push(str)
         map.set(hash, arr);
         
