@@ -3,24 +3,29 @@
  * @return {string[][]}
  */
 var groupAnagrams = function(strs) {
-    let map = {};
-    let result = [];
+    let map = new Map();
     
     for( let str of strs ) {
-        if( !map[getSortedString(str)] )
-            map[getSortedString(str)] = []
+        let hash = getHash(str);
+        if( !map.has(hash) )
+            map.set(hash, [])
         
-        map[getSortedString(str)].push(str);
+        let arr =  map.get(hash)
+        arr.push(str)
+        map.set(hash, arr);
+        
     }
     
-    
-    for( let key in map ) {
-        result.push(map[key])
-    }
-    
-    return result;
+    return [ ...map.values()];
 };
 
-const getSortedString = function(str) {
-    return str.split("").sort((a,b) => a.localeCompare(b) ).join("");
+const getHash = function(str) {
+    let sb = new Array(26).fill(0);
+    
+    for( let char of str ) {
+        let index = char.charCodeAt(0) - 'a'.charCodeAt(0);
+        sb[index] = sb[index] + 1;
+        
+    }
+    return sb.join("#");
 }
