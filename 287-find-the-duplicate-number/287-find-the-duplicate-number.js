@@ -19,9 +19,9 @@ var findDuplicate = function(nums) {
             nums[index] = -1 * nums[index]; 
     }
     
-    for( let i=0; i<nums.length; i++ ) {
-        nums[i] = Math.abs(nums[i])
-    }
+//     for( let i=0; i<nums.length; i++ ) {
+//         nums[i] = Math.abs(nums[i])
+//     }
     
     return res;
 };
