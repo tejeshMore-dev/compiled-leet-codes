@@ -14,7 +14,7 @@ var hasCycle = function(head) {
     let sp = head, fp = head;
     let result = false;
     
-    while( sp && fp && fp.next ) {        
+    while(fp && fp.next ) {        
         sp = sp.next;
         fp = fp.next ? fp.next.next : null;
         
