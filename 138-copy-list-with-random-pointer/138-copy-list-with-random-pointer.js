@@ -12,24 +12,48 @@
  * @return {Node}
  */
 var copyRandomList = function(head) {
+    let end = null, start = null;
     let map = new Map();
     
-    let node = head;
-    while( node ) {
-        map.set( node, new Node(node.val) );
-        node = node.next;
-    }
-    
-    node = head;
-    while( node ) {
-        let clonedNode = map.get(node);
-        if( clonedNode ) {
-            clonedNode.next = (node.next ? map.get(node.next) : null);
-            clonedNode.random = (node.random ? map.get(node.random) : null);   
+    let currentNode = head;
+    while( currentNode ) {
+        let node = new Node(currentNode.val, null, null)
+        
+        if( !start ) {
+            start = node;
+            end = node;
+        } else {
+            end.next = node;
+            end = node;
         }
-
-        node = node.next;
+        
+        map.set(currentNode, node);
+        currentNode = currentNode.next;
     }
     
-    return map.get(head)
+    currentNode = head;
+    let node = start;
+    while( currentNode ) {
+        
+        if( currentNode.random !== null ) {            
+            node.random = map.get(currentNode.random);
+        }
+        
+        node = node.next;
+        currentNode = currentNode.next
+    }
+    
+    return start
 };
+
+/*
+[[7,null],[13,0],[11,4],[10,2],[1,0]]
+
+{
+ 0: node,
+ 1:
+}
+
+
+
+*/
