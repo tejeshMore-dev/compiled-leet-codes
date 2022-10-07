@@ -11,9 +11,7 @@ var generateParenthesis = function(n) {
     
     function findCombination(oC, cC, current, res) {
         if( current.length === n*2 ){
-            // if( oC === n && cC === n )
-                res.push(current.join(""));
-            
+            res.push(current.join(""));
             return
         }
         
