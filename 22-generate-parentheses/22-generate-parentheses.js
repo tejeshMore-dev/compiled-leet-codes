@@ -6,22 +6,22 @@ var generateParenthesis = function(n) {
     let openB = "(";
     let closeB = ")";
     let res = [];
-    findCombination(n, 0, 0, [], res)
+    findCombination(0, 0, [], res)
     return res;
     
-    function findCombination(n, oC, cC, current, res) {
+    function findCombination(oC, cC, current, res) {
         if( current.length === n*2 ){
-            if( oC === n && cC === n )
+            // if( oC === n && cC === n )
                 res.push(current.join(""));
             
             return
         }
         
         if( oC < n )
-            findCombination(n, oC+1, cC, [ ...current, openB ], res);
+            findCombination(oC+1, cC, [ ...current, openB ], res);
         
         if( cC < n && oC > cC)
-            findCombination(n, oC, cC+1, [ ...current, closeB ], res);
+            findCombination(oC, cC+1, [ ...current, closeB ], res);
     }
 };
 
