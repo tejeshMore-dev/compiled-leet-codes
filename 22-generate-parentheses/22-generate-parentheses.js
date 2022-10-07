@@ -5,15 +5,13 @@
 var generateParenthesis = function(n) {
     let openB = "(";
     let closeB = ")";
-    let res = [];
+    let res = []
     findCombination(0, 0, [], res)
-    return res;
+    return res;    
     
-    function findCombination(oC, cC, current, res) {
-        if( current.length === n*2 ){
-            res.push(current.join(""));
-            return
-        }
+    function findCombination(oC, cC, current, res) { //n
+        if( current.length === n*2 )
+            return res.push(current.join(""));
         
         if( oC < n )
             findCombination(oC+1, cC, [ ...current, openB ], res);
