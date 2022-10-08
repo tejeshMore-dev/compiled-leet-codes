@@ -3,27 +3,42 @@
  * @return {number[][]}
  */
 var subsetsWithDup = function(nums) {
-    let ans = [];
-    let subset = [];
-    nums.sort();
+    let res = [];
+    nums.sort((a,b) => a-b);
+    findSubsetsWithDup(0, [], res, false);
+    return res;
     
-    function helper( i ) {        
+    function findSubsetsWithDup(i, current, res, isNextSame) {
         if( i === nums.length ) {
-            ans.push([...subset]);
+            res.push(current);
             return;
         }
         
-        subset.push(nums[i]);
-        helper( i+1 );
+        if( !isNextSame )
+            findSubsetsWithDup(i+1, current, res, isNextSame )
         
-        while( i+1 < nums.length && nums[i] === nums[i+1] )
-            i++;
-        
-        subset.pop();
-        helper( i+1 );
+        findSubsetsWithDup(i+1, [ ...current, nums[i] ], res, checkNextSame(i) )
     }
     
-    
-    helper( 0 );
-    return ans;
+    function checkNextSame(i){
+        return ( i === nums.length-1 || nums[i] === nums[i+1] )
+    }
 };
+
+/*
+[1,2,2,2]
+
+0
+[] false
+[] [1] false
+
+1
+[] [2] [1] [12]
+
+2
+[]
+
+(i, current, res, )
+sameAsPrev
+isNextSame
+*/
