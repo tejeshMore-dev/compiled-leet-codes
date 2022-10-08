@@ -9,7 +9,7 @@ var subsets = function(nums) {
     
     function findSubset(i, current, res) {
         if( i === nums.length ) {
-            res.push([ ...current ]);
+            res.push(current);
             return;
         }
         
