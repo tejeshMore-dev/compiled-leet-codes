@@ -3,40 +3,53 @@
  * @return {string[][]}
  */
 var solveNQueens = function(n) {
-    let res = [];
-    let board = new Array(n).fill(".").map((a) => a = new Array(n).fill("."));
+    let row = new Set();
     let col = new Set();
     let posDig = new Set();
     let negDig = new Set();
+    let ans = [];
     
-    function solve(r) {
+    findValid(0, new Array(n).fill(".").map((a) => new Array(n).fill(".")) );
+    return ans;
+    
+    
+    function findValid(r, current) {
         if( r === n ) {
-            let ans = [];
-            for( let i = 0; i<board.length; i++ ) {
-                ans.push( board[i].join("") );
-            }
-            res.push( [...ans] );
-            return;
+            let tem = [];
+            current.map( (a) => tem.push(a.join("")) );
+            ans.push(tem);
         }
         
-        for( let c = 0; c < n;  c++ ) {
-            if( col.has(c) || posDig.has(r+c) || negDig.has(r-c) )
-                continue;
-            
-            col.add(c);
-            posDig.add(r+c);
-            negDig.add(r-c);
-            board[r][c] = "Q";
-            
-            solve(r+1);
-            
-            col.delete(c);
-            posDig.delete(r+c);
-            negDig.delete(r-c);
-            board[r][c] = ".";
+        for( let c=0; c<n; c++ ) {
+            if( !(row.has(r) || col.has(c) || posDig.has(r+c) || negDig.has(r-c) ) ) {
+                current[r][c] = "Q";
+                row.add(r);
+                col.add(c);
+                posDig.add(r+c);
+                negDig.add(r-c);
+                
+                findValid(r+1, current);
+                
+                row.delete(r);
+                col.delete(c);
+                posDig.delete(r+c);
+                negDig.delete(r-c);
+                current[r][c] = ".";
+            }
         }
+
     }
-    
-    solve(0);
-    return res;
 };
+/*
+
+for every col
+
+for every row
+place
+update map
+recursion r+1
+
+remove from map
+
+
+*/
