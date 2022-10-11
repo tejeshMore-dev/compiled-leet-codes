@@ -19,7 +19,6 @@ var combinationSum = function(candidates, target) {
         
         current.push(candidates[i]);
         findCombinationSum(i, sum + candidates[i]);
-        // findCombinationSum(i+1, sum + candidates[i]);
         
         current.pop();
         findCombinationSum(i+1, sum);
