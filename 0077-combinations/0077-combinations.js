@@ -4,8 +4,8 @@
  * @return {number[][]}
  */
 var combine = function(n, k) {
-    if( n === 1 )
-        return [[1]];
+    // if( n === 1 )
+    //     return [[1]];
     
     let res = [], current = [];
     findCombine(1, 0);
