@@ -18,6 +18,7 @@ var maxNumberOfBalloons = function(text) {
         
         inputMap[char] += 1;
     }
+    
     let res = Number.MAX_VALUE;
     for(let char of "balloon") {
         if( !inputMap[char] )
