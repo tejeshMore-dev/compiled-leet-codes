@@ -3,9 +3,10 @@
  * @return {number}
  */
 var maxNumberOfBalloons = function(text) {
-    let refMap = {}, inputMap = {};
+    let refMap = {}, inputMap = {  };
+    let ref = "balloon";
     
-    for(let char of "balloon") {
+    for(let char of ref){
         if( !refMap[char] )
             refMap[char] = 0;
         
@@ -20,7 +21,7 @@ var maxNumberOfBalloons = function(text) {
     }
     
     let res = Number.MAX_VALUE;
-    for(let char of "balloon") {
+    for(let char of ref){
         if( !inputMap[char] )
             return 0;
         
