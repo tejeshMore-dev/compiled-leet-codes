@@ -26,7 +26,6 @@ var wordPattern = function(pattern, s) {
 
         }
     }
-    console.log(si, s.length)
     return si === s.length+1;
     
     function findWord(s) {
