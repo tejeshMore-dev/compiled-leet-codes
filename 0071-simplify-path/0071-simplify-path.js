@@ -4,17 +4,30 @@
  */
 var simplifyPath = function(path) {
     let stack = [];
-    path = path.split("/");
+    let i=0;
     
-    for( let dir of path ) {
+    while(i < path.length) {
+        let dir = findDir();
         if(!dir || dir === "" || dir === ".")
             continue;
-        else if( dir === "..") {
+        else if(  dir === "..") {
             if( stack.length )
                 stack.pop()
         } else
             stack.push(dir)
     }
     
+    function findDir() {
+        let sb = [];
+        while( i<path.length && path[i] === "/" ){
+            i++
+        };
+        
+        while( i<path.length && path[i] !== "/" ){
+            sb.push(path[i]);
+            i++
+        };
+        return sb.join("");
+    }
     return stack.length ? "/"+stack.join("/") : "/"
 };
