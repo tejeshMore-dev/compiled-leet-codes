@@ -14,7 +14,7 @@ var maxDepth = function(root) {
     if(!root)
         return 0
     
-    return Math.max(findMaxDepth(root.left), findMaxDepth(root.right)) + 1;
+    return findMaxDepth(root);
     
     function findMaxDepth(node) {
         if(!node)
