@@ -25,7 +25,7 @@ var hasPathSum = function(root, targetSum) {
         
         currentSum += node.val;
         if( currentSum === targetSum && !node.left && !node.right )
-            res = true;
+            return res = true;
         
         findHasPathSum(node.left);        
         findHasPathSum(node.right);
