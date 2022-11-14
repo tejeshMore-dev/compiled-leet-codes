@@ -19,21 +19,24 @@ var connect = function(root) {
     let queue = [ root ];
     
     while( queue.length ) {
-        let qLen = queue.length;
+        let level = [];
+        let qlength = queue.length;
         
-        for( let i=0; i < qLen; i++ ) {
-            let current = queue.shift();
+        while( qlength ) {
             
-            if( i+1 < qLen )
-                current.next = queue[0];
+            let node =  queue.shift();
+            node.next = queue[0] ? queue[0] :  null;
             
-            if( current.left )
-                queue.push(current.left);               
+            if(  node.left )
+                level.push( node.left );
             
-            if( current.right )
-                queue.push(current.right);
+            if( node.right )
+                level.push( node.right );
+            
+            qlength--;
         }
+        queue = [ ...level ];
     }
     
-    return root
+    return root;
 };
