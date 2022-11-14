@@ -22,7 +22,7 @@ var connect = function(root) {
         let level = [];
         let qlength = queue.length;
         
-        while( qlength ) {
+        while(qlength ) {
             
             let node =  queue.shift();
             node.next = queue[0] ? queue[0] :  null;
@@ -32,7 +32,6 @@ var connect = function(root) {
             
             if( node.right )
                 level.push( node.right );
-            
             qlength--;
         }
         queue = [ ...level ];
