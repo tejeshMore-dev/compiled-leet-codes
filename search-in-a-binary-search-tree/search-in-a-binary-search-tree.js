@@ -12,21 +12,22 @@
  * @return {TreeNode}
  */
 var searchBST = function(root, val) {
-    return findNode(root,val);
-};
-
-function findNode(node, val) {
-    if(!node)
-        return null
+    return findSearchBST( root, val );
     
-    if(node.val === val) {
-        return node        
+    function findSearchBST( node, val ) {
+        if( !node )
+            return null;
+        
+        if( node.val === val )
+            return node;
+        
+        let res = null;
+        
+        if( val < node.val )
+            res = findSearchBST(node.left, val);
+        else if( val > node.val )
+            res = findSearchBST(node.right, val);
+            
+        return res;
     }
-    
-    if(node.val > val)
-        node = node.left;
-    else
-        node = node.right;
-    
-    return findNode(node, val)
-}
+};
