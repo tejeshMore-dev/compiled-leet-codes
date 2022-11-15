@@ -28,7 +28,7 @@ var isBalanced = function(root) {
         if( Math.abs(leftH - rightH) > 1 )
             return res = false;
         
-        return Math.max(leftH, rightH) + 1;
+        return Math.max(leftH + 1, rightH + 1) ;
     }
     
 };
