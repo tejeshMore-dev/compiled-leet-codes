@@ -12,22 +12,23 @@
  */
 var isBalanced = function(root) {
     if( !root )
-        return true;
+        true;
     
-    return traverse( root )[1];
+    let res = true;
+    traverse(root);
+    return res
     
-    function traverse( node ) {
+    function traverse(node) {
         if( !node )
-            return [ 0, true ]
+            return 0;
         
-        let left = traverse( node.left );
-        let right = traverse( node.right );
-    
-        let max = Math.max( left[0], right[0] );
+        let leftH = traverse(node.left);
+        let rightH = traverse(node.right);
         
-        if( !left[1] || !right[1] || Math.abs( left[0] - right[0] ) > 1 )
-            return [ max+1, false ]
+        if( Math.abs(leftH - rightH) > 1 )
+            return res = false;
         
-        return [ max+1, true ]
+        return Math.max(leftH, rightH) + 1;
     }
+    
 };
