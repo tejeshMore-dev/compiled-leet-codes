@@ -11,15 +11,19 @@
  * @return {boolean}
  */
 var isValidBST = function(root) {
-    const MAX = Number.MAX_VALUE;
-    return validate( root, MAX, -MAX );
+    if(!root)
+        return true;
     
-    function validate( node, max, min ) {
+    return findIsValidBST( root, -Number.MAX_VALUE, Number.MAX_VALUE );
+    
+    
+    function findIsValidBST( node, min, max ) {
         if( !node )
-            return true;        
+            return true
         
-        return (  node.val > min && node.val < max && 
-                  validate( node.left, node.val, min ) &&
-                  validate( node.right, max, node.val ))
+        if( !(node.val > min && node.val < max) )
+            return false
+        
+        return ( findIsValidBST(node.left, min, node.val ) && findIsValidBST(node.right, node.val, max ) )
     }
 };
